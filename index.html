@@ -55,7 +55,7 @@
     <section class="clock-section">
 
         <div class="clock-label">
-            🕐 الوقت الحالي
+            🕐 الوقت في الجزائر
         </div>
 
         <div id="liveClock">
@@ -258,181 +258,152 @@
 <script>
 
 /* =====================================================
+   المنطقة الزمنية
+===================================================== */
+
+const TIME_ZONE = "Africa/Algiers";
+
+
+/* =====================================================
    برنامج الدراسة
 ===================================================== */
 
 const schedule = {
 
     0: [
-
         {
             subject: "🧮 الرياضيات",
             start: "19:00",
             end: "20:00"
         },
-
         {
             subject: "📖 اللغة العربية",
             start: "20:15",
             end: "21:15"
         },
-
         {
             subject: "🔄 مراجعة دروس اليوم",
             start: "21:30",
             end: "22:00"
         }
-
     ],
 
-
     1: [
-
         {
             subject: "🔬 العلوم الطبيعية",
             start: "19:00",
             end: "20:00"
         },
-
         {
             subject: "🇫🇷 اللغة الفرنسية",
             start: "20:15",
             end: "21:15"
         },
-
         {
             subject: "📝 تمارين",
             start: "21:30",
             end: "22:00"
         }
-
     ],
 
-
     2: [
-
         {
             subject: "🧮 الرياضيات",
             start: "19:00",
             end: "20:00"
         },
-
         {
             subject: "🇬🇧 اللغة الإنجليزية",
             start: "20:15",
             end: "21:15"
         },
-
         {
             subject: "🔄 مراجعة",
             start: "21:30",
             end: "22:00"
         }
-
     ],
 
-
     3: [
-
         {
             subject: "📖 اللغة العربية",
             start: "19:00",
             end: "20:00"
         },
-
         {
             subject: "🔬 العلوم الطبيعية",
             start: "20:15",
             end: "21:15"
         },
-
         {
             subject: "📝 تمارين",
             start: "21:30",
             end: "22:00"
         }
-
     ],
 
-
     4: [
-
         {
             subject: "🧮 الرياضيات",
             start: "19:00",
             end: "20:00"
         },
-
         {
             subject: "🌍 التاريخ والجغرافيا",
             start: "20:15",
             end: "21:15"
         },
-
         {
             subject: "🔄 مراجعة أسبوعية",
             start: "21:30",
             end: "22:00"
         }
-
     ],
 
-
     5: [
-
         {
             subject: "🧮 الرياضيات",
             start: "10:00",
             end: "11:00"
         },
-
         {
             subject: "🔬 العلوم الطبيعية",
             start: "11:15",
             end: "12:15"
         },
-
         {
             subject: "🇫🇷 اللغة الفرنسية",
             start: "15:00",
             end: "16:00"
         },
-
         {
             subject: "📖 اللغة العربية",
             start: "16:15",
             end: "17:15"
         }
-
     ],
 
-
     6: [
-
         {
             subject: "🧮 الرياضيات",
             start: "10:00",
             end: "11:00"
         },
-
         {
             subject: "🇬🇧 اللغة الإنجليزية",
             start: "11:15",
             end: "12:15"
         },
-
         {
             subject: "🌍 التاريخ والجغرافيا",
             start: "15:00",
             end: "16:00"
         },
-
         {
             subject: "📚 مراجعة شاملة",
             start: "16:15",
             end: "17:15"
         }
-
     ]
 
 };
@@ -443,7 +414,6 @@ const schedule = {
 ===================================================== */
 
 const days = [
-
     "الأحد",
     "الإثنين",
     "الثلاثاء",
@@ -451,8 +421,169 @@ const days = [
     "الخميس",
     "الجمعة",
     "السبت"
-
 ];
+
+
+/* =====================================================
+   الحصول على الوقت الحالي في الجزائر
+===================================================== */
+
+function getAlgeriaParts() {
+
+    const parts = new Intl.DateTimeFormat(
+        "en-GB",
+        {
+            timeZone: TIME_ZONE,
+            weekday: "short",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hourCycle: "h23"
+        }
+    ).formatToParts(new Date());
+
+
+    const result = {};
+
+    parts.forEach(part => {
+
+        if (part.type !== "literal") {
+
+            result[part.type] =
+                Number(part.value);
+
+        }
+
+    });
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   اليوم الحالي في الجزائر
+===================================================== */
+
+function getAlgeriaDay() {
+
+    const parts = getAlgeriaParts();
+
+    const weekday =
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone: TIME_ZONE,
+                weekday: "long"
+            }
+        ).format(new Date());
+
+
+    const map = {
+
+        Sunday: 0,
+        Monday: 1,
+        Tuesday: 2,
+        Wednesday: 3,
+        Thursday: 4,
+        Friday: 5,
+        Saturday: 6
+
+    };
+
+
+    return map[weekday];
+
+}
+
+
+/* =====================================================
+   الوقت الحالي بالثواني
+===================================================== */
+
+function getCurrentSeconds() {
+
+    const parts =
+        getAlgeriaParts();
+
+
+    return (
+        parts.hour * 3600 +
+        parts.minute * 60 +
+        parts.second
+    );
+
+}
+
+
+/* =====================================================
+   الساعة
+===================================================== */
+
+function updateClock() {
+
+    const parts =
+        getAlgeriaParts();
+
+
+    const hour =
+        String(parts.hour).padStart(2, "0");
+
+    const minute =
+        String(parts.minute).padStart(2, "0");
+
+    const second =
+        String(parts.second).padStart(2, "0");
+
+
+    document.getElementById(
+        "liveClock"
+    ).textContent =
+        `${hour}:${minute}:${second}`;
+
+}
+
+
+/* =====================================================
+   التاريخ
+===================================================== */
+
+function updateDate() {
+
+    const now = new Date();
+
+    const day =
+        getAlgeriaDay();
+
+
+    const date =
+        new Intl.DateTimeFormat(
+            "ar-DZ",
+            {
+                timeZone: TIME_ZONE,
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        ).format(now);
+
+
+    document.getElementById(
+        "dayName"
+    ).textContent =
+        days[day];
+
+
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        date;
+
+}
 
 
 /* =====================================================
@@ -462,7 +593,9 @@ const days = [
 let audioContext = null;
 
 let notificationsEnabled =
-    localStorage.getItem("studyNotifications") === "true";
+    localStorage.getItem(
+        "studyNotifications"
+    ) === "true";
 
 
 function setupAudio() {
@@ -477,6 +610,7 @@ function setupAudio() {
 
     }
 
+
     if (
         audioContext.state === "suspended"
     ) {
@@ -488,7 +622,9 @@ function setupAudio() {
 }
 
 
-/* صوت بداية الحصة */
+/* =====================================================
+   صوت بداية الحصة
+===================================================== */
 
 function playStartSound() {
 
@@ -496,7 +632,9 @@ function playStartSound() {
         return;
     }
 
+
     setupAudio();
+
 
     const now =
         audioContext.currentTime;
@@ -509,7 +647,8 @@ function playStartSound() {
         audioContext.createGain();
 
 
-    oscillator.type = "sine";
+    oscillator.type =
+        "sine";
 
 
     oscillator.frequency.setValueAtTime(
@@ -555,7 +694,9 @@ function playStartSound() {
 }
 
 
-/* صوت نهاية الحصة */
+/* =====================================================
+   صوت نهاية الحصة
+===================================================== */
 
 function playEndSound() {
 
@@ -563,7 +704,9 @@ function playEndSound() {
         return;
     }
 
+
     setupAudio();
+
 
     const now =
         audioContext.currentTime;
@@ -582,7 +725,8 @@ function playEndSound() {
             audioContext.createGain();
 
 
-        oscillator.type = "sine";
+        oscillator.type =
+            "sine";
 
 
         oscillator.frequency.setValueAtTime(
@@ -633,7 +777,9 @@ function playEndSound() {
 
 function enableNotifications() {
 
-    notificationsEnabled = true;
+    notificationsEnabled =
+        true;
+
 
     localStorage.setItem(
         "studyNotifications",
@@ -660,7 +806,9 @@ function enableNotifications() {
 
     document.getElementById(
         "notificationButton"
-    ).classList.add("enabled");
+    ).classList.add(
+        "enabled"
+    );
 
 }
 
@@ -672,19 +820,24 @@ function updateNotificationButton() {
             "notificationButton"
         );
 
+
     const status =
         document.getElementById(
             "notificationStatus"
         );
 
 
-    if (notificationsEnabled) {
+    if (
+        notificationsEnabled
+    ) {
 
         button.textContent =
             "🔔 التنبيهات مفعلة";
 
+
         status.textContent =
             "سيتم تنبيهك عند بداية ونهاية كل حصة";
+
 
         button.classList.add(
             "enabled"
@@ -696,13 +849,14 @@ function updateNotificationButton() {
 
 
 /* =====================================================
-   تحويل الوقت
+   تحويل الوقت إلى ثواني
 ===================================================== */
 
 function timeToSeconds(time) {
 
     const parts =
         time.split(":");
+
 
     return (
         Number(parts[0]) * 3600 +
@@ -712,13 +866,19 @@ function timeToSeconds(time) {
 }
 
 
+/* =====================================================
+   تنسيق الوقت
+===================================================== */
+
 function formatTime(time) {
 
     const parts =
         time.split(":");
 
+
     let hour =
         Number(parts[0]);
+
 
     const minute =
         parts[1];
@@ -734,8 +894,12 @@ function formatTime(time) {
         hour % 12;
 
 
-    if (hour === 0) {
+    if (
+        hour === 0
+    ) {
+
         hour = 12;
+
     }
 
 
@@ -745,7 +909,7 @@ function formatTime(time) {
 
 
 /* =====================================================
-   تحويل الثواني إلى HH:MM:SS
+   العد التنازلي
 ===================================================== */
 
 function formatCountdown(seconds) {
@@ -773,108 +937,14 @@ function formatCountdown(seconds) {
         seconds % 60;
 
 
-    return [
+    return (
 
-        String(hours).padStart(2, "0"),
-
-        String(minutes).padStart(2, "0"),
-
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
         String(secs).padStart(2, "0")
 
-    ].join(":");
-
-}
-
-
-/* =====================================================
-   الساعة الحية
-===================================================== */
-
-function updateClock() {
-
-    const now =
-        new Date();
-
-
-    const hours =
-        String(
-            now.getHours()
-        ).padStart(2, "0");
-
-
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2, "0");
-
-
-    const seconds =
-        String(
-            now.getSeconds()
-        ).padStart(2, "0");
-
-
-    document.getElementById(
-        "liveClock"
-    ).textContent =
-        `${hours}:${minutes}:${seconds}`;
-
-}
-
-
-/* =====================================================
-   التاريخ
-===================================================== */
-
-function updateDate() {
-
-    const now =
-        new Date();
-
-
-    const day =
-        now.getDay();
-
-
-    const date =
-        now.toLocaleDateString(
-            "ar-DZ",
-            {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
-        );
-
-
-    document.getElementById(
-        "dayName"
-    ).textContent =
-        days[day];
-
-
-    document.getElementById(
-        "currentDate"
-    ).textContent =
-        date;
-
-}
-
-
-/* =====================================================
-   الحصول على الوقت الحالي بالثواني
-===================================================== */
-
-function getCurrentSeconds() {
-
-    const now =
-        new Date();
-
-
-    return (
-        now.getHours() * 3600 +
-        now.getMinutes() * 60 +
-        now.getSeconds()
     );
 
 }
@@ -887,7 +957,7 @@ function getCurrentSeconds() {
 function getCurrentLesson() {
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const current =
@@ -938,7 +1008,7 @@ function getCurrentLesson() {
 function getNextLesson() {
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const current =
@@ -953,14 +1023,10 @@ function getNextLesson() {
         const lesson of lessons
     ) {
 
-        const start =
+        if (
             timeToSeconds(
                 lesson.start
-            );
-
-
-        if (
-            start > current
+            ) > current
         ) {
 
             return lesson;
@@ -982,7 +1048,7 @@ function getNextLesson() {
 function getCurrentBreak() {
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const current =
@@ -999,23 +1065,23 @@ function getCurrentBreak() {
         i++
     ) {
 
-        const currentLesson =
+        const first =
             lessons[i];
 
 
-        const nextLesson =
+        const second =
             lessons[i + 1];
 
 
         const end =
             timeToSeconds(
-                currentLesson.end
+                first.end
             );
 
 
         const nextStart =
             timeToSeconds(
-                nextLesson.start
+                second.start
             );
 
 
@@ -1026,11 +1092,11 @@ function getCurrentBreak() {
 
             return {
 
-                start: currentLesson.end,
+                start: first.end,
 
-                end: nextLesson.start,
+                end: second.start,
 
-                nextLesson: nextLesson
+                nextLesson: second
 
             };
 
@@ -1082,53 +1148,7 @@ function isCompleted(
 
 
 /* =====================================================
-   تغيير حالة الحصة
-===================================================== */
-
-function toggleCompleted(
-    day,
-    index
-) {
-
-    const lesson =
-        schedule[day][index];
-
-
-    const key =
-        lessonKey(
-            day,
-            lesson
-        );
-
-
-    if (
-        isCompleted(
-            day,
-            lesson
-        )
-    ) {
-
-        localStorage.removeItem(
-            key
-        );
-
-    } else {
-
-        localStorage.setItem(
-            key,
-            "true"
-        );
-
-    }
-
-
-    updateAll();
-
-}
-
-
-/* =====================================================
-   عرض الحالة الحالية
+   عرض الحصة الحالية
 ===================================================== */
 
 function updateCurrentLesson() {
@@ -1151,7 +1171,9 @@ function updateCurrentLesson() {
         getNextLesson();
 
 
-    /* الحصة الحالية */
+    /* =========================
+       الحصة الحالية
+    ========================= */
 
     if (current) {
 
@@ -1171,16 +1193,16 @@ function updateCurrentLesson() {
             );
 
 
+        const remaining =
+            end - now;
+
+
         const elapsed =
             now - start;
 
 
         const duration =
             end - start;
-
-
-        const remaining =
-            end - now;
 
 
         const progress =
@@ -1208,13 +1230,19 @@ function updateCurrentLesson() {
             </h3>
 
             <p class="lesson-time">
+
                 ${formatTime(current.start)}
+
                 →
+
                 ${formatTime(current.end)}
+
             </p>
 
             <div class="countdown">
+
                 ${formatCountdown(remaining)}
+
             </div>
 
             <p class="countdown-label">
@@ -1236,7 +1264,7 @@ function updateCurrentLesson() {
 
                 ${
                     isCompleted(
-                        new Date().getDay(),
+                        getAlgeriaDay(),
                         current
                     )
                     ? "↩️ إلغاء الإكمال"
@@ -1252,7 +1280,9 @@ function updateCurrentLesson() {
     }
 
 
-    /* وقت الراحة */
+    /* =========================
+       وقت الراحة
+    ========================= */
 
     if (breakTime) {
 
@@ -1285,7 +1315,9 @@ function updateCurrentLesson() {
             </h3>
 
             <div class="countdown break-countdown">
+
                 ${formatCountdown(remaining)}
+
             </div>
 
             <p class="countdown-label">
@@ -1293,10 +1325,13 @@ function updateCurrentLesson() {
             </p>
 
             <p class="next-lesson-text">
+
                 الحصة القادمة:
+
                 <strong>
                     ${breakTime.nextLesson.subject}
                 </strong>
+
             </p>
 
         `;
@@ -1306,7 +1341,9 @@ function updateCurrentLesson() {
     }
 
 
-    /* الحصة القادمة */
+    /* =========================
+       الحصة القادمة
+    ========================= */
 
     if (next) {
 
@@ -1339,12 +1376,16 @@ function updateCurrentLesson() {
             </h3>
 
             <p class="lesson-time">
+
                 تبدأ الساعة
                 ${formatTime(next.start)}
+
             </p>
 
             <div class="countdown">
+
                 ${formatCountdown(remaining)}
+
             </div>
 
             <p class="countdown-label">
@@ -1358,7 +1399,9 @@ function updateCurrentLesson() {
     }
 
 
-    /* انتهاء البرنامج */
+    /* =========================
+       نهاية اليوم
+    ========================= */
 
     box.innerHTML = `
 
@@ -1385,13 +1428,13 @@ function updateCurrentLesson() {
 
 
 /* =====================================================
-   إكمال الحصة الحالية
+   إكمال الحصة
 ===================================================== */
 
 function completeCurrentLesson() {
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const lesson =
@@ -1432,24 +1475,6 @@ function completeCurrentLesson() {
 
 
     updateAll();
-
-}
-
-
-/* =====================================================
-   عرض برنامج اليوم
-===================================================== */
-
-function updateTodaySchedule() {
-
-    const day =
-        new Date().getDay();
-
-
-    renderSchedule(
-        day,
-        "todaySchedule"
-    );
 
 }
 
@@ -1505,7 +1530,7 @@ function renderSchedule(
 
 
                 const current =
-                    day === new Date().getDay() &&
+                    day === getAlgeriaDay() &&
                     getCurrentLesson() === lesson;
 
 
@@ -1529,10 +1554,15 @@ function renderSchedule(
                             </h3>
 
                             <p>
+
                                 ⏰
+
                                 ${formatTime(lesson.start)}
+
                                 →
+
                                 ${formatTime(lesson.end)}
+
                             </p>
 
                         </div>
@@ -1567,7 +1597,71 @@ function renderSchedule(
 
 
 /* =====================================================
-   عرض يوم من الأسبوع
+   تغيير حالة الحصة
+===================================================== */
+
+function toggleCompleted(
+    day,
+    index
+) {
+
+    const lesson =
+        schedule[day][index];
+
+
+    const key =
+        lessonKey(
+            day,
+            lesson
+        );
+
+
+    if (
+        isCompleted(
+            day,
+            lesson
+        )
+    ) {
+
+        localStorage.removeItem(
+            key
+        );
+
+    } else {
+
+        localStorage.setItem(
+            key,
+            "true"
+        );
+
+    }
+
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   برنامج اليوم
+===================================================== */
+
+function updateTodaySchedule() {
+
+    const day =
+        getAlgeriaDay();
+
+
+    renderSchedule(
+        day,
+        "todaySchedule"
+    );
+
+}
+
+
+/* =====================================================
+   عرض يوم
 ===================================================== */
 
 function showDay(day) {
@@ -1606,7 +1700,7 @@ function showDay(day) {
 function updateStats() {
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const lessons =
@@ -1661,8 +1755,6 @@ function updateStats() {
         completed;
 
 
-    /* نسبة الإنجاز */
-
     const percent =
         lessons.length > 0
             ? Math.round(
@@ -1686,7 +1778,7 @@ function updateStats() {
 
 
 /* =====================================================
-   نظام التنبيهات
+   التنبيهات
 ===================================================== */
 
 let lastStartAlert = "";
@@ -1696,32 +1788,34 @@ let lastEndAlert = "";
 
 function checkLessonAlerts() {
 
-    if (!notificationsEnabled) {
+    if (
+        !notificationsEnabled
+    ) {
         return;
     }
 
 
     const day =
-        new Date().getDay();
+        getAlgeriaDay();
 
 
     const lessons =
         schedule[day] || [];
 
 
-    const now =
-        new Date();
+    const parts =
+        getAlgeriaParts();
 
 
     const hour =
         String(
-            now.getHours()
+            parts.hour
         ).padStart(2, "0");
 
 
     const minute =
         String(
-            now.getMinutes()
+            parts.minute
         ).padStart(2, "0");
 
 
@@ -1732,14 +1826,14 @@ function checkLessonAlerts() {
     lessons.forEach(
         lesson => {
 
-            /* بداية الحصة */
+            /* بداية */
 
             if (
                 lesson.start === time
             ) {
 
                 const key =
-                    `${day}-${lesson.start}-${now.toDateString()}`;
+                    `${day}-${lesson.start}-${parts.year}-${parts.month}-${parts.day}`;
 
 
                 if (
@@ -1762,14 +1856,14 @@ function checkLessonAlerts() {
             }
 
 
-            /* نهاية الحصة */
+            /* نهاية */
 
             if (
                 lesson.end === time
             ) {
 
                 const key =
-                    `${day}-${lesson.end}-${now.toDateString()}`;
+                    `${day}-${lesson.end}-${parts.year}-${parts.month}-${parts.day}`;
 
 
                 if (
@@ -1817,13 +1911,13 @@ function updateAll() {
 
 
 /* =====================================================
-   تشغيل الموقع
+   بدء الموقع
 ===================================================== */
 
 updateAll();
 
 showDay(
-    new Date().getDay()
+    getAlgeriaDay()
 );
 
 updateNotificationButton();
