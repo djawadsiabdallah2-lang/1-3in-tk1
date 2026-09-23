@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>برنامج دراستي</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="logo">📚 برنامج دراستي</div>
+
+        <div class="date-box">
+            <div id="dayName">اليوم</div>
+            <div id="currentDate">التاريخ</div>
+        </div>
+    </header>
+
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+
+        <!-- الترحيب -->
+        <section class="welcome">
+            <h1>👋 مرحبًا بك في برنامج دراستك</h1>
+            <p>
+                نظم وقتك، ادرس بانتظام، وحقق هدفك خطوة بخطوة 💪
+            </p>
+        </section>
+
+
+        <!-- الحصة الحالية -->
+        <section class="current-section">
+
+            <h2>⏰ ماذا أدرس الآن؟</h2>
+
+            <div id="currentLesson" class="current-card">
+                جاري معرفة الحصة الحالية...
+            </div>
+
+        </section>
+
+
+        <!-- إحصائيات -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>📚</span>
+                <strong id="todayLessons">0</strong>
+                <p>حصص اليوم</p>
+            </div>
+
+            <div class="stat-card">
+                <span>⏱️</span>
+                <strong id="todayHours">0</strong>
+                <p>ساعات الدراسة</p>
+            </div>
+
+            <div class="stat-card">
+                <span>✅</span>
+                <strong id="completedLessons">0</strong>
+                <p>حصص مكتملة</p>
+            </div>
+
+        </section>
+
+
+        <!-- برنامج اليوم -->
+        <section class="schedule-section">
+
+            <h2>📅 برنامج اليوم</h2>
+
+            <div id="todaySchedule"></div>
+
+        </section>
+
+
+        <!-- البرنامج الأسبوعي -->
+        <section class="week-section">
+
+            <h2>🗓️ البرنامج الأسبوعي</h2>
+
+            <div class="week-buttons">
+
+                <button onclick="showDay(0)">الأحد</button>
+                <button onclick="showDay(1)">الإثنين</button>
+                <button onclick="showDay(2)">الثلاثاء</button>
+                <button onclick="showDay(3)">الأربعاء</button>
+                <button onclick="showDay(4)">الخميس</button>
+                <button onclick="showDay(5)">الجمعة</button>
+                <button onclick="showDay(6)">السبت</button>
+
+            </div>
+
+            <div id="selectedDaySchedule"></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>📚 برنامج دراستي — نظم وقتك واصنع مستقبلك</p>
+    </footer>
+
+
+    <script>
+
+        /* ==========================================
+           برنامج الدراسة
+        ========================================== */
+
+        const schedule = {
+
+            0: [
+                { subject: "🧮 الرياضيات", start: "19:00", end: "20:00" },
+                { subject: "📖 اللغة العربية", start: "20:15", end: "21:15" },
+                { subject: "🔄 مراجعة دروس اليوم", start: "21:30", end: "22:00" }
+            ],
+
+            1: [
+                { subject: "🔬 العلوم الطبيعية", start: "19:00", end: "20:00" },
+                { subject: "🇫🇷 اللغة الفرنسية", start: "20:15", end: "21:15" },
+                { subject: "📝 تمارين", start: "21:30", end: "22:00" }
+            ],
+
+            2: [
+                { subject: "🧮 الرياضيات", start: "19:00", end: "20:00" },
+                { subject: "🇬🇧 اللغة الإنجليزية", start: "20:15", end: "21:15" },
+                { subject: "🔄 مراجعة", start: "21:30", end: "22:00" }
+            ],
+
+            3: [
+                { subject: "📖 اللغة العربية", start: "19:00", end: "20:00" },
+                { subject: "🔬 العلوم الطبيعية", start: "20:15", end: "21:15" },
+                { subject: "📝 تمارين", start: "21:30", end: "22:00" }
+            ],
+
+            4: [
+                { subject: "🧮 الرياضيات", start: "19:00", end: "20:00" },
+                { subject: "🌍 التاريخ والجغرافيا", start: "20:15", end: "21:15" },
+                { subject: "🔄 مراجعة أسبوعية", start: "21:30", end: "22:00" }
+            ],
+
+            5: [
+                { subject: "🧮 الرياضيات", start: "10:00", end: "11:00" },
+                { subject: "🔬 العلوم الطبيعية", start: "11:15", end: "12:15" },
+                { subject: "🇫🇷 اللغة الفرنسية", start: "15:00", end: "16:00" },
+                { subject: "📖 اللغة العربية", start: "16:15", end: "17:15" }
+            ],
+
+            6: [
+                { subject: "🧮 الرياضيات", start: "10:00", end: "11:00" },
+                { subject: "🇬🇧 اللغة الإنجليزية", start: "11:15", end: "12:15" },
+                { subject: "🌍 التاريخ والجغرافيا", start: "15:00", end: "16:00" },
+                { subject: "📚 مراجعة شاملة", start: "16:15", end: "17:15" }
+            ]
+
+        };
+
+
+        /* أسماء الأيام */
+
+        const days = [
+            "الأحد",
+            "الإثنين",
+            "الثلاثاء",
+            "الأربعاء",
+            "الخميس",
+            "الجمعة",
+            "السبت"
+        ];
+
+
+        /* تحويل الوقت إلى دقائق */
+
+        function timeToMinutes(time) {
+
+            const parts = time.split(":");
+
+            return Number(parts[0]) * 60 + Number(parts[1]);
+
+        }
+
+
+        /* تنسيق الوقت */
+
+        function formatTime(time) {
+
+            const [hour, minute] = time.split(":");
+
+            let h = Number(hour);
+
+            const period = h >= 12 ? "مساءً" : "صباحًا";
+
+            h = h % 12;
+
+            if (h === 0) h = 12;
+
+            return `${h}:${minute} ${period}`;
+
+        }
+
+
+        /* التاريخ */
+
+        function updateDate() {
+
+            const now = new Date();
+
+            const day = now.getDay();
+
+            const date = now.toLocaleDateString("ar-DZ", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+
+            document.getElementById("dayName").textContent = days[day];
+
+            document.getElementById("currentDate").textContent = date;
+
+        }
+
+
+        /* الحصول على الحصة الحالية */
+
+        function getCurrentLesson() {
+
+            const now = new Date();
+
+            const day = now.getDay();
+
+            const currentMinutes =
+                now.getHours() * 60 + now.getMinutes();
+
+            const lessons = schedule[day] || [];
+
+            for (let lesson of lessons) {
+
+                const start = timeToMinutes(lesson.start);
+
+                const end = timeToMinutes(lesson.end);
+
+                if (
+                    currentMinutes >= start &&
+                    currentMinutes < end
+                ) {
+
+                    return lesson;
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+
+        /* معرفة الحصة القادمة */
+
+        function getNextLesson() {
+
+            const now = new Date();
+
+            const day = now.getDay();
+
+            const currentMinutes =
+                now.getHours() * 60 + now.getMinutes();
+
+            const lessons = schedule[day] || [];
+
+            for (let lesson of lessons) {
+
+                if (timeToMinutes(lesson.start) > currentMinutes) {
+
+                    return lesson;
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+
+        /* مفتاح الحصة */
+
+        function lessonKey(day, lesson) {
+
+            return `completed-${day}-${lesson.start}-${lesson.subject}`;
+
+        }
+
+
+        /* هل الحصة مكتملة؟ */
+
+        function isCompleted(day, lesson) {
+
+            return localStorage.getItem(
+                lessonKey(day, lesson)
+            ) === "true";
+
+        }
+
+
+        /* تغيير حالة الحصة */
+
+        function toggleCompleted(day, index) {
+
+            const lesson = schedule[day][index];
+
+            const key = lessonKey(day, lesson);
+
+            if (isCompleted(day, lesson)) {
+
+                localStorage.removeItem(key);
+
+            } else {
+
+                localStorage.setItem(key, "true");
+
+            }
+
+            showDay(day);
+            updateToday();
+
+        }
+
+
+        /* عرض برنامج اليوم */
+
+        function updateToday() {
+
+            const now = new Date();
+
+            const day = now.getDay();
+
+            renderSchedule(
+                day,
+                "todaySchedule"
+            );
+
+            updateCurrentLesson();
+
+            updateStats();
+
+        }
+
+
+        /* عرض الحصة الحالية */
+
+        function updateCurrentLesson() {
+
+            const box =
+                document.getElementById("currentLesson");
+
+            const current =
+                getCurrentLesson();
+
+            const next =
+                getNextLesson();
+
+            if (current) {
+
+                const now = new Date();
+
+                const currentMinutes =
+                    now.getHours() * 60 + now.getMinutes();
+
+                const end =
+                    timeToMinutes(current.end);
+
+                const remaining =
+                    end - currentMinutes;
+
+                const hours =
+                    Math.floor(remaining / 60);
+
+                const minutes =
+                    remaining % 60;
+
+                box.innerHTML = `
+
+                    <div class="current-icon">
+                        ${current.subject.split(" ")[0]}
+                    </div>
+
+                    <h3>${current.subject}</h3>
+
+                    <p class="lesson-time">
+                        ${formatTime(current.start)}
+                        →
+                        ${formatTime(current.end)}
+                    </p>
+
+                    <div class="remaining">
+                        ⏳ متبقي:
+                        <strong>
+                            ${hours > 0 ? hours + " ساعة " : ""}
+                            ${minutes} دقيقة
+                        </strong>
+                    </div>
+
+                    <button
+                        class="complete-button"
+                        onclick="completeCurrentLesson()"
+                    >
+                        ${isCompleted(
+                            new Date().getDay(),
+                            current
+                        )
+                            ? "↩️ إلغاء الإكمال"
+                            : "✅ أكملت هذه الحصة"
+                        }
+                    </button>
+
+                `;
+
+                return;
+
+            }
+
+
+            if (next) {
+
+                box.innerHTML = `
+
+                    <div class="waiting">
+                        🕐
+                    </div>
+
+                    <h3>لا توجد حصة الآن</h3>
+
+                    <p>
+                        الحصة القادمة:
+                    </p>
+
+                    <strong>
+                        ${next.subject}
+                    </strong>
+
+                    <p class="next-time">
+                        تبدأ الساعة ${formatTime(next.start)}
+                    </p>
+
+                `;
+
+                return;
+
+            }
+
+
+            box.innerHTML = `
+
+                <div class="waiting">
+                    🌙
+                </div>
+
+                <h3>انتهت حصص اليوم</h3>
+
+                <p>
+                    أحسنت! انتهيت من برنامج اليوم 💪
+                </p>
+
+            `;
+
+        }
+
+
+        /* إكمال الحصة الحالية */
+
+        function completeCurrentLesson() {
+
+            const now = new Date();
+
+            const day = now.getDay();
+
+            const current =
+                getCurrentLesson();
+
+            if (!current) return;
+
+            const key =
+                lessonKey(day, current);
+
+            if (isCompleted(day, current)) {
+
+                localStorage.removeItem(key);
+
+            } else {
+
+                localStorage.setItem(key, "true");
+
+            }
+
+            updateToday();
+
+        }
+
+
+        /* رسم الجدول */
+
+        function renderSchedule(day, containerId) {
+
+            const container =
+                document.getElementById(containerId);
+
+            const lessons =
+                schedule[day] || [];
+
+            if (lessons.length === 0) {
+
+                container.innerHTML = `
+                    <div class="empty">
+                        لا توجد حصص في هذا اليوم.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+            container.innerHTML = lessons.map(
+                (lesson, index) => {
+
+                    const completed =
+                        isCompleted(day, lesson);
+
+                    const now =
+                        new Date();
+
+                    const today =
+                        now.getDay() === day;
+
+                    const current =
+                        today &&
+                        getCurrentLesson() === lesson;
+
+                    return `
+
+                        <div class="
+                            lesson-card
+                            ${current ? "active" : ""}
+                            ${completed ? "completed" : ""}
+                        ">
+
+                            <div class="lesson-number">
+                                ${index + 1}
+                            </div>
+
+                            <div class="lesson-info">
+
+                                <h3>
+                                    ${lesson.subject}
+                                </h3>
+
+                                <p>
+                                    ⏰
+                                    ${formatTime(lesson.start)}
+                                    →
+                                    ${formatTime(lesson.end)}
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="check-button"
+                                onclick="
+                                    toggleCompleted(
+                                        ${day},
+                                        ${index}
+                                    )
+                                "
+                            >
+                                ${completed ? "✅" : "⭕"}
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+        }
+
+
+        /* عرض يوم معين */
+
+        function showDay(day) {
+
+            renderSchedule(
+                day,
+                "selectedDaySchedule"
+            );
+
+            document
+                .querySelectorAll(".week-buttons button")
+                .forEach((button, index) => {
+
+                    button.classList.toggle(
+                        "selected",
+                        index === day
+                    );
+
+                });
+
+        }
+
+
+        /* الإحصائيات */
+
+        function updateStats() {
+
+            const now =
+                new Date();
+
+            const day =
+                now.getDay();
+
+            const lessons =
+                schedule[day] || [];
+
+            const completed =
+                lessons.filter(
+                    lesson =>
+                        isCompleted(day, lesson)
+                ).length;
+
+            let minutes = 0;
+
+            lessons.forEach(
+                lesson => {
+
+                    minutes +=
+                        timeToMinutes(lesson.end) -
+                        timeToMinutes(lesson.start);
+
+                }
+            );
+
+            document.getElementById(
+                "todayLessons"
+            ).textContent = lessons.length;
+
+            document.getElementById(
+                "todayHours"
+            ).textContent =
+                (minutes / 60).toFixed(1);
+
+            document.getElementById(
+                "completedLessons"
+            ).textContent = completed;
+
+        }
+
+
+        /* تشغيل الموقع */
+
+        updateDate();
+
+        updateToday();
+
+        showDay(
+            new Date().getDay()
+        );
+
+
+        /* تحديث كل دقيقة */
+
+        setInterval(() => {
+
+            updateDate();
+
+            updateToday();
+
+        }, 30000);
+
+    </script>
+
+</body>
+
+</html>
