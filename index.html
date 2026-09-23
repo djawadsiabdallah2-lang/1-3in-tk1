@@ -12,1620 +12,1837 @@
 
 <body>
 
-    <!-- الهيدر -->
-    <header>
+<header>
 
-        <div class="logo">
-            📚 برنامج دراستي
+    <div class="logo">
+        📚 برنامج دراستي
+    </div>
+
+    <div class="header-info">
+
+        <div id="dayName">
+            اليوم
         </div>
 
-        <div class="date-box">
-            <div id="dayName">اليوم</div>
-            <div id="currentDate">التاريخ</div>
+        <div id="currentDate">
+            التاريخ
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- المحتوى -->
-    <main>
+<main>
 
-        <!-- الترحيب -->
-        <section class="welcome">
+    <!-- الترحيب -->
 
-            <h1>
-                👋 مرحبًا بك في برنامج دراستك
-            </h1>
+    <section class="welcome">
 
-            <p>
-                نظم وقتك، ادرس بانتظام، وحقق هدفك خطوة بخطوة 💪
-            </p>
-
-        </section>
-
-
-        <!-- زر تفعيل التنبيهات -->
-        <section class="notification-section">
-
-            <button
-                id="notificationButton"
-                onclick="enableNotifications()"
-            >
-                🔔 تفعيل صوت التنبيه
-            </button>
-
-            <p id="notificationStatus">
-                اضغط على الزر لتفعيل التنبيهات الصوتية
-            </p>
-
-        </section>
-
-
-        <!-- الحصة الحالية -->
-        <section class="current-section">
-
-            <h2>
-                ⏰ ماذا أدرس الآن؟
-            </h2>
-
-            <div
-                id="currentLesson"
-                class="current-card"
-            >
-                جاري معرفة الحصة الحالية...
-            </div>
-
-        </section>
-
-
-        <!-- الإحصائيات -->
-        <section class="stats">
-
-            <div class="stat-card">
-
-                <span>📚</span>
-
-                <strong id="todayLessons">
-                    0
-                </strong>
-
-                <p>
-                    حصص اليوم
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span>⏱️</span>
-
-                <strong id="todayHours">
-                    0
-                </strong>
-
-                <p>
-                    ساعات الدراسة
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span>✅</span>
-
-                <strong id="completedLessons">
-                    0
-                </strong>
-
-                <p>
-                    حصص مكتملة
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- برنامج اليوم -->
-        <section class="schedule-section">
-
-            <h2>
-                📅 برنامج اليوم
-            </h2>
-
-            <div id="todaySchedule"></div>
-
-        </section>
-
-
-        <!-- البرنامج الأسبوعي -->
-        <section class="week-section">
-
-            <h2>
-                🗓️ البرنامج الأسبوعي
-            </h2>
-
-
-            <div class="week-buttons">
-
-                <button onclick="showDay(0)">
-                    الأحد
-                </button>
-
-                <button onclick="showDay(1)">
-                    الإثنين
-                </button>
-
-                <button onclick="showDay(2)">
-                    الثلاثاء
-                </button>
-
-                <button onclick="showDay(3)">
-                    الأربعاء
-                </button>
-
-                <button onclick="showDay(4)">
-                    الخميس
-                </button>
-
-                <button onclick="showDay(5)">
-                    الجمعة
-                </button>
-
-                <button onclick="showDay(6)">
-                    السبت
-                </button>
-
-            </div>
-
-
-            <div id="selectedDaySchedule"></div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
+        <h1>
+            👋 مرحبًا بك في برنامج دراستك
+        </h1>
 
         <p>
-            📚 برنامج دراستي — نظم وقتك واصنع مستقبلك
+            نظم وقتك، ادرس بانتظام، وحقق هدفك خطوة بخطوة 💪
         </p>
 
-    </footer>
+    </section>
 
 
-    <script>
+    <!-- الساعة -->
 
-        /* ==========================================
-           برنامج الدراسة
-        ========================================== */
+    <section class="clock-section">
 
-        const schedule = {
+        <div class="clock-label">
+            🕐 الوقت الحالي
+        </div>
 
-            /* الأحد */
+        <div id="liveClock">
+            00:00:00
+        </div>
 
-            0: [
+    </section>
 
-                {
-                    subject: "🧮 الرياضيات",
-                    start: "19:00",
-                    end: "20:00"
-                },
 
-                {
-                    subject: "📖 اللغة العربية",
-                    start: "20:15",
-                    end: "21:15"
-                },
+    <!-- التنبيهات -->
 
-                {
-                    subject: "🔄 مراجعة دروس اليوم",
-                    start: "21:30",
-                    end: "22:00"
-                }
+    <section class="notification-section">
 
-            ],
+        <button
+            id="notificationButton"
+            onclick="enableNotifications()"
+        >
+            🔔 تفعيل صوت التنبيه
+        </button>
 
+        <p id="notificationStatus">
+            فعّل التنبيهات حتى يصدر صوت عند بداية ونهاية الحصص
+        </p>
 
-            /* الإثنين */
+    </section>
 
-            1: [
 
-                {
-                    subject: "🔬 العلوم الطبيعية",
-                    start: "19:00",
-                    end: "20:00"
-                },
+    <!-- الحالة الحالية -->
 
-                {
-                    subject: "🇫🇷 اللغة الفرنسية",
-                    start: "20:15",
-                    end: "21:15"
-                },
+    <section>
 
-                {
-                    subject: "📝 تمارين",
-                    start: "21:30",
-                    end: "22:00"
-                }
+        <h2>
+            ⏰ ماذا أدرس الآن؟
+        </h2>
 
-            ],
+        <div
+            id="currentLesson"
+            class="current-card"
+        >
+            جاري تحميل البرنامج...
+        </div>
 
+    </section>
 
-            /* الثلاثاء */
 
-            2: [
+    <!-- التقدم -->
 
-                {
-                    subject: "🧮 الرياضيات",
-                    start: "19:00",
-                    end: "20:00"
-                },
+    <section class="progress-section">
 
-                {
-                    subject: "🇬🇧 اللغة الإنجليزية",
-                    start: "20:15",
-                    end: "21:15"
-                },
+        <div class="progress-header">
 
-                {
-                    subject: "🔄 مراجعة",
-                    start: "21:30",
-                    end: "22:00"
-                }
+            <span>
+                📊 تقدم اليوم
+            </span>
 
-            ],
+            <strong id="progressPercent">
+                0%
+            </strong>
 
+        </div>
 
-            /* الأربعاء */
+        <div class="progress-bar">
 
-            3: [
+            <div
+                id="progressFill"
+                class="progress-fill"
+            ></div>
 
-                {
-                    subject: "📖 اللغة العربية",
-                    start: "19:00",
-                    end: "20:00"
-                },
+        </div>
 
-                {
-                    subject: "🔬 العلوم الطبيعية",
-                    start: "20:15",
-                    end: "21:15"
-                },
+    </section>
 
-                {
-                    subject: "📝 تمارين",
-                    start: "21:30",
-                    end: "22:00"
-                }
 
-            ],
+    <!-- الإحصائيات -->
 
+    <section class="stats">
 
-            /* الخميس */
+        <div class="stat-card">
 
-            4: [
+            <span>
+                📚
+            </span>
 
-                {
-                    subject: "🧮 الرياضيات",
-                    start: "19:00",
-                    end: "20:00"
-                },
+            <strong id="todayLessons">
+                0
+            </strong>
 
-                {
-                    subject: "🌍 التاريخ والجغرافيا",
-                    start: "20:15",
-                    end: "21:15"
-                },
+            <p>
+                حصص اليوم
+            </p>
 
-                {
-                    subject: "🔄 مراجعة أسبوعية",
-                    start: "21:30",
-                    end: "22:00"
-                }
+        </div>
 
-            ],
 
+        <div class="stat-card">
 
-            /* الجمعة */
+            <span>
+                ⏱️
+            </span>
 
-            5: [
+            <strong id="todayHours">
+                0
+            </strong>
 
-                {
-                    subject: "🧮 الرياضيات",
-                    start: "10:00",
-                    end: "11:00"
-                },
+            <p>
+                ساعات الدراسة
+            </p>
 
-                {
-                    subject: "🔬 العلوم الطبيعية",
-                    start: "11:15",
-                    end: "12:15"
-                },
+        </div>
 
-                {
-                    subject: "🇫🇷 اللغة الفرنسية",
-                    start: "15:00",
-                    end: "16:00"
-                },
 
-                {
-                    subject: "📖 اللغة العربية",
-                    start: "16:15",
-                    end: "17:15"
-                }
+        <div class="stat-card">
 
-            ],
+            <span>
+                ✅
+            </span>
 
+            <strong id="completedLessons">
+                0
+            </strong>
 
-            /* السبت */
+            <p>
+                حصص مكتملة
+            </p>
 
-            6: [
+        </div>
 
-                {
-                    subject: "🧮 الرياضيات",
-                    start: "10:00",
-                    end: "11:00"
-                },
+    </section>
 
-                {
-                    subject: "🇬🇧 اللغة الإنجليزية",
-                    start: "11:15",
-                    end: "12:15"
-                },
 
-                {
-                    subject: "🌍 التاريخ والجغرافيا",
-                    start: "15:00",
-                    end: "16:00"
-                },
+    <!-- برنامج اليوم -->
 
-                {
-                    subject: "📚 مراجعة شاملة",
-                    start: "16:15",
-                    end: "17:15"
-                }
+    <section>
 
-            ]
+        <h2>
+            📅 برنامج اليوم
+        </h2>
 
-        };
+        <div id="todaySchedule"></div>
 
+    </section>
 
-        /* ==========================================
-           أسماء الأيام
-        ========================================== */
 
-        const days = [
+    <!-- البرنامج الأسبوعي -->
 
-            "الأحد",
-            "الإثنين",
-            "الثلاثاء",
-            "الأربعاء",
-            "الخميس",
-            "الجمعة",
-            "السبت"
+    <section>
 
-        ];
+        <h2>
+            🗓️ البرنامج الأسبوعي
+        </h2>
 
+        <div class="week-buttons">
 
-        /* ==========================================
-           نظام الصوت
-        ========================================== */
+            <button onclick="showDay(0)">
+                الأحد
+            </button>
 
-        let audioContext = null;
+            <button onclick="showDay(1)">
+                الإثنين
+            </button>
 
-        let notificationsEnabled =
-            localStorage.getItem(
-                "studyNotifications"
-            ) === "true";
+            <button onclick="showDay(2)">
+                الثلاثاء
+            </button>
 
+            <button onclick="showDay(3)">
+                الأربعاء
+            </button>
 
-        /*
-         * إنشاء نظام الصوت
-         */
+            <button onclick="showDay(4)">
+                الخميس
+            </button>
 
-        function setupAudio() {
+            <button onclick="showDay(5)">
+                الجمعة
+            </button>
 
-            if (!audioContext) {
+            <button onclick="showDay(6)">
+                السبت
+            </button>
 
-                audioContext =
-                    new (
-                        window.AudioContext ||
-                        window.webkitAudioContext
-                    )();
+        </div>
 
-            }
+        <div id="selectedDaySchedule"></div>
 
-            if (
-                audioContext.state === "suspended"
-            ) {
+    </section>
 
-                audioContext.resume();
+</main>
 
-            }
 
+<footer>
+
+    <p>
+        📚 برنامج دراستي — نظم وقتك واصنع مستقبلك
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   برنامج الدراسة
+===================================================== */
+
+const schedule = {
+
+    0: [
+
+        {
+            subject: "🧮 الرياضيات",
+            start: "19:00",
+            end: "20:00"
+        },
+
+        {
+            subject: "📖 اللغة العربية",
+            start: "20:15",
+            end: "21:15"
+        },
+
+        {
+            subject: "🔄 مراجعة دروس اليوم",
+            start: "21:30",
+            end: "22:00"
         }
 
+    ],
 
-        /*
-         * صوت بداية الحصة
-         */
 
-        function playStartSound() {
+    1: [
 
-            if (!notificationsEnabled) {
-                return;
+        {
+            subject: "🔬 العلوم الطبيعية",
+            start: "19:00",
+            end: "20:00"
+        },
+
+        {
+            subject: "🇫🇷 اللغة الفرنسية",
+            start: "20:15",
+            end: "21:15"
+        },
+
+        {
+            subject: "📝 تمارين",
+            start: "21:30",
+            end: "22:00"
+        }
+
+    ],
+
+
+    2: [
+
+        {
+            subject: "🧮 الرياضيات",
+            start: "19:00",
+            end: "20:00"
+        },
+
+        {
+            subject: "🇬🇧 اللغة الإنجليزية",
+            start: "20:15",
+            end: "21:15"
+        },
+
+        {
+            subject: "🔄 مراجعة",
+            start: "21:30",
+            end: "22:00"
+        }
+
+    ],
+
+
+    3: [
+
+        {
+            subject: "📖 اللغة العربية",
+            start: "19:00",
+            end: "20:00"
+        },
+
+        {
+            subject: "🔬 العلوم الطبيعية",
+            start: "20:15",
+            end: "21:15"
+        },
+
+        {
+            subject: "📝 تمارين",
+            start: "21:30",
+            end: "22:00"
+        }
+
+    ],
+
+
+    4: [
+
+        {
+            subject: "🧮 الرياضيات",
+            start: "19:00",
+            end: "20:00"
+        },
+
+        {
+            subject: "🌍 التاريخ والجغرافيا",
+            start: "20:15",
+            end: "21:15"
+        },
+
+        {
+            subject: "🔄 مراجعة أسبوعية",
+            start: "21:30",
+            end: "22:00"
+        }
+
+    ],
+
+
+    5: [
+
+        {
+            subject: "🧮 الرياضيات",
+            start: "10:00",
+            end: "11:00"
+        },
+
+        {
+            subject: "🔬 العلوم الطبيعية",
+            start: "11:15",
+            end: "12:15"
+        },
+
+        {
+            subject: "🇫🇷 اللغة الفرنسية",
+            start: "15:00",
+            end: "16:00"
+        },
+
+        {
+            subject: "📖 اللغة العربية",
+            start: "16:15",
+            end: "17:15"
+        }
+
+    ],
+
+
+    6: [
+
+        {
+            subject: "🧮 الرياضيات",
+            start: "10:00",
+            end: "11:00"
+        },
+
+        {
+            subject: "🇬🇧 اللغة الإنجليزية",
+            start: "11:15",
+            end: "12:15"
+        },
+
+        {
+            subject: "🌍 التاريخ والجغرافيا",
+            start: "15:00",
+            end: "16:00"
+        },
+
+        {
+            subject: "📚 مراجعة شاملة",
+            start: "16:15",
+            end: "17:15"
+        }
+
+    ]
+
+};
+
+
+/* =====================================================
+   أسماء الأيام
+===================================================== */
+
+const days = [
+
+    "الأحد",
+    "الإثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت"
+
+];
+
+
+/* =====================================================
+   الصوت
+===================================================== */
+
+let audioContext = null;
+
+let notificationsEnabled =
+    localStorage.getItem("studyNotifications") === "true";
+
+
+function setupAudio() {
+
+    if (!audioContext) {
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+    if (
+        audioContext.state === "suspended"
+    ) {
+
+        audioContext.resume();
+
+    }
+
+}
+
+
+/* صوت بداية الحصة */
+
+function playStartSound() {
+
+    if (!notificationsEnabled) {
+        return;
+    }
+
+    setupAudio();
+
+    const now =
+        audioContext.currentTime;
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type = "sine";
+
+
+    oscillator.frequency.setValueAtTime(
+        880,
+        now
+    );
+
+    oscillator.frequency.setValueAtTime(
+        1100,
+        now + 0.2
+    );
+
+
+    gain.gain.setValueAtTime(
+        0.001,
+        now
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.3,
+        now + 0.03
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.8
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(now);
+
+    oscillator.stop(
+        now + 0.8
+    );
+
+}
+
+
+/* صوت نهاية الحصة */
+
+function playEndSound() {
+
+    if (!notificationsEnabled) {
+        return;
+    }
+
+    setupAudio();
+
+    const now =
+        audioContext.currentTime;
+
+
+    for (
+        let i = 0;
+        i < 3;
+        i++
+    ) {
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type = "sine";
+
+
+        oscillator.frequency.setValueAtTime(
+            660,
+            now + i * 0.3
+        );
+
+
+        gain.gain.setValueAtTime(
+            0.001,
+            now + i * 0.3
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.3,
+            now + i * 0.3 + 0.03
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            now + i * 0.3 + 0.25
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start(
+            now + i * 0.3
+        );
+
+        oscillator.stop(
+            now + i * 0.3 + 0.3
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   تفعيل التنبيهات
+===================================================== */
+
+function enableNotifications() {
+
+    notificationsEnabled = true;
+
+    localStorage.setItem(
+        "studyNotifications",
+        "true"
+    );
+
+
+    setupAudio();
+
+    playStartSound();
+
+
+    document.getElementById(
+        "notificationButton"
+    ).textContent =
+        "🔔 التنبيهات مفعلة";
+
+
+    document.getElementById(
+        "notificationStatus"
+    ).textContent =
+        "سيتم تنبيهك عند بداية ونهاية كل حصة";
+
+
+    document.getElementById(
+        "notificationButton"
+    ).classList.add("enabled");
+
+}
+
+
+function updateNotificationButton() {
+
+    const button =
+        document.getElementById(
+            "notificationButton"
+        );
+
+    const status =
+        document.getElementById(
+            "notificationStatus"
+        );
+
+
+    if (notificationsEnabled) {
+
+        button.textContent =
+            "🔔 التنبيهات مفعلة";
+
+        status.textContent =
+            "سيتم تنبيهك عند بداية ونهاية كل حصة";
+
+        button.classList.add(
+            "enabled"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   تحويل الوقت
+===================================================== */
+
+function timeToSeconds(time) {
+
+    const parts =
+        time.split(":");
+
+    return (
+        Number(parts[0]) * 3600 +
+        Number(parts[1]) * 60
+    );
+
+}
+
+
+function formatTime(time) {
+
+    const parts =
+        time.split(":");
+
+    let hour =
+        Number(parts[0]);
+
+    const minute =
+        parts[1];
+
+
+    const period =
+        hour >= 12
+            ? "مساءً"
+            : "صباحًا";
+
+
+    hour =
+        hour % 12;
+
+
+    if (hour === 0) {
+        hour = 12;
+    }
+
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+
+/* =====================================================
+   تحويل الثواني إلى HH:MM:SS
+===================================================== */
+
+function formatCountdown(seconds) {
+
+    seconds =
+        Math.max(
+            0,
+            Math.floor(seconds)
+        );
+
+
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    return [
+
+        String(hours).padStart(2, "0"),
+
+        String(minutes).padStart(2, "0"),
+
+        String(secs).padStart(2, "0")
+
+    ].join(":");
+
+}
+
+
+/* =====================================================
+   الساعة الحية
+===================================================== */
+
+function updateClock() {
+
+    const now =
+        new Date();
+
+
+    const hours =
+        String(
+            now.getHours()
+        ).padStart(2, "0");
+
+
+    const minutes =
+        String(
+            now.getMinutes()
+        ).padStart(2, "0");
+
+
+    const seconds =
+        String(
+            now.getSeconds()
+        ).padStart(2, "0");
+
+
+    document.getElementById(
+        "liveClock"
+    ).textContent =
+        `${hours}:${minutes}:${seconds}`;
+
+}
+
+
+/* =====================================================
+   التاريخ
+===================================================== */
+
+function updateDate() {
+
+    const now =
+        new Date();
+
+
+    const day =
+        now.getDay();
+
+
+    const date =
+        now.toLocaleDateString(
+            "ar-DZ",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
             }
-
-            setupAudio();
-
-            const now =
-                audioContext.currentTime;
+        );
 
 
-            const oscillator =
-                audioContext.createOscillator();
-
-            const gain =
-                audioContext.createGain();
-
-
-            oscillator.type = "sine";
+    document.getElementById(
+        "dayName"
+    ).textContent =
+        days[day];
 
 
-            oscillator.frequency.setValueAtTime(
-                880,
-                now
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        date;
+
+}
+
+
+/* =====================================================
+   الحصول على الوقت الحالي بالثواني
+===================================================== */
+
+function getCurrentSeconds() {
+
+    const now =
+        new Date();
+
+
+    return (
+        now.getHours() * 3600 +
+        now.getMinutes() * 60 +
+        now.getSeconds()
+    );
+
+}
+
+
+/* =====================================================
+   الحصة الحالية
+===================================================== */
+
+function getCurrentLesson() {
+
+    const day =
+        new Date().getDay();
+
+
+    const current =
+        getCurrentSeconds();
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    for (
+        const lesson of lessons
+    ) {
+
+        const start =
+            timeToSeconds(
+                lesson.start
             );
 
-            oscillator.frequency.setValueAtTime(
-                1100,
-                now + 0.18
+
+        const end =
+            timeToSeconds(
+                lesson.end
             );
 
 
-            gain.gain.setValueAtTime(
-                0.001,
-                now
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.35,
-                now + 0.03
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.001,
-                now + 0.65
-            );
-
-
-            oscillator.connect(gain);
-
-            gain.connect(
-                audioContext.destination
-            );
-
-
-            oscillator.start(now);
-
-            oscillator.stop(
-                now + 0.7
-            );
-
-        }
-
-
-        /*
-         * صوت انتهاء الحصة
-         */
-
-        function playEndSound() {
-
-            if (!notificationsEnabled) {
-                return;
-            }
-
-            setupAudio();
-
-            const now =
-                audioContext.currentTime;
-
-
-            for (let i = 0; i < 3; i++) {
-
-                const oscillator =
-                    audioContext.createOscillator();
-
-                const gain =
-                    audioContext.createGain();
-
-
-                oscillator.type = "sine";
-
-
-                oscillator.frequency.setValueAtTime(
-                    660,
-                    now + i * 0.3
-                );
-
-
-                gain.gain.setValueAtTime(
-                    0.001,
-                    now + i * 0.3
-                );
-
-                gain.gain.exponentialRampToValueAtTime(
-                    0.3,
-                    now + i * 0.3 + 0.03
-                );
-
-                gain.gain.exponentialRampToValueAtTime(
-                    0.001,
-                    now + i * 0.3 + 0.25
-                );
-
-
-                oscillator.connect(gain);
-
-                gain.connect(
-                    audioContext.destination
-                );
-
-
-                oscillator.start(
-                    now + i * 0.3
-                );
-
-                oscillator.stop(
-                    now + i * 0.3 + 0.3
-                );
-
-            }
-
-        }
-
-
-        /* ==========================================
-           تفعيل التنبيهات
-        ========================================== */
-
-        function enableNotifications() {
-
-            notificationsEnabled = true;
-
-            localStorage.setItem(
-                "studyNotifications",
-                "true"
-            );
-
-
-            setupAudio();
-
-
-            playStartSound();
-
-
-            document.getElementById(
-                "notificationButton"
-            ).textContent =
-                "🔔 التنبيهات مفعلة";
-
-
-            document.getElementById(
-                "notificationStatus"
-            ).textContent =
-                "سيتم تنبيهك عند بداية ونهاية كل حصة";
-
-
-            document.getElementById(
-                "notificationButton"
-            ).classList.add("enabled");
-
-        }
-
-
-        /*
-         * تحديث زر التنبيه عند فتح الموقع
-         */
-
-        function updateNotificationButton() {
-
-            const button =
-                document.getElementById(
-                    "notificationButton"
-                );
-
-            const status =
-                document.getElementById(
-                    "notificationStatus"
-                );
-
-
-            if (notificationsEnabled) {
-
-                button.textContent =
-                    "🔔 التنبيهات مفعلة";
-
-                status.textContent =
-                    "سيتم تنبيهك عند بداية ونهاية كل حصة";
-
-                button.classList.add(
-                    "enabled"
-                );
-
-            }
-
-        }
-
-
-        /* ==========================================
-           تحويل الوقت إلى دقائق
-        ========================================== */
-
-        function timeToMinutes(time) {
-
-            const parts =
-                time.split(":");
-
-            return (
-                Number(parts[0]) * 60 +
-                Number(parts[1])
-            );
-
-        }
-
-
-        /* ==========================================
-           تنسيق الوقت
-        ========================================== */
-
-        function formatTime(time) {
-
-            const parts =
-                time.split(":");
-
-            let hour =
-                Number(parts[0]);
-
-            const minute =
-                parts[1];
-
-            const period =
-                hour >= 12
-                    ? "مساءً"
-                    : "صباحًا";
-
-
-            hour =
-                hour % 12;
-
-
-            if (hour === 0) {
-                hour = 12;
-            }
-
-
-            return `${hour}:${minute} ${period}`;
-
-        }
-
-
-        /* ==========================================
-           التاريخ
-        ========================================== */
-
-        function updateDate() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            const date =
-                now.toLocaleDateString(
-                    "ar-DZ",
-                    {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                    }
-                );
-
-
-            document.getElementById(
-                "dayName"
-            ).textContent =
-                days[day];
-
-
-            document.getElementById(
-                "currentDate"
-            ).textContent =
-                date;
-
-        }
-
-
-        /* ==========================================
-           الحصة الحالية
-        ========================================== */
-
-        function getCurrentLesson() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            const currentMinutes =
-                now.getHours() * 60 +
-                now.getMinutes();
-
-
-            const lessons =
-                schedule[day] || [];
-
-
-            for (
-                let lesson of lessons
-            ) {
-
-                const start =
-                    timeToMinutes(
-                        lesson.start
-                    );
-
-                const end =
-                    timeToMinutes(
-                        lesson.end
-                    );
-
-
-                if (
-                    currentMinutes >= start &&
-                    currentMinutes < end
-                ) {
-
-                    return lesson;
-
-                }
-
-            }
-
-
-            return null;
-
-        }
-
-
-        /* ==========================================
-           الحصة القادمة
-        ========================================== */
-
-        function getNextLesson() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            const currentMinutes =
-                now.getHours() * 60 +
-                now.getMinutes();
-
-
-            const lessons =
-                schedule[day] || [];
-
-
-            for (
-                let lesson of lessons
-            ) {
-
-                if (
-                    timeToMinutes(
-                        lesson.start
-                    ) > currentMinutes
-                ) {
-
-                    return lesson;
-
-                }
-
-            }
-
-
-            return null;
-
-        }
-
-
-        /* ==========================================
-           مفتاح الحصة
-        ========================================== */
-
-        function lessonKey(
-            day,
-            lesson
+        if (
+            current >= start &&
+            current < end
         ) {
 
-            return (
-                `completed-${day}-${lesson.start}-${lesson.subject}`
-            );
+            return lesson;
 
         }
 
+    }
 
-        /* ==========================================
-           التحقق من إكمال الحصة
-        ========================================== */
 
-        function isCompleted(
-            day,
-            lesson
+    return null;
+
+}
+
+
+/* =====================================================
+   الحصة القادمة
+===================================================== */
+
+function getNextLesson() {
+
+    const day =
+        new Date().getDay();
+
+
+    const current =
+        getCurrentSeconds();
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    for (
+        const lesson of lessons
+    ) {
+
+        const start =
+            timeToSeconds(
+                lesson.start
+            );
+
+
+        if (
+            start > current
         ) {
 
-            return (
-                localStorage.getItem(
-                    lessonKey(
+            return lesson;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   الاستراحة الحالية
+===================================================== */
+
+function getCurrentBreak() {
+
+    const day =
+        new Date().getDay();
+
+
+    const current =
+        getCurrentSeconds();
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    for (
+        let i = 0;
+        i < lessons.length - 1;
+        i++
+    ) {
+
+        const currentLesson =
+            lessons[i];
+
+
+        const nextLesson =
+            lessons[i + 1];
+
+
+        const end =
+            timeToSeconds(
+                currentLesson.end
+            );
+
+
+        const nextStart =
+            timeToSeconds(
+                nextLesson.start
+            );
+
+
+        if (
+            current >= end &&
+            current < nextStart
+        ) {
+
+            return {
+
+                start: currentLesson.end,
+
+                end: nextLesson.start,
+
+                nextLesson: nextLesson
+
+            };
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   مفتاح الحصة
+===================================================== */
+
+function lessonKey(
+    day,
+    lesson
+) {
+
+    return (
+        `completed-${day}-${lesson.start}-${lesson.subject}`
+    );
+
+}
+
+
+/* =====================================================
+   هل الحصة مكتملة؟
+===================================================== */
+
+function isCompleted(
+    day,
+    lesson
+) {
+
+    return (
+        localStorage.getItem(
+            lessonKey(
+                day,
+                lesson
+            )
+        ) === "true"
+    );
+
+}
+
+
+/* =====================================================
+   تغيير حالة الحصة
+===================================================== */
+
+function toggleCompleted(
+    day,
+    index
+) {
+
+    const lesson =
+        schedule[day][index];
+
+
+    const key =
+        lessonKey(
+            day,
+            lesson
+        );
+
+
+    if (
+        isCompleted(
+            day,
+            lesson
+        )
+    ) {
+
+        localStorage.removeItem(
+            key
+        );
+
+    } else {
+
+        localStorage.setItem(
+            key,
+            "true"
+        );
+
+    }
+
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   عرض الحالة الحالية
+===================================================== */
+
+function updateCurrentLesson() {
+
+    const box =
+        document.getElementById(
+            "currentLesson"
+        );
+
+
+    const current =
+        getCurrentLesson();
+
+
+    const breakTime =
+        getCurrentBreak();
+
+
+    const next =
+        getNextLesson();
+
+
+    /* الحصة الحالية */
+
+    if (current) {
+
+        const now =
+            getCurrentSeconds();
+
+
+        const start =
+            timeToSeconds(
+                current.start
+            );
+
+
+        const end =
+            timeToSeconds(
+                current.end
+            );
+
+
+        const elapsed =
+            now - start;
+
+
+        const duration =
+            end - start;
+
+
+        const remaining =
+            end - now;
+
+
+        const progress =
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    (elapsed / duration) * 100
+                )
+            );
+
+
+        box.innerHTML = `
+
+            <div class="current-icon">
+                ${current.subject.split(" ")[0]}
+            </div>
+
+            <div class="status-label">
+                🔥 أنت تدرس الآن
+            </div>
+
+            <h3>
+                ${current.subject}
+            </h3>
+
+            <p class="lesson-time">
+                ${formatTime(current.start)}
+                →
+                ${formatTime(current.end)}
+            </p>
+
+            <div class="countdown">
+                ${formatCountdown(remaining)}
+            </div>
+
+            <p class="countdown-label">
+                الوقت المتبقي
+            </p>
+
+            <div class="mini-progress">
+
+                <div
+                    style="width:${progress}%"
+                ></div>
+
+            </div>
+
+            <button
+                class="complete-button"
+                onclick="completeCurrentLesson()"
+            >
+
+                ${
+                    isCompleted(
+                        new Date().getDay(),
+                        current
+                    )
+                    ? "↩️ إلغاء الإكمال"
+                    : "✅ أكملت هذه الحصة"
+                }
+
+            </button>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* وقت الراحة */
+
+    if (breakTime) {
+
+        const now =
+            getCurrentSeconds();
+
+
+        const end =
+            timeToSeconds(
+                breakTime.end
+            );
+
+
+        const remaining =
+            end - now;
+
+
+        box.innerHTML = `
+
+            <div class="break-icon">
+                ☕
+            </div>
+
+            <div class="status-label break-label">
+                ☕ وقت الراحة
+            </div>
+
+            <h3>
+                خذ استراحة قصيرة
+            </h3>
+
+            <div class="countdown break-countdown">
+                ${formatCountdown(remaining)}
+            </div>
+
+            <p class="countdown-label">
+                الوقت المتبقي للاستراحة
+            </p>
+
+            <p class="next-lesson-text">
+                الحصة القادمة:
+                <strong>
+                    ${breakTime.nextLesson.subject}
+                </strong>
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* الحصة القادمة */
+
+    if (next) {
+
+        const now =
+            getCurrentSeconds();
+
+
+        const start =
+            timeToSeconds(
+                next.start
+            );
+
+
+        const remaining =
+            start - now;
+
+
+        box.innerHTML = `
+
+            <div class="waiting">
+                🕐
+            </div>
+
+            <div class="status-label">
+                📚 الحصة القادمة
+            </div>
+
+            <h3>
+                ${next.subject}
+            </h3>
+
+            <p class="lesson-time">
+                تبدأ الساعة
+                ${formatTime(next.start)}
+            </p>
+
+            <div class="countdown">
+                ${formatCountdown(remaining)}
+            </div>
+
+            <p class="countdown-label">
+                متبقي على بداية الحصة
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* انتهاء البرنامج */
+
+    box.innerHTML = `
+
+        <div class="waiting">
+            🌙
+        </div>
+
+        <div class="status-label">
+            🎉 أحسنت!
+        </div>
+
+        <h3>
+            انتهى برنامج اليوم
+        </h3>
+
+        <p>
+            أنجزت حصص اليوم.
+            حان وقت الراحة 💪
+        </p>
+
+    `;
+
+}
+
+
+/* =====================================================
+   إكمال الحصة الحالية
+===================================================== */
+
+function completeCurrentLesson() {
+
+    const day =
+        new Date().getDay();
+
+
+    const lesson =
+        getCurrentLesson();
+
+
+    if (!lesson) {
+        return;
+    }
+
+
+    const key =
+        lessonKey(
+            day,
+            lesson
+        );
+
+
+    if (
+        isCompleted(
+            day,
+            lesson
+        )
+    ) {
+
+        localStorage.removeItem(
+            key
+        );
+
+    } else {
+
+        localStorage.setItem(
+            key,
+            "true"
+        );
+
+    }
+
+
+    updateAll();
+
+}
+
+
+/* =====================================================
+   عرض برنامج اليوم
+===================================================== */
+
+function updateTodaySchedule() {
+
+    const day =
+        new Date().getDay();
+
+
+    renderSchedule(
+        day,
+        "todaySchedule"
+    );
+
+}
+
+
+/* =====================================================
+   رسم الجدول
+===================================================== */
+
+function renderSchedule(
+    day,
+    containerId
+) {
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    if (
+        lessons.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+                لا توجد حصص في هذا اليوم.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        lessons.map(
+            (
+                lesson,
+                index
+            ) => {
+
+                const completed =
+                    isCompleted(
                         day,
                         lesson
-                    )
-                ) === "true"
-            );
-
-        }
-
-
-        /* ==========================================
-           تغيير حالة الحصة
-        ========================================== */
-
-        function toggleCompleted(
-            day,
-            index
-        ) {
-
-            const lesson =
-                schedule[day][index];
-
-
-            const key =
-                lessonKey(
-                    day,
-                    lesson
-                );
-
-
-            if (
-                isCompleted(
-                    day,
-                    lesson
-                )
-            ) {
-
-                localStorage.removeItem(
-                    key
-                );
-
-            } else {
-
-                localStorage.setItem(
-                    key,
-                    "true"
-                );
-
-            }
-
-
-            showDay(day);
-
-            updateToday();
-
-        }
-
-
-        /* ==========================================
-           عرض برنامج اليوم
-        ========================================== */
-
-        function updateToday() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            renderSchedule(
-                day,
-                "todaySchedule"
-            );
-
-
-            updateCurrentLesson();
-
-            updateStats();
-
-        }
-
-
-        /* ==========================================
-           عرض الحصة الحالية
-        ========================================== */
-
-        function updateCurrentLesson() {
-
-            const box =
-                document.getElementById(
-                    "currentLesson"
-                );
-
-
-            const current =
-                getCurrentLesson();
-
-
-            const next =
-                getNextLesson();
-
-
-            if (current) {
-
-                const now =
-                    new Date();
-
-
-                const currentMinutes =
-                    now.getHours() * 60 +
-                    now.getMinutes();
-
-
-                const end =
-                    timeToMinutes(
-                        current.end
                     );
 
 
-                const remaining =
-                    end -
-                    currentMinutes;
+                const current =
+                    day === new Date().getDay() &&
+                    getCurrentLesson() === lesson;
 
 
-                const hours =
-                    Math.floor(
-                        remaining / 60
-                    );
+                return `
+
+                    <div class="
+                        lesson-card
+                        ${current ? "active" : ""}
+                        ${completed ? "completed" : ""}
+                    ">
+
+                        <div class="lesson-number">
+                            ${index + 1}
+                        </div>
 
 
-                const minutes =
-                    remaining % 60;
+                        <div class="lesson-info">
+
+                            <h3>
+                                ${lesson.subject}
+                            </h3>
+
+                            <p>
+                                ⏰
+                                ${formatTime(lesson.start)}
+                                →
+                                ${formatTime(lesson.end)}
+                            </p>
+
+                        </div>
 
 
-                box.innerHTML = `
-
-                    <div class="current-icon">
-                        ${current.subject.split(" ")[0]}
-                    </div>
-
-                    <h3>
-                        ${current.subject}
-                    </h3>
-
-                    <p class="lesson-time">
-
-                        ${formatTime(current.start)}
-
-                        →
-
-                        ${formatTime(current.end)}
-
-                    </p>
-
-                    <div class="remaining">
-
-                        ⏳ متبقي:
-
-                        <strong>
+                        <button
+                            class="check-button"
+                            onclick="
+                                toggleCompleted(
+                                    ${day},
+                                    ${index}
+                                )
+                            "
+                        >
 
                             ${
-                                hours > 0
-                                ? hours + " ساعة "
-                                : ""
+                                completed
+                                ? "✅"
+                                : "⭕"
                             }
 
-                            ${minutes} دقيقة
-
-                        </strong>
+                        </button>
 
                     </div>
 
-
-                    <button
-                        class="complete-button"
-                        onclick="completeCurrentLesson()"
-                    >
-
-                        ${
-                            isCompleted(
-                                new Date().getDay(),
-                                current
-                            )
-                            ? "↩️ إلغاء الإكمال"
-                            : "✅ أكملت هذه الحصة"
-                        }
-
-                    </button>
-
                 `;
 
-                return;
-
             }
+        ).join("");
+
+}
 
 
-            if (next) {
+/* =====================================================
+   عرض يوم من الأسبوع
+===================================================== */
 
-                box.innerHTML = `
+function showDay(day) {
 
-                    <div class="waiting">
-                        🕐
-                    </div>
-
-                    <h3>
-                        لا توجد حصة الآن
-                    </h3>
-
-                    <p>
-                        الحصة القادمة:
-                    </p>
-
-                    <strong>
-                        ${next.subject}
-                    </strong>
-
-                    <p class="next-time">
-
-                        تبدأ الساعة
-                        ${formatTime(next.start)}
-
-                    </p>
-
-                `;
-
-                return;
-
-            }
+    renderSchedule(
+        day,
+        "selectedDaySchedule"
+    );
 
 
-            box.innerHTML = `
+    document
+        .querySelectorAll(
+            ".week-buttons button"
+        )
+        .forEach(
+            (
+                button,
+                index
+            ) => {
 
-                <div class="waiting">
-                    🌙
-                </div>
-
-                <h3>
-                    انتهت حصص اليوم
-                </h3>
-
-                <p>
-                    أحسنت! انتهيت من برنامج اليوم 💪
-                </p>
-
-            `;
-
-        }
-
-
-        /* ==========================================
-           إكمال الحصة الحالية
-        ========================================== */
-
-        function completeCurrentLesson() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            const current =
-                getCurrentLesson();
-
-
-            if (!current) {
-                return;
-            }
-
-
-            const key =
-                lessonKey(
-                    day,
-                    current
+                button.classList.toggle(
+                    "selected",
+                    index === day
                 );
 
+            }
+        );
 
-            if (
+}
+
+
+/* =====================================================
+   الإحصائيات
+===================================================== */
+
+function updateStats() {
+
+    const day =
+        new Date().getDay();
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    const completed =
+        lessons.filter(
+            lesson =>
                 isCompleted(
                     day,
-                    current
+                    lesson
                 )
-            ) {
-
-                localStorage.removeItem(
-                    key
-                );
-
-            } else {
-
-                localStorage.setItem(
-                    key,
-                    "true"
-                );
-
-            }
+        ).length;
 
 
-            updateToday();
+    let totalMinutes = 0;
+
+
+    lessons.forEach(
+        lesson => {
+
+            totalMinutes +=
+                (
+                    timeToSeconds(
+                        lesson.end
+                    ) -
+                    timeToSeconds(
+                        lesson.start
+                    )
+                ) / 60;
 
         }
+    );
 
 
-        /* ==========================================
-           رسم الجدول
-        ========================================== */
-
-        function renderSchedule(
-            day,
-            containerId
-        ) {
-
-            const container =
-                document.getElementById(
-                    containerId
-                );
+    document.getElementById(
+        "todayLessons"
+    ).textContent =
+        lessons.length;
 
 
-            const lessons =
-                schedule[day] || [];
+    document.getElementById(
+        "todayHours"
+    ).textContent =
+        (totalMinutes / 60).toFixed(1);
 
+
+    document.getElementById(
+        "completedLessons"
+    ).textContent =
+        completed;
+
+
+    /* نسبة الإنجاز */
+
+    const percent =
+        lessons.length > 0
+            ? Math.round(
+                (completed / lessons.length) * 100
+            )
+            : 0;
+
+
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        percent + "%";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+}
+
+
+/* =====================================================
+   نظام التنبيهات
+===================================================== */
+
+let lastStartAlert = "";
+
+let lastEndAlert = "";
+
+
+function checkLessonAlerts() {
+
+    if (!notificationsEnabled) {
+        return;
+    }
+
+
+    const day =
+        new Date().getDay();
+
+
+    const lessons =
+        schedule[day] || [];
+
+
+    const now =
+        new Date();
+
+
+    const hour =
+        String(
+            now.getHours()
+        ).padStart(2, "0");
+
+
+    const minute =
+        String(
+            now.getMinutes()
+        ).padStart(2, "0");
+
+
+    const time =
+        `${hour}:${minute}`;
+
+
+    lessons.forEach(
+        lesson => {
+
+            /* بداية الحصة */
 
             if (
-                lessons.length === 0
+                lesson.start === time
             ) {
 
-                container.innerHTML = `
+                const key =
+                    `${day}-${lesson.start}-${now.toDateString()}`;
 
-                    <div class="empty">
 
-                        لا توجد حصص في هذا اليوم.
+                if (
+                    lastStartAlert !== key
+                ) {
 
-                    </div>
+                    lastStartAlert =
+                        key;
 
-                `;
 
-                return;
+                    playStartSound();
+
+
+                    alert(
+                        `🔔 حان وقت الدراسة!\n\n${lesson.subject}\n\n⏰ ${formatTime(lesson.start)} → ${formatTime(lesson.end)}`
+                    );
+
+                }
 
             }
 
 
-            container.innerHTML =
-                lessons.map(
-                    (
-                        lesson,
-                        index
-                    ) => {
+            /* نهاية الحصة */
 
-                        const completed =
-                            isCompleted(
-                                day,
-                                lesson
-                            );
+            if (
+                lesson.end === time
+            ) {
+
+                const key =
+                    `${day}-${lesson.end}-${now.toDateString()}`;
 
 
-                        const now =
-                            new Date();
+                if (
+                    lastEndAlert !== key
+                ) {
+
+                    lastEndAlert =
+                        key;
 
 
-                        const today =
-                            now.getDay() === day;
+                    playEndSound();
 
 
-                        const current =
-                            today &&
-                            getCurrentLesson() === lesson;
-
-
-                        return `
-
-                            <div class="
-                                lesson-card
-                                ${current ? "active" : ""}
-                                ${completed ? "completed" : ""}
-                            ">
-
-                                <div class="lesson-number">
-
-                                    ${index + 1}
-
-                                </div>
-
-
-                                <div class="lesson-info">
-
-                                    <h3>
-                                        ${lesson.subject}
-                                    </h3>
-
-                                    <p>
-
-                                        ⏰
-
-                                        ${formatTime(lesson.start)}
-
-                                        →
-
-                                        ${formatTime(lesson.end)}
-
-                                    </p>
-
-                                </div>
-
-
-                                <button
-                                    class="check-button"
-                                    onclick="
-                                        toggleCompleted(
-                                            ${day},
-                                            ${index}
-                                        )
-                                    "
-                                >
-
-                                    ${
-                                        completed
-                                        ? "✅"
-                                        : "⭕"
-                                    }
-
-                                </button>
-
-                            </div>
-
-                        `;
-
-                    }
-                ).join("");
-
-        }
-
-
-        /* ==========================================
-           عرض يوم معين
-        ========================================== */
-
-        function showDay(day) {
-
-            renderSchedule(
-                day,
-                "selectedDaySchedule"
-            );
-
-
-            document
-                .querySelectorAll(
-                    ".week-buttons button"
-                )
-                .forEach(
-                    (
-                        button,
-                        index
-                    ) => {
-
-                        button.classList.toggle(
-                            "selected",
-                            index === day
-                        );
-
-                    }
-                );
-
-        }
-
-
-        /* ==========================================
-           الإحصائيات
-        ========================================== */
-
-        function updateStats() {
-
-            const now =
-                new Date();
-
-            const day =
-                now.getDay();
-
-
-            const lessons =
-                schedule[day] || [];
-
-
-            const completed =
-                lessons.filter(
-                    lesson =>
-                        isCompleted(
-                            day,
-                            lesson
-                        )
-                ).length;
-
-
-            let minutes = 0;
-
-
-            lessons.forEach(
-                lesson => {
-
-                    minutes +=
-                        timeToMinutes(
-                            lesson.end
-                        ) -
-                        timeToMinutes(
-                            lesson.start
-                        );
+                    alert(
+                        `🔔 انتهت الحصة!\n\n${lesson.subject}\n\n☕ حان وقت الراحة.`
+                    );
 
                 }
-            );
 
-
-            document.getElementById(
-                "todayLessons"
-            ).textContent =
-                lessons.length;
-
-
-            document.getElementById(
-                "todayHours"
-            ).textContent =
-                (minutes / 60).toFixed(1);
-
-
-            document.getElementById(
-                "completedLessons"
-            ).textContent =
-                completed;
-
-        }
-
-
-        /* ==========================================
-           نظام التنبيهات
-        ========================================== */
-
-        let lastStartAlert = "";
-
-        let lastEndAlert = "";
-
-
-        function checkLessonAlerts() {
-
-            if (!notificationsEnabled) {
-                return;
             }
 
-
-            const now =
-                new Date();
-
-
-            const day =
-                now.getDay();
-
-
-            const hour =
-                String(
-                    now.getHours()
-                ).padStart(2, "0");
-
-
-            const minute =
-                String(
-                    now.getMinutes()
-                ).padStart(2, "0");
-
-
-            const currentTime =
-                `${hour}:${minute}`;
-
-
-            const lessons =
-                schedule[day] || [];
-
-
-            lessons.forEach(
-                lesson => {
-
-                    /*
-                     * بداية الحصة
-                     */
-
-                    if (
-                        lesson.start ===
-                        currentTime
-                    ) {
-
-                        const key =
-                            `${day}-${lesson.start}-${now.toDateString()}`;
-
-
-                        if (
-                            lastStartAlert !== key
-                        ) {
-
-                            lastStartAlert =
-                                key;
-
-
-                            playStartSound();
-
-
-                            showStartMessage(
-                                lesson
-                            );
-
-                        }
-
-                    }
-
-
-                    /*
-                     * نهاية الحصة
-                     */
-
-                    if (
-                        lesson.end ===
-                        currentTime
-                    ) {
-
-                        const key =
-                            `${day}-${lesson.end}-${now.toDateString()}`;
-
-
-                        if (
-                            lastEndAlert !== key
-                        ) {
-
-                            lastEndAlert =
-                                key;
-
-
-                            playEndSound();
-
-
-                            showEndMessage(
-                                lesson
-                            );
-
-                        }
-
-                    }
-
-                }
-            );
-
         }
+    );
+
+}
 
 
-        /* ==========================================
-           رسالة بداية الحصة
-        ========================================== */
+/* =====================================================
+   تحديث كل شيء
+===================================================== */
 
-        function showStartMessage(
-            lesson
-        ) {
+function updateAll() {
 
-            const box =
-                document.getElementById(
-                    "currentLesson"
-                );
+    updateClock();
 
+    updateDate();
 
-            box.animate(
-                [
-                    {
-                        transform: "scale(1)"
-                    },
+    updateCurrentLesson();
 
-                    {
-                        transform: "scale(1.04)"
-                    },
+    updateTodaySchedule();
 
-                    {
-                        transform: "scale(1)"
-                    }
+    updateStats();
 
-                ],
-                {
-                    duration: 700,
-                    iterations: 3
-                }
-            );
+}
 
 
-            alert(
-                `🔔 حان وقت الدراسة!\n\n${lesson.subject}\n\n⏰ ${formatTime(lesson.start)} → ${formatTime(lesson.end)}`
-            );
+/* =====================================================
+   تشغيل الموقع
+===================================================== */
 
-        }
+updateAll();
 
+showDay(
+    new Date().getDay()
+);
 
-        /* ==========================================
-           رسالة نهاية الحصة
-        ========================================== */
-
-        function showEndMessage(
-            lesson
-        ) {
-
-            alert(
-                `🔔 انتهت الحصة!\n\n${lesson.subject}\n\nخذ استراحة قصيرة ثم استعد للحصة القادمة ☕`
-            );
-
-        }
+updateNotificationButton();
 
 
-        /* ==========================================
-           تشغيل الموقع
-        ========================================== */
+/* تحديث كل ثانية */
 
-        updateDate();
+setInterval(
+    () => {
 
-        updateToday();
-
-        showDay(
-            new Date().getDay()
-        );
-
-        updateNotificationButton();
-
-
-        /*
-         * تحديث الساعة والبرنامج
-         */
-
-        setInterval(
-            () => {
-
-                updateDate();
-
-                updateToday();
-
-                checkLessonAlerts();
-
-            },
-            10000
-        );
-
-
-        /*
-         * فحص التنبيهات مباشرة
-         */
+        updateAll();
 
         checkLessonAlerts();
 
-    </script>
+    },
+    1000
+);
+
+</script>
 
 </body>
 
