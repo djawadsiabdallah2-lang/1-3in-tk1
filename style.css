@@ -1,0 +1,467 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Tahoma, sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+header {
+    background: #111827;
+    border-bottom: 1px solid #263449;
+
+    padding: 18px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.date-box {
+    text-align: left;
+}
+
+#dayName {
+    color: #38bdf8;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#currentDate {
+    color: #94a3b8;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   Main
+========================= */
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 0 60px;
+}
+
+
+/* =========================
+   Welcome
+========================= */
+
+.welcome {
+    background: linear-gradient(
+        135deg,
+        #172554,
+        #0f172a
+    );
+
+    border: 1px solid #263b67;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+.welcome h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.welcome p {
+    color: #94a3b8;
+    font-size: 17px;
+}
+
+
+/* =========================
+   Titles
+========================= */
+
+section {
+    margin-bottom: 35px;
+}
+
+section h2 {
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   Current Lesson
+========================= */
+
+.current-card {
+    background: #172033;
+
+    border: 1px solid #334155;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.current-card h3 {
+    font-size: 27px;
+    margin: 8px 0;
+}
+
+.current-icon {
+    font-size: 45px;
+}
+
+.lesson-time {
+    color: #38bdf8;
+    font-size: 18px;
+    margin: 7px 0 15px;
+}
+
+.remaining {
+    background: #0f172a;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: #cbd5e1;
+}
+
+.remaining strong {
+    color: #38bdf8;
+}
+
+.complete-button {
+    margin-top: 20px;
+
+    border: none;
+
+    background: #2563eb;
+    color: white;
+
+    padding: 11px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+.complete-button:hover {
+    transform: translateY(-2px);
+    background: #1d4ed8;
+}
+
+.waiting {
+    font-size: 45px;
+    margin-bottom: 8px;
+}
+
+.next-time {
+    color: #38bdf8;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   Stats
+========================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+    background: #172033;
+
+    border: 1px solid #293548;
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    text-align: center;
+}
+
+.stat-card span {
+    font-size: 28px;
+}
+
+.stat-card strong {
+    display: block;
+
+    font-size: 28px;
+
+    color: #38bdf8;
+
+    margin-top: 7px;
+}
+
+.stat-card p {
+    color: #94a3b8;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   Lesson Cards
+========================= */
+
+.lesson-card {
+    background: #172033;
+
+    border: 1px solid #293548;
+
+    border-radius: 15px;
+
+    padding: 17px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    transition: 0.2s;
+}
+
+.lesson-card:hover {
+    transform: translateY(-2px);
+    border-color: #38bdf8;
+}
+
+.lesson-card.active {
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 20px
+        rgba(56, 189, 248, 0.12);
+}
+
+.lesson-card.completed {
+    opacity: 0.6;
+}
+
+.lesson-number {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #1e293b;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #38bdf8;
+
+    font-weight: bold;
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-info h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.lesson-info p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.check-button {
+    background: transparent;
+
+    border: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   Weekly buttons
+========================= */
+
+.week-buttons {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+}
+
+.week-buttons button {
+    background: #172033;
+
+    color: #cbd5e1;
+
+    border: 1px solid #334155;
+
+    padding: 10px 17px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    font-size: 14px;
+}
+
+.week-buttons button:hover {
+    border-color: #38bdf8;
+}
+
+.week-buttons button.selected {
+    background: #2563eb;
+
+    color: white;
+
+    border-color: #2563eb;
+}
+
+
+/* =========================
+   Empty
+========================= */
+
+.empty {
+    background: #172033;
+
+    border: 1px solid #293548;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #94a3b8;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    background: #111827;
+
+    border-top: 1px solid #263449;
+
+    color: #64748b;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    #dayName {
+        font-size: 15px;
+    }
+
+    #currentDate {
+        font-size: 11px;
+    }
+
+    main {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .welcome {
+        padding: 25px 15px;
+    }
+
+    .welcome h1 {
+        font-size: 23px;
+    }
+
+    .welcome p {
+        font-size: 14px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .current-card {
+        padding: 25px 15px;
+    }
+
+    .current-card h3 {
+        font-size: 22px;
+    }
+
+    .week-buttons button {
+        flex: 1 1 30%;
+    }
+
+}
