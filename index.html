@@ -407,7 +407,7 @@
         }
 
         /* =========================
-           الجدول المدرسي
+           البرنامج المدرسي
         ========================= */
 
         .school-schedule {
@@ -1205,7 +1205,7 @@
 
 
         /* ==================================================
-           برنامج المراجعة
+           برنامج المراجعة الأسبوعي
         ================================================== */
 
         const originalSchedule = {
@@ -1404,247 +1404,6 @@
 
 
         /* ==================================================
-           البرنامج المدرسي الحقيقي
-        ================================================== */
-
-        const schoolSchedule = {
-
-            "الأحد": [
-
-                {
-                    subject: "💻 إعلام آلي",
-                    start: "08:00",
-                    end: "09:00"
-                },
-
-                {
-                    subject: "🏗️ هندسة مدنية",
-                    start: "09:00",
-                    end: "10:00"
-                },
-
-                {
-                    subject: "☪️ علوم إسلامية",
-                    start: "10:00",
-                    end: "11:00"
-                },
-
-                {
-                    subject: "🇬🇧 إنجليزية",
-                    start: "11:00",
-                    end: "12:00"
-                },
-
-                {
-                    subject: "🇫🇷 فرنسية",
-                    start: "13:30",
-                    end: "14:30"
-                },
-
-                {
-                    subject: "📚 عربية",
-                    start: "14:30",
-                    end: "15:30"
-                },
-
-                {
-                    subject: "⚡ فيزياء",
-                    start: "15:30",
-                    end: "16:30"
-                }
-
-            ],
-
-
-            "الإثنين": [
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "08:00",
-                    end: "09:00"
-                },
-
-                {
-                    subject: "📜 تاريخ",
-                    start: "09:00",
-                    end: "10:00"
-                },
-
-                {
-                    subject: "📚 عربية",
-                    start: "10:00",
-                    end: "11:00"
-                },
-
-                {
-                    subject: "🇬🇧 إنجليزية",
-                    start: "11:00",
-                    end: "12:00"
-                },
-
-                {
-                    subject: "🔬 علوم",
-                    start: "13:30",
-                    end: "14:30"
-                },
-
-                {
-                    subject: "🔬 علوم",
-                    start: "14:30",
-                    end: "15:30"
-                },
-
-                {
-                    subject: "⚡ فيزياء",
-                    start: "15:30",
-                    end: "16:30"
-                },
-
-                {
-                    subject: "⚡ فيزياء",
-                    start: "16:30",
-                    end: "17:30"
-                }
-
-            ],
-
-
-            "الثلاثاء": [
-
-                {
-                    subject: "🏗️ هندسة مدنية",
-                    start: "08:00",
-                    end: "09:00"
-                },
-
-                {
-                    subject: "📚 عربية",
-                    start: "09:00",
-                    end: "10:00"
-                },
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "10:00",
-                    end: "11:00"
-                },
-
-                {
-                    subject: "🔬 علوم طبيعية",
-                    start: "11:00",
-                    end: "12:00"
-                }
-
-            ],
-
-
-            "الأربعاء": [
-
-                {
-                    subject: "💻 إعلام آلي",
-                    start: "08:00",
-                    end: "09:00"
-                },
-
-                {
-                    subject: "📚 عربية",
-                    start: "09:00",
-                    end: "10:00"
-                },
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "10:00",
-                    end: "11:00"
-                },
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "11:00",
-                    end: "12:00"
-                },
-
-                {
-                    subject: "🇫🇷 فرنسية",
-                    start: "13:30",
-                    end: "14:30"
-                },
-
-                {
-                    subject: "📜 تاريخ",
-                    start: "14:30",
-                    end: "15:30"
-                },
-
-                {
-                    subject: "🇬🇧 إنجليزية",
-                    start: "15:30",
-                    end: "16:30"
-                }
-
-            ],
-
-
-            "الخميس": [
-
-                {
-                    subject: "🔬 علوم",
-                    start: "08:00",
-                    end: "09:00"
-                },
-
-                {
-                    subject: "⚡ فيزياء",
-                    start: "09:00",
-                    end: "10:00"
-                },
-
-                {
-                    subject: "🏃 تربية بدنية",
-                    start: "10:00",
-                    end: "11:00"
-                },
-
-                {
-                    subject: "🏃 تربية بدنية",
-                    start: "11:00",
-                    end: "12:00"
-                },
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "13:30",
-                    end: "14:30"
-                },
-
-                {
-                    subject: "📐 رياضيات",
-                    start: "14:30",
-                    end: "15:30"
-                },
-
-                {
-                    subject: "🇫🇷 فرنسية",
-                    start: "15:30",
-                    end: "16:30"
-                },
-
-                {
-                    subject: "🇫🇷 فرنسية",
-                    start: "16:30",
-                    end: "17:30"
-                }
-
-            ],
-
-            "الجمعة": [],
-
-            "السبت": []
-
-        };
-
-
-        /* ==================================================
            أدوات الوقت
         ================================================== */
 
@@ -1663,15 +1422,23 @@
         function formatRemaining(seconds) {
 
             seconds =
-                Math.max(0, Math.floor(seconds));
+                Math.max(
+                    0,
+                    Math.floor(seconds)
+                );
+
 
             const hours =
-                Math.floor(seconds / 3600);
+                Math.floor(
+                    seconds / 3600
+                );
+
 
             const minutes =
                 Math.floor(
                     (seconds % 3600) / 60
                 );
+
 
             const secs =
                 seconds % 60;
@@ -1699,7 +1466,7 @@
 
 
         /* ==================================================
-           الحصول على وقت الجزائر
+           وقت الجزائر
         ================================================== */
 
         function getAlgeriaTime() {
@@ -1746,10 +1513,23 @@
 
                     result[part.type] =
                         part.value;
-
                 }
 
             });
+
+
+            /*
+             * بعض المتصفحات قد تعطي 24 بدل 00
+             * عند منتصف الليل.
+             */
+
+            let hour =
+                Number(result.hour);
+
+
+            if (hour === 24) {
+                hour = 0;
+            }
 
 
             return {
@@ -1758,7 +1538,7 @@
                     result.weekday,
 
                 hour:
-                    Number(result.hour),
+                    hour,
 
                 minute:
                     Number(result.minute),
@@ -1811,7 +1591,9 @@
                 "clock"
             ).textContent =
                 "🕐 " +
-                formatter.format(new Date());
+                formatter.format(
+                    new Date()
+                );
         }
 
 
@@ -1832,9 +1614,11 @@
                     window.AudioContext ||
                     window.webkitAudioContext;
 
+
                 if (!AudioContext) {
                     return null;
                 }
+
 
                 audioContext =
                     new AudioContext();
@@ -1859,6 +1643,7 @@
             const ctx =
                 createAudioContext();
 
+
             if (!ctx) {
                 return;
             }
@@ -1868,10 +1653,9 @@
                 ctx.currentTime;
 
 
-            /* الجرس الأول */
-
             const oscillator1 =
                 ctx.createOscillator();
+
 
             const gain1 =
                 ctx.createGain();
@@ -1880,10 +1664,12 @@
             oscillator1.type =
                 "sine";
 
+
             oscillator1.frequency.setValueAtTime(
                 880,
                 now
             );
+
 
             oscillator1.frequency.exponentialRampToValueAtTime(
                 660,
@@ -1896,10 +1682,12 @@
                 now
             );
 
+
             gain1.gain.exponentialRampToValueAtTime(
                 0.35,
                 now + 0.03
             );
+
 
             gain1.gain.exponentialRampToValueAtTime(
                 0.0001,
@@ -1914,15 +1702,15 @@
 
             oscillator1.start(now);
 
+
             oscillator1.stop(
                 now + 0.9
             );
 
 
-            /* الجرس الثاني */
-
             const oscillator2 =
                 ctx.createOscillator();
+
 
             const gain2 =
                 ctx.createGain();
@@ -1931,10 +1719,12 @@
             oscillator2.type =
                 "sine";
 
+
             oscillator2.frequency.setValueAtTime(
                 660,
                 now + 0.55
             );
+
 
             oscillator2.frequency.exponentialRampToValueAtTime(
                 440,
@@ -1947,10 +1737,12 @@
                 now + 0.55
             );
 
+
             gain2.gain.exponentialRampToValueAtTime(
                 0.3,
                 now + 0.58
             );
+
 
             gain2.gain.exponentialRampToValueAtTime(
                 0.0001,
@@ -1966,6 +1758,7 @@
             oscillator2.start(
                 now + 0.55
             );
+
 
             oscillator2.stop(
                 now + 1.35
@@ -2013,8 +1806,6 @@
                 "🔔 الجرس مفعّل";
 
 
-            /* اختبار الجرس */
-
             playBell();
         }
 
@@ -2060,6 +1851,10 @@
 
         /* ==================================================
            الحصة الحالية
+           
+           مهم:
+           هذا القسم يعتمد على schedule
+           وليس على schoolSchedule.
         ================================================== */
 
         function updateCurrentLesson() {
@@ -2073,17 +1868,22 @@
 
 
             const currentSeconds =
-                (
-                    now.hour * 3600
-                ) +
-                (
-                    now.minute * 60
-                ) +
+                (now.hour * 3600) +
+                (now.minute * 60) +
                 now.second;
 
 
+            /*
+             * هنا نأخذ البرنامج من:
+             *
+             * 📅 برنامج المراجعة الأسبوعي
+             *
+             * وبالتالي أي تعديل في أوقات
+             * البرنامج سيؤثر مباشرة على المؤقت.
+             */
+
             const lessons =
-                schoolSchedule[day] || [];
+                schedule[day] || [];
 
 
             let currentLesson =
@@ -2094,7 +1894,26 @@
                 null;
 
 
-            for (const lesson of lessons) {
+            /* =========================================
+               ترتيب الحصص حسب وقت البداية
+            ========================================= */
+
+            const sortedLessons =
+                [...lessons].sort(
+                    (a, b) =>
+                        timeToMinutes(a.start) -
+                        timeToMinutes(b.start)
+                );
+
+
+            /* =========================================
+               البحث عن الحصة الحالية والقادمة
+            ========================================= */
+
+            for (
+                const lesson
+                of sortedLessons
+            ) {
 
                 const startSeconds =
                     timeToMinutes(
@@ -2108,9 +1927,16 @@
                     ) * 60;
 
 
+                /*
+                 * الحصة الحالية
+                 */
+
                 if (
-                    currentSeconds >= startSeconds &&
-                    currentSeconds < endSeconds
+                    currentSeconds >=
+                    startSeconds &&
+
+                    currentSeconds <
+                    endSeconds
                 ) {
 
                     currentLesson =
@@ -2120,16 +1946,19 @@
                 }
 
 
+                /*
+                 * الحصة القادمة
+                 */
+
                 if (
                     startSeconds >
                     currentSeconds
                 ) {
 
-                    if (!nextLesson) {
+                    nextLesson =
+                        lesson;
 
-                        nextLesson =
-                            lesson;
-                    }
+                    break;
                 }
             }
 
@@ -2141,10 +1970,16 @@
 
 
             /* =========================================
-               هناك حصة الآن
+               حصة جارية الآن
             ========================================= */
 
             if (currentLesson) {
+
+                const startSeconds =
+                    timeToMinutes(
+                        currentLesson.start
+                    ) * 60;
+
 
                 const endSeconds =
                     timeToMinutes(
@@ -2188,19 +2023,43 @@
                 `;
 
 
-                /* جرس بداية الحصة */
+                /* =====================================
+                   مفتاح فريد للحصة
+                ===================================== */
 
-                const startKey =
+                const lessonKey =
                     day +
+                    "-" +
+                    (
+                        currentLesson.id ||
+                        currentLesson.subject
+                    ) +
                     "-" +
                     currentLesson.start;
 
 
+                /* =====================================
+                   جرس بداية الحصة
+                ===================================== */
+
+                const startKey =
+                    lessonKey +
+                    "-START";
+
+
+                /*
+                 * لا نعتمد على ثانية واحدة فقط.
+                 *
+                 * إذا حدث تأخير بسيط في تحديث الصفحة،
+                 * ما زال الجرس يستطيع العمل.
+                 */
+
                 if (
-                    currentSeconds ===
-                    timeToMinutes(
-                        currentLesson.start
-                    ) * 60
+                    currentSeconds >=
+                    startSeconds &&
+
+                    currentSeconds <
+                    startSeconds + 3
                 ) {
 
                     if (
@@ -2220,30 +2079,33 @@
                 }
 
 
-                /* جرس النهاية */
+                /* =====================================
+                   جرس نهاية الحصة
+                ===================================== */
 
                 const endKey =
-                    day +
-                    "-" +
-                    currentLesson.end;
+                    lessonKey +
+                    "-END";
 
-
-                /*
-                 * عندما تكون آخر ثانية من الحصة
-                 * نجهز مفتاح النهاية.
-                 */
 
                 if (
-                    remaining <= 1 &&
-                    lastEndBell !== endKey
+                    remaining <= 2 &&
+                    remaining > 0
                 ) {
 
-                    lastEndBell =
-                        endKey;
+                    if (
+                        lastEndBell !==
+                        endKey
+                    ) {
 
-                    if (bellEnabled) {
+                        lastEndBell =
+                            endKey;
 
-                        playBell();
+
+                        if (bellEnabled) {
+
+                            playBell();
+                        }
                     }
                 }
 
@@ -2253,7 +2115,7 @@
 
 
             /* =========================================
-               توجد حصة قادمة
+               حصة قادمة
             ========================================= */
 
             if (nextLesson) {
@@ -2280,7 +2142,10 @@
                     </div>
 
                     <div class="current-time">
-                        تبدأ الساعة ${nextLesson.start}
+                        تبدأ الساعة
+                        ${nextLesson.start}
+                        وتنتهي الساعة
+                        ${nextLesson.end}
                     </div>
 
                     <div class="school-timer">
@@ -2303,7 +2168,7 @@
 
 
             /* =========================================
-               لا توجد حصص أخرى
+               لا توجد حصص اليوم
             ========================================= */
 
             if (lessons.length === 0) {
@@ -2311,38 +2176,48 @@
                 container.innerHTML = `
 
                     <div class="lesson-status">
-                        💤 لا توجد حصص مدرسية اليوم
+                        💤 لا توجد حصص مراجعة اليوم
                     </div>
 
                     <div class="current-subject">
                         استمتع بوقتك 💙
                     </div>
 
-                `;
-
-            } else {
-
-                container.innerHTML = `
-
-                    <div class="lesson-status">
-                        ✅ انتهت حصص اليوم
-                    </div>
-
-                    <div class="current-subject">
-                        أحسنت! 🎉
-                    </div>
-
                     <div class="current-time">
-                        يمكنك الآن الراحة أو المراجعة.
+                        لا توجد مادة مبرمجة لهذا اليوم.
                     </div>
 
                 `;
+
+
+                return;
             }
+
+
+            /* =========================================
+               انتهت حصص اليوم
+            ========================================= */
+
+            container.innerHTML = `
+
+                <div class="lesson-status">
+                    ✅ انتهت حصص اليوم
+                </div>
+
+                <div class="current-subject">
+                    أحسنت! 🎉
+                </div>
+
+                <div class="current-time">
+                    يمكنك الآن الراحة أو المراجعة.
+                </div>
+
+            `;
         }
 
 
         /* ==================================================
-           برنامج المراجعة
+           عرض برنامج المراجعة
         ================================================== */
 
         function renderSchedule() {
@@ -2460,6 +2335,15 @@
 
 
             updateStats();
+
+
+            /*
+             * مهم:
+             * بعد أي تعديل في البرنامج،
+             * نحدّث الحصة الحالية فورًا.
+             */
+
+            updateCurrentLesson();
         }
 
 
@@ -2834,7 +2718,15 @@
 
             closeModal();
 
+
+            /*
+             * إعادة رسم البرنامج
+             * وتحديث الحصة الحالية مباشرة.
+             */
+
             renderSchedule();
+
+            updateCurrentLesson();
         }
 
 
@@ -2886,6 +2778,8 @@
 
 
             renderSchedule();
+
+            updateCurrentLesson();
         }
 
 
@@ -2919,6 +2813,9 @@
 
 
             renderSchedule();
+
+            updateCurrentLesson();
+
 
             alert(
                 "تمت إعادة البرنامج الأصلي ✅"
@@ -3236,10 +3133,9 @@
         updateTimerDisplay();
 
 
-        /*
-         * نحدّث الموقع كل ثانية.
-         * هذا يجعل مؤقت الحصة يتحرك لحظيًا.
-         */
+        /* ==================================================
+           التحديث كل ثانية
+        ================================================== */
 
         setInterval(() => {
 
@@ -3252,10 +3148,9 @@
         }, 1000);
 
 
-        /*
-         * محاولة تجهيز الصوت عند أول
-         * تفاعل مع الصفحة.
-         */
+        /* ==================================================
+           تجهيز الصوت عند تفاعل المستخدم
+        ================================================== */
 
         document.addEventListener(
             "click",
