@@ -8,6 +8,130 @@
     <title>📚 برنامج دراستي</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           نافذة تعديل الحصة
+        ================================= */
+
+        .edit-button {
+            background: #00a8ff;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .edit-button:hover {
+            opacity: 0.85;
+        }
+
+        .reset-schedule-button {
+            display: block;
+            margin: 20px auto;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .reset-schedule-button:hover {
+            opacity: 0.85;
+        }
+
+        .edit-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .edit-modal.active {
+            display: flex;
+        }
+
+        .edit-box {
+            background: #182631;
+            width: 100%;
+            max-width: 430px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .edit-box h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .edit-field {
+            margin-bottom: 15px;
+        }
+
+        .edit-field label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .edit-field select,
+        .edit-field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px;
+            border-radius: 9px;
+            border: 1px solid #34495e;
+            background: #101820;
+            color: white;
+            font-size: 16px;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .save-edit-button,
+        .cancel-edit-button {
+            flex: 1;
+            border: none;
+            padding: 12px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .save-edit-button {
+            background: #00a8ff;
+            color: white;
+        }
+
+        .cancel-edit-button {
+            background: #555;
+            color: white;
+        }
+
+        .lesson-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .check-button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -220,6 +344,13 @@
 
         <div id="selectedDaySchedule"></div>
 
+        <button
+            class="reset-schedule-button"
+            onclick="resetSchedule()"
+        >
+            🔄 إعادة برنامج المراجعة الأصلي
+        </button>
+
     </section>
 
 
@@ -329,8 +460,6 @@
 
                 </div>
 
-
-                <!-- تم تصحيح المساء -->
 
                 <div class="school-period">
 
@@ -585,6 +714,124 @@
 </footer>
 
 
+<!-- =================================================
+     نافذة تعديل الحصة
+================================================== -->
+
+<div
+    id="editModal"
+    class="edit-modal"
+>
+
+    <div class="edit-box">
+
+        <h2>
+            ✏️ تعديل وقت المراجعة
+        </h2>
+
+        <div class="edit-field">
+
+            <label>
+                📚 المادة
+            </label>
+
+            <div id="editSubject"></div>
+
+        </div>
+
+
+        <div class="edit-field">
+
+            <label for="editDay">
+                📅 اليوم
+            </label>
+
+            <select id="editDay">
+
+                <option value="0">
+                    الأحد
+                </option>
+
+                <option value="1">
+                    الإثنين
+                </option>
+
+                <option value="2">
+                    الثلاثاء
+                </option>
+
+                <option value="3">
+                    الأربعاء
+                </option>
+
+                <option value="4">
+                    الخميس
+                </option>
+
+                <option value="5">
+                    الجمعة
+                </option>
+
+                <option value="6">
+                    السبت
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="edit-field">
+
+            <label for="editStart">
+                ⏰ وقت البداية
+            </label>
+
+            <input
+                type="time"
+                id="editStart"
+            >
+
+        </div>
+
+
+        <div class="edit-field">
+
+            <label for="editEnd">
+                ⏰ وقت النهاية
+            </label>
+
+            <input
+                type="time"
+                id="editEnd"
+            >
+
+        </div>
+
+
+        <div class="edit-actions">
+
+            <button
+                class="save-edit-button"
+                onclick="saveLessonEdit()"
+            >
+                💾 حفظ
+            </button>
+
+            <button
+                class="cancel-edit-button"
+                onclick="closeEditModal()"
+            >
+                ❌ إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
 /* =====================================================
@@ -595,10 +842,10 @@ const TIME_ZONE = "Africa/Algiers";
 
 
 /* =====================================================
-   برنامج المراجعة المنزلية
+   البرنامج الأصلي
 ===================================================== */
 
-const schedule = {
+const originalSchedule = {
 
     0: [
         {
@@ -739,6 +986,64 @@ const schedule = {
 };
 
 
+/* =====================================================
+   تحميل البرنامج المحفوظ
+===================================================== */
+
+function loadSchedule() {
+
+    const saved =
+        localStorage.getItem(
+            "myStudySchedule"
+        );
+
+    if (saved) {
+
+        try {
+
+            return JSON.parse(saved);
+
+        } catch (error) {
+
+            console.error(
+                "خطأ في تحميل البرنامج:",
+                error
+            );
+
+        }
+
+    }
+
+    return JSON.parse(
+        JSON.stringify(
+            originalSchedule
+        )
+    );
+}
+
+
+let schedule =
+    loadSchedule();
+
+
+/* =====================================================
+   حفظ البرنامج
+===================================================== */
+
+function saveSchedule() {
+
+    localStorage.setItem(
+        "myStudySchedule",
+        JSON.stringify(schedule)
+    );
+
+}
+
+
+/* =====================================================
+   الأيام
+===================================================== */
+
 const days = [
     "الأحد",
     "الإثنين",
@@ -748,6 +1053,14 @@ const days = [
     "الجمعة",
     "السبت"
 ];
+
+
+/* =====================================================
+   متغير تعديل الحصة
+===================================================== */
+
+let editingDay = null;
+let editingIndex = null;
 
 
 /* =====================================================
@@ -892,6 +1205,219 @@ function formatCountdown(seconds) {
         String(minutes).padStart(2, "0") +
         ":" +
         String(secs).padStart(2, "0")
+    );
+}
+
+
+/* =====================================================
+   تعديل الحصة
+===================================================== */
+
+function openEditModal(day, index) {
+
+    const lesson =
+        schedule[day][index];
+
+    editingDay = day;
+    editingIndex = index;
+
+    document.getElementById(
+        "editSubject"
+    ).textContent =
+        lesson.subject;
+
+    document.getElementById(
+        "editDay"
+    ).value =
+        day;
+
+    document.getElementById(
+        "editStart"
+    ).value =
+        lesson.start;
+
+    document.getElementById(
+        "editEnd"
+    ).value =
+        lesson.end;
+
+    document.getElementById(
+        "editModal"
+    ).classList.add("active");
+}
+
+
+function closeEditModal() {
+
+    document.getElementById(
+        "editModal"
+    ).classList.remove("active");
+
+    editingDay = null;
+    editingIndex = null;
+}
+
+
+function saveLessonEdit() {
+
+    if (
+        editingDay === null ||
+        editingIndex === null
+    ) {
+        return;
+    }
+
+    const newDay =
+        Number(
+            document.getElementById(
+                "editDay"
+            ).value
+        );
+
+    const newStart =
+        document.getElementById(
+            "editStart"
+        ).value;
+
+    const newEnd =
+        document.getElementById(
+            "editEnd"
+        ).value;
+
+
+    if (
+        !newStart ||
+        !newEnd
+    ) {
+
+        alert(
+            "⚠️ اختر وقت البداية والنهاية."
+        );
+
+        return;
+    }
+
+
+    if (
+        timeToSeconds(newEnd) <=
+        timeToSeconds(newStart)
+    ) {
+
+        alert(
+            "⚠️ وقت النهاية يجب أن يكون بعد وقت البداية."
+        );
+
+        return;
+    }
+
+
+    const oldLesson =
+        schedule[editingDay][editingIndex];
+
+
+    const movedLesson = {
+
+        subject:
+            oldLesson.subject,
+
+        start:
+            newStart,
+
+        end:
+            newEnd
+
+    };
+
+
+    /* نقل الحصة إلى اليوم الجديد */
+
+    schedule[editingDay].splice(
+        editingIndex,
+        1
+    );
+
+
+    if (
+        !schedule[newDay]
+    ) {
+
+        schedule[newDay] = [];
+
+    }
+
+
+    schedule[newDay].push(
+        movedLesson
+    );
+
+
+    /* ترتيب الحصص حسب الوقت */
+
+    schedule[newDay].sort(
+        (
+            a,
+            b
+        ) =>
+            timeToSeconds(a.start) -
+            timeToSeconds(b.start)
+    );
+
+
+    saveSchedule();
+
+    closeEditModal();
+
+    updateAll();
+
+    showDay(
+        newDay
+    );
+
+
+    alert(
+        `✅ تم نقل ${movedLesson.subject} إلى ${days[newDay]}`
+    );
+}
+
+
+/* =====================================================
+   إعادة البرنامج الأصلي
+===================================================== */
+
+function resetSchedule() {
+
+    const confirmed =
+        confirm(
+            "⚠️ هل تريد إعادة برنامج المراجعة الأصلي؟\n\nسيتم حذف جميع التعديلات التي قمت بها."
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    schedule =
+        JSON.parse(
+            JSON.stringify(
+                originalSchedule
+            )
+        );
+
+
+    localStorage.removeItem(
+        "myStudySchedule"
+    );
+
+
+    updateAll();
+
+    showDay(
+        getAlgeriaDay()
+    );
+
+
+    alert(
+        "✅ تم إعادة برنامج المراجعة الأصلي."
     );
 }
 
@@ -1724,23 +2250,34 @@ function renderSchedule(
 
                         </div>
 
-                        <button
-                            class="check-button"
-                            onclick="
-                                toggleCompleted(
-                                    ${day},
-                                    ${index}
-                                )
-                            "
-                        >
+                        <div class="lesson-actions">
 
-                            ${
-                                completed
-                                ? "✅"
-                                : "⭕"
-                            }
+                            <button
+                                class="edit-button"
+                                onclick="openEditModal(${day}, ${index})"
+                            >
+                                ✏️ تعديل
+                            </button>
 
-                        </button>
+                            <button
+                                class="check-button"
+                                onclick="
+                                    toggleCompleted(
+                                        ${day},
+                                        ${index}
+                                    )
+                                "
+                            >
+
+                                ${
+                                    completed
+                                    ? "✅"
+                                    : "⭕"
+                                }
+
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -1970,6 +2507,28 @@ function checkLessonAlerts() {
 
 
 /* =====================================================
+   إغلاق النافذة عند الضغط خارجها
+===================================================== */
+
+document
+    .getElementById("editModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeEditModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
    تشغيل الموقع
 ===================================================== */
 
@@ -2011,3 +2570,4 @@ setInterval(
 
 </body>
 </html>
+
