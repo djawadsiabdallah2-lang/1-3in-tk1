@@ -2,15 +2,27 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>برنامج دراستي</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>📚 برنامج دراستي</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -19,225 +31,659 @@
     </div>
 
     <div class="header-info">
-        <div id="dayName">اليوم</div>
-        <div id="currentDate">التاريخ</div>
+
+        <div id="dayName">
+            اليوم
+        </div>
+
+        <div id="currentDate">
+            التاريخ
+        </div>
+
     </div>
 
 </header>
 
 
+
 <main>
 
-    <!-- الترحيب -->
 
-    <section class="welcome">
+<!-- =====================================================
+     الترحيب
+===================================================== -->
 
-        <h1>
-            👋 مرحبًا بك في برنامج دراستك
-        </h1>
+<section class="welcome">
 
-        <p>
-            نظم وقتك، التزم ببرنامجك، وحقق أهدافك 💪
-        </p>
+    <h1>
+        👋 مرحبًا بك في برنامج دراستك
+    </h1>
 
-    </section>
+    <p>
+        نظم وقتك والتزم ببرنامجك وحقق أهدافك 💪
+    </p>
 
-
-    <!-- الساعة -->
-
-    <section class="clock-section">
-
-        <div class="clock-label">
-            🕐 الوقت الحالي في الجزائر
-        </div>
-
-        <div id="liveClock">
-            00:00:00
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- التنبيهات -->
 
-    <section class="notification-section">
+<!-- =====================================================
+     الساعة
+===================================================== -->
 
-        <button
-            id="notificationButton"
-            onclick="enableNotifications()"
-        >
-            🔔 تفعيل صوت التنبيه
-        </button>
+<section class="clock-section">
 
-        <p id="notificationStatus">
-            فعّل التنبيه حتى يصدر صوت عند بداية ونهاية الحصة
-        </p>
+    <div class="clock-label">
+        🕐 الوقت الحالي في الجزائر
+    </div>
 
-    </section>
+    <div id="liveClock">
+        00:00:00
+    </div>
+
+</section>
 
 
-    <!-- الحصة الحالية -->
 
-    <section>
+<!-- =====================================================
+     زر التنبيه
+===================================================== -->
 
-        <h2>
-            ⏰ ماذا أدرس الآن؟
-        </h2>
+<section class="notification-section">
+
+    <button
+        id="notificationButton"
+        onclick="enableNotifications()"
+    >
+        🔔 تفعيل صوت التنبيه
+    </button>
+
+    <p id="notificationStatus">
+        اضغط لتفعيل صوت بداية ونهاية الحصص
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     الحصة الحالية
+===================================================== -->
+
+<section>
+
+    <h2>
+        ⏰ ماذا أدرس الآن؟
+    </h2>
+
+    <div
+        id="currentLesson"
+        class="current-card"
+    >
+        جاري تحميل البرنامج...
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     تقدم المراجعة
+===================================================== -->
+
+<section class="progress-section">
+
+    <div class="progress-header">
+
+        <span>
+            📊 تقدم مراجعة اليوم
+        </span>
+
+        <strong id="progressPercent">
+            0%
+        </strong>
+
+    </div>
+
+    <div class="progress-bar">
 
         <div
-            id="currentLesson"
-            class="current-card"
-        >
-            جاري تحميل البرنامج...
-        </div>
+            id="progressFill"
+            class="progress-fill"
+        ></div>
 
-    </section>
+    </div>
 
-
-    <!-- التقدم -->
-
-    <section class="progress-section">
-
-        <div class="progress-header">
-
-            <span>
-                📊 تقدم اليوم
-            </span>
-
-            <strong id="progressPercent">
-                0%
-            </strong>
-
-        </div>
-
-        <div class="progress-bar">
-
-            <div
-                id="progressFill"
-                class="progress-fill"
-            ></div>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- الإحصائيات -->
 
-    <section class="stats">
+<!-- =====================================================
+     الإحصائيات
+===================================================== -->
 
-        <div class="stat-card">
-
-            <span>📚</span>
-
-            <strong id="todayLessons">
-                0
-            </strong>
-
-            <p>
-                حصص اليوم
-            </p>
-
-        </div>
+<section class="stats">
 
 
-        <div class="stat-card">
+    <div class="stat-card">
 
-            <span>⏱️</span>
+        <span>
+            📚
+        </span>
 
-            <strong id="todayHours">
-                0
-            </strong>
+        <strong id="todayLessons">
+            0
+        </strong>
 
-            <p>
-                ساعات الدراسة
-            </p>
+        <p>
+            حصص المراجعة
+        </p>
 
-        </div>
-
-
-        <div class="stat-card">
-
-            <span>✅</span>
-
-            <strong id="completedLessons">
-                0
-            </strong>
-
-            <p>
-                حصص مكتملة
-            </p>
-
-        </div>
-
-    </section>
+    </div>
 
 
-    <!-- برنامج اليوم -->
+    <div class="stat-card">
 
-    <section>
+        <span>
+            ⏱️
+        </span>
 
-        <h2>
-            📅 برنامج اليوم
-        </h2>
+        <strong id="todayHours">
+            0
+        </strong>
 
-        <div id="todaySchedule"></div>
+        <p>
+            ساعات المراجعة
+        </p>
 
-    </section>
+    </div>
 
 
-    <!-- البرنامج الأسبوعي -->
+    <div class="stat-card">
 
-    <section>
+        <span>
+            ✅
+        </span>
 
-        <h2>
-            🗓️ برنامج المراجعة الأسبوعي
-        </h2>
+        <strong id="completedLessons">
+            0
+        </strong>
 
-        <div class="week-buttons">
+        <p>
+            حصص مكتملة
+        </p>
 
-            <button onclick="showDay(0)">
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     برنامج اليوم
+===================================================== -->
+
+<section>
+
+    <h2>
+        📚 مراجعة اليوم
+    </h2>
+
+    <div id="todaySchedule"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     برنامج المراجعة الأسبوعي
+===================================================== -->
+
+<section>
+
+    <h2>
+        🗓️ برنامج المراجعة الأسبوعي
+    </h2>
+
+
+    <div class="week-buttons">
+
+
+        <button onclick="showDay(0)">
+            الأحد
+        </button>
+
+
+        <button onclick="showDay(1)">
+            الإثنين
+        </button>
+
+
+        <button onclick="showDay(2)">
+            الثلاثاء
+        </button>
+
+
+        <button onclick="showDay(3)">
+            الأربعاء
+        </button>
+
+
+        <button onclick="showDay(4)">
+            الخميس
+        </button>
+
+
+        <button onclick="showDay(5)">
+            الجمعة
+        </button>
+
+
+        <button onclick="showDay(6)">
+            السبت
+        </button>
+
+
+    </div>
+
+
+    <div id="selectedDaySchedule"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     برنامج الدراسة المدرسي
+===================================================== -->
+
+<section>
+
+    <h2>
+        🏫 برنامج الدراسة المدرسي
+    </h2>
+
+
+    <div class="school-schedule">
+
+
+        <!-- الأحد -->
+
+        <div class="school-day">
+
+            <h3>
                 الأحد
-            </button>
+            </h3>
 
-            <button onclick="showDay(1)">
-                الإثنين
-            </button>
 
-            <button onclick="showDay(2)">
-                الثلاثاء
-            </button>
+            <div class="school-period">
 
-            <button onclick="showDay(3)">
-                الأربعاء
-            </button>
+                <strong>
+                    🌅 الفترة الصباحية
+                </strong>
 
-            <button onclick="showDay(4)">
-                الخميس
-            </button>
 
-            <button onclick="showDay(5)">
-                الجمعة
-            </button>
+                <p>
+                    08:00 → 09:00 — 💻 إعلام آلي
+                </p>
 
-            <button onclick="showDay(6)">
-                السبت
-            </button>
+                <p>
+                    09:00 → 10:00 — 🏗️ هندسة مدنية
+                </p>
+
+                <p>
+                    10:00 → 11:00 — 🕌 علوم إسلامية
+                </p>
+
+                <p>
+                    11:00 → 12:00 — 🇬🇧 إنجليزية
+                </p>
+
+            </div>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌙 الفترة المسائية
+                </strong>
+
+
+                <p>
+                    13:30 → 14:30 — 🇫🇷 فرنسية
+                </p>
+
+                <p>
+                    14:30 → 15:30 — 📖 عربية
+                </p>
+
+                <p>
+                    15:30 → 16:30 — ⚡ فيزياء
+                </p>
+
+                <p>
+                    16:30 → 17:30 — —
+                </p>
+
+            </div>
 
         </div>
 
-        <div id="selectedDaySchedule"></div>
 
-    </section>
+
+        <!-- الإثنين -->
+
+        <div class="school-day">
+
+            <h3>
+                الإثنين
+            </h3>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌅 الفترة الصباحية
+                </strong>
+
+
+                <p>
+                    08:00 → 09:00 — 🧮 رياضيات
+                </p>
+
+                <p>
+                    09:00 → 10:00 — 🌍 تاريخ
+                </p>
+
+                <p>
+                    10:00 → 11:00 — 📖 عربية
+                </p>
+
+                <p>
+                    11:00 → 12:00 — 🇬🇧 إنجليزية
+                </p>
+
+            </div>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌙 الفترة المسائية
+                </strong>
+
+
+                <p>
+                    13:30 → 14:30 — 🔬 علوم
+                </p>
+
+                <p>
+                    14:30 → 15:30 — ⚡ فيزياء
+                </p>
+
+                <p>
+                    15:30 → 16:30 — —
+                </p>
+
+                <p>
+                    16:30 → 17:30 — —
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- الثلاثاء -->
+
+        <div class="school-day">
+
+            <h3>
+                الثلاثاء
+            </h3>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌅 الفترة الصباحية
+                </strong>
+
+
+                <p>
+                    08:00 → 09:00 — 🏗️ هندسة مدنية
+                </p>
+
+                <p>
+                    09:00 → 10:00 — 📖 عربية
+                </p>
+
+                <p>
+                    10:00 → 11:00 — 🧮 رياضيات
+                </p>
+
+                <p>
+                    11:00 → 12:00 — 🧬 علوم طبيعية
+                </p>
+
+            </div>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌙 الفترة المسائية
+                </strong>
+
+
+                <p>
+                    🚫 لا توجد دراسة
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- الأربعاء -->
+
+        <div class="school-day">
+
+            <h3>
+                الأربعاء
+            </h3>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌅 الفترة الصباحية
+                </strong>
+
+
+                <p>
+                    08:00 → 09:00 — 💻 إعلام آلي
+                </p>
+
+                <p>
+                    09:00 → 10:00 — 📖 عربية
+                </p>
+
+                <p>
+                    10:00 → 11:00 — 🧮 رياضيات
+                </p>
+
+                <p>
+                    11:00 → 12:00 — 🧮 رياضيات
+                </p>
+
+            </div>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌙 الفترة المسائية
+                </strong>
+
+
+                <p>
+                    13:30 → 14:30 — 🇫🇷 فرنسية
+                </p>
+
+                <p>
+                    14:30 → 15:30 — 🌍 تاريخ
+                </p>
+
+                <p>
+                    15:30 → 16:30 — 🇬🇧 إنجليزية
+                </p>
+
+                <p>
+                    16:30 → 17:30 — —
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- الخميس -->
+
+        <div class="school-day">
+
+            <h3>
+                الخميس
+            </h3>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌅 الفترة الصباحية
+                </strong>
+
+
+                <p>
+                    08:00 → 09:00 — 🔬 علوم
+                </p>
+
+                <p>
+                    09:00 → 10:00 — ⚡ فيزياء
+                </p>
+
+                <p>
+                    10:00 → 11:00 — 🏃 تربية بدنية
+                </p>
+
+                <p>
+                    11:00 → 12:00 — 🏃 تربية بدنية
+                </p>
+
+            </div>
+
+
+            <div class="school-period">
+
+                <strong>
+                    🌙 الفترة المسائية
+                </strong>
+
+
+                <p>
+                    13:30 → 14:30 — 🧮 رياضيات
+                </p>
+
+                <p>
+                    14:30 → 15:30 — 🧮 رياضيات
+                </p>
+
+                <p>
+                    15:30 → 16:30 — 🇫🇷 فرنسية
+                </p>
+
+                <p>
+                    16:30 → 17:30 — —
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- الجمعة -->
+
+        <div class="school-day">
+
+            <h3>
+                الجمعة
+            </h3>
+
+            <div class="school-period">
+
+                <strong>
+                    🌴 لا توجد دراسة مدرسية
+                </strong>
+
+                <p>
+                    يوم مخصص للمراجعة والراحة
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- السبت -->
+
+        <div class="school-day">
+
+            <h3>
+                السبت
+            </h3>
+
+            <div class="school-period">
+
+                <strong>
+                    🌴 لا توجد دراسة مدرسية
+                </strong>
+
+                <p>
+                    يوم مخصص للمراجعة والتحضير
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
 
 
 </main>
 
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
     <p>
-        📚 برنامج دراستي — اجتهد اليوم لتفتخر بنفسك غدًا
+        📚 برنامج دراستي
+    </p>
+
+    <p>
+        اجتهد اليوم لتفتخر بنفسك غدًا 💙
     </p>
 
 </footer>
@@ -253,22 +699,15 @@
 const TIME_ZONE = "Africa/Algiers";
 
 
+
 /* =====================================================
-   برنامج المراجعة الخاص بك
-=====================================================
-
-   الأحد → الخميس:
-   البداية 19:00
-
-   الجمعة والسبت:
-   برنامج خاص
+   برنامج المراجعة المنزلية
 ===================================================== */
 
 const schedule = {
 
-    /* =========================
-       الأحد
-    ========================= */
+
+    /* الأحد */
 
     0: [
 
@@ -293,9 +732,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       الإثنين
-    ========================= */
+
+    /* الإثنين */
 
     1: [
 
@@ -320,9 +758,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       الثلاثاء
-    ========================= */
+
+    /* الثلاثاء */
 
     2: [
 
@@ -347,9 +784,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       الأربعاء
-    ========================= */
+
+    /* الأربعاء */
 
     3: [
 
@@ -374,9 +810,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       الخميس
-    ========================= */
+
+    /* الخميس */
 
     4: [
 
@@ -401,11 +836,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       الجمعة
-       
-       يوم مراجعة خاص
-    ========================= */
+
+    /* الجمعة */
 
     5: [
 
@@ -416,19 +848,19 @@ const schedule = {
         },
 
         {
-            subject: "🔬 مراجعة العلوم الطبيعية",
+            subject: "🧬 مراجعة العلوم الطبيعية",
             start: "11:15",
             end: "12:15"
         },
 
         {
-            subject: "🇫🇷 اللغة الفرنسية",
+            subject: "🇫🇷 مراجعة الفرنسية",
             start: "15:00",
             end: "16:00"
         },
 
         {
-            subject: "📖 اللغة العربية",
+            subject: "📖 مراجعة العربية",
             start: "16:15",
             end: "17:15"
         }
@@ -436,11 +868,8 @@ const schedule = {
     ],
 
 
-    /* =========================
-       السبت
-       
-       تحضير للأسبوع القادم
-    ========================= */
+
+    /* السبت */
 
     6: [
 
@@ -451,13 +880,13 @@ const schedule = {
         },
 
         {
-            subject: "🇬🇧 اللغة الإنجليزية",
+            subject: "🇬🇧 مراجعة الإنجليزية",
             start: "11:15",
             end: "12:15"
         },
 
         {
-            subject: "🌍 التاريخ",
+            subject: "🌍 مراجعة التاريخ",
             start: "15:00",
             end: "16:00"
         },
@@ -471,6 +900,7 @@ const schedule = {
     ]
 
 };
+
 
 
 /* =====================================================
@@ -490,48 +920,57 @@ const days = [
 ];
 
 
+
 /* =====================================================
-   الوقت الحالي في الجزائر
+   الحصول على أجزاء وقت الجزائر
 ===================================================== */
 
 function getAlgeriaParts() {
 
-    const parts = new Intl.DateTimeFormat(
-        "en-GB",
-        {
-            timeZone: TIME_ZONE,
+    const parts =
+        new Intl.DateTimeFormat(
+            "en-GB",
+            {
+                timeZone: TIME_ZONE,
 
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
 
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
 
-            hourCycle: "h23"
-        }
-    ).formatToParts(new Date());
+                hourCycle: "h23"
+            }
+        ).formatToParts(
+            new Date()
+        );
 
 
     const result = {};
 
 
-    parts.forEach(part => {
+    parts.forEach(
+        part => {
 
-        if (part.type !== "literal") {
+            if (
+                part.type !== "literal"
+            ) {
 
-            result[part.type] =
-                Number(part.value);
+                result[part.type] =
+                    Number(part.value);
+
+            }
 
         }
-
-    });
+    );
 
 
     return result;
 
 }
+
 
 
 /* =====================================================
@@ -547,7 +986,9 @@ function getAlgeriaDay() {
                 timeZone: TIME_ZONE,
                 weekday: "long"
             }
-        ).format(new Date());
+        ).format(
+            new Date()
+        );
 
 
     const map = {
@@ -568,6 +1009,7 @@ function getAlgeriaDay() {
 }
 
 
+
 /* =====================================================
    الوقت بالثواني
 ===================================================== */
@@ -579,77 +1021,21 @@ function getCurrentSeconds() {
 
 
     return (
+
         parts.hour * 3600 +
+
         parts.minute * 60 +
+
         parts.second
+
     );
 
 }
 
 
-/* =====================================================
-   الساعة
-===================================================== */
-
-function updateClock() {
-
-    const parts =
-        getAlgeriaParts();
-
-
-    const hour =
-        String(parts.hour).padStart(2, "0");
-
-    const minute =
-        String(parts.minute).padStart(2, "0");
-
-    const second =
-        String(parts.second).padStart(2, "0");
-
-
-    document.getElementById(
-        "liveClock"
-    ).textContent =
-        `${hour}:${minute}:${second}`;
-
-}
-
 
 /* =====================================================
-   التاريخ
-===================================================== */
-
-function updateDate() {
-
-    const date =
-        new Intl.DateTimeFormat(
-            "ar-DZ",
-            {
-                timeZone: TIME_ZONE,
-
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
-        ).format(new Date());
-
-
-    document.getElementById(
-        "dayName"
-    ).textContent =
-        days[getAlgeriaDay()];
-
-
-    document.getElementById(
-        "currentDate"
-    ).textContent =
-        date;
-
-}
-
-
-/* =====================================================
-   تحويل الوقت
+   تحويل الوقت إلى ثواني
 ===================================================== */
 
 function timeToSeconds(time) {
@@ -659,11 +1045,15 @@ function timeToSeconds(time) {
 
 
     return (
+
         Number(parts[0]) * 3600 +
+
         Number(parts[1]) * 60
+
     );
 
 }
+
 
 
 /* =====================================================
@@ -695,7 +1085,9 @@ function formatTime(time) {
 
 
     if (hour === 0) {
+
         hour = 12;
+
     }
 
 
@@ -704,8 +1096,9 @@ function formatTime(time) {
 }
 
 
+
 /* =====================================================
-   العد التنازلي
+   تنسيق العد التنازلي
 ===================================================== */
 
 function formatCountdown(seconds) {
@@ -736,9 +1129,11 @@ function formatCountdown(seconds) {
     return (
 
         String(hours).padStart(2, "0") +
+
         ":" +
 
         String(minutes).padStart(2, "0") +
+
         ":" +
 
         String(secs).padStart(2, "0")
@@ -748,16 +1143,95 @@ function formatCountdown(seconds) {
 }
 
 
+
 /* =====================================================
-   الصوت
+   تحديث الساعة
+===================================================== */
+
+function updateClock() {
+
+    const parts =
+        getAlgeriaParts();
+
+
+    const hour =
+        String(parts.hour)
+            .padStart(2, "0");
+
+
+    const minute =
+        String(parts.minute)
+            .padStart(2, "0");
+
+
+    const second =
+        String(parts.second)
+            .padStart(2, "0");
+
+
+    document.getElementById(
+        "liveClock"
+    ).textContent =
+        `${hour}:${minute}:${second}`;
+
+}
+
+
+
+/* =====================================================
+   تحديث التاريخ
+===================================================== */
+
+function updateDate() {
+
+    const date =
+        new Intl.DateTimeFormat(
+            "ar-DZ",
+            {
+                timeZone: TIME_ZONE,
+
+                year: "numeric",
+
+                month: "long",
+
+                day: "numeric"
+            }
+        ).format(
+            new Date()
+        );
+
+
+    const day =
+        getAlgeriaDay();
+
+
+    document.getElementById(
+        "dayName"
+    ).textContent =
+        days[day];
+
+
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        date;
+
+}
+
+
+
+/* =====================================================
+   إعداد الصوت
 ===================================================== */
 
 let audioContext = null;
+
 
 let notificationsEnabled =
     localStorage.getItem(
         "studyNotifications"
     ) === "true";
+
 
 
 function setupAudio() {
@@ -774,7 +1248,8 @@ function setupAudio() {
 
 
     if (
-        audioContext.state === "suspended"
+        audioContext.state ===
+        "suspended"
     ) {
 
         audioContext.resume();
@@ -784,14 +1259,17 @@ function setupAudio() {
 }
 
 
+
 /* =====================================================
-   صوت بداية الدراسة
+   صوت بداية الحصة
 ===================================================== */
 
 function playStartSound() {
 
     if (!notificationsEnabled) {
+
         return;
+
     }
 
 
@@ -810,7 +1288,8 @@ function playStartSound() {
         audioContext.createGain();
 
 
-    oscillator.type = "sine";
+    oscillator.type =
+        "sine";
 
 
     oscillator.frequency.setValueAtTime(
@@ -859,14 +1338,17 @@ function playStartSound() {
 }
 
 
+
 /* =====================================================
-   صوت نهاية الدراسة
+   صوت نهاية الحصة
 ===================================================== */
 
 function playEndSound() {
 
     if (!notificationsEnabled) {
+
         return;
+
     }
 
 
@@ -940,13 +1422,15 @@ function playEndSound() {
 }
 
 
+
 /* =====================================================
-   تفعيل التنبيهات
+   تفعيل التنبيه
 ===================================================== */
 
 function enableNotifications() {
 
-    notificationsEnabled = true;
+    notificationsEnabled =
+        true;
 
 
     localStorage.setItem(
@@ -956,6 +1440,7 @@ function enableNotifications() {
 
 
     setupAudio();
+
 
     playStartSound();
 
@@ -987,6 +1472,7 @@ function enableNotifications() {
 }
 
 
+
 /* =====================================================
    تحديث زر التنبيه
 ===================================================== */
@@ -994,7 +1480,9 @@ function enableNotifications() {
 function updateNotificationButton() {
 
     if (!notificationsEnabled) {
+
         return;
+
     }
 
 
@@ -1023,6 +1511,7 @@ function updateNotificationButton() {
         "سيتم تنبيهك عند بداية ونهاية كل حصة";
 
 }
+
 
 
 /* =====================================================
@@ -1076,6 +1565,7 @@ function getCurrentLesson() {
 }
 
 
+
 /* =====================================================
    الحصة القادمة
 ===================================================== */
@@ -1114,6 +1604,7 @@ function getNextLesson() {
     return null;
 
 }
+
 
 
 /* =====================================================
@@ -1167,9 +1658,6 @@ function getCurrentBreak() {
 
             return {
 
-                start:
-                    currentLesson.end,
-
                 end:
                     nextLesson.start,
 
@@ -1188,6 +1676,7 @@ function getCurrentBreak() {
 }
 
 
+
 /* =====================================================
    مفتاح الحصة
 ===================================================== */
@@ -1204,8 +1693,9 @@ function lessonKey(
 }
 
 
+
 /* =====================================================
-   حالة الإكمال
+   هل الحصة مكتملة؟
 ===================================================== */
 
 function isCompleted(
@@ -1214,15 +1704,18 @@ function isCompleted(
 ) {
 
     return (
+
         localStorage.getItem(
             lessonKey(
                 day,
                 lesson
             )
         ) === "true"
+
     );
 
 }
+
 
 
 /* =====================================================
@@ -1249,9 +1742,7 @@ function updateCurrentLesson() {
         getNextLesson();
 
 
-    /* =========================
-       توجد حصة الآن
-    ========================= */
+    /* حصة حالية */
 
     if (current) {
 
@@ -1303,7 +1794,7 @@ function updateCurrentLesson() {
         box.innerHTML = `
 
             <div class="current-icon">
-                ${current.subject.split(" ")[0]}
+                📖
             </div>
 
             <div class="status-label">
@@ -1362,9 +1853,8 @@ function updateCurrentLesson() {
     }
 
 
-    /* =========================
-       وقت الراحة
-    ========================= */
+
+    /* الاستراحة */
 
     if (breakTime) {
 
@@ -1423,9 +1913,8 @@ function updateCurrentLesson() {
     }
 
 
-    /* =========================
-       توجد حصة قادمة
-    ========================= */
+
+    /* حصة قادمة */
 
     if (next) {
 
@@ -1481,9 +1970,8 @@ function updateCurrentLesson() {
     }
 
 
-    /* =========================
-       لا توجد حصص أخرى
-    ========================= */
+
+    /* نهاية اليوم */
 
     box.innerHTML = `
 
@@ -1500,13 +1988,14 @@ function updateCurrentLesson() {
         </h3>
 
         <p>
-            انتهت حصص اليوم.
+            انتهت مراجعتك اليوم.
             حان وقت الراحة 💪
         </p>
 
     `;
 
 }
+
 
 
 /* =====================================================
@@ -1524,7 +2013,9 @@ function completeCurrentLesson() {
 
 
     if (!lesson) {
+
         return;
+
     }
 
 
@@ -1561,8 +2052,9 @@ function completeCurrentLesson() {
 }
 
 
+
 /* =====================================================
-   رسم جدول اليوم
+   رسم برنامج يوم
 ===================================================== */
 
 function renderSchedule(
@@ -1587,7 +2079,9 @@ function renderSchedule(
         container.innerHTML = `
 
             <div class="empty">
+
                 لا توجد حصص في هذا اليوم.
+
             </div>
 
         `;
@@ -1598,11 +2092,13 @@ function renderSchedule(
 
 
     container.innerHTML =
+
         lessons.map(
             (
                 lesson,
                 index
             ) => {
+
 
                 const completed =
                     isCompleted(
@@ -1624,26 +2120,36 @@ function renderSchedule(
                         ${completed ? "completed" : ""}
                     ">
 
+
                         <div class="lesson-number">
+
                             ${index + 1}
+
                         </div>
 
 
                         <div class="lesson-info">
 
                             <h3>
+
                                 ${lesson.subject}
+
                             </h3>
+
 
                             <p>
 
                                 ⏰
 
-                                ${formatTime(lesson.start)}
+                                ${formatTime(
+                                    lesson.start
+                                )}
 
                                 →
 
-                                ${formatTime(lesson.end)}
+                                ${formatTime(
+                                    lesson.end
+                                )}
 
                             </p>
 
@@ -1668,6 +2174,7 @@ function renderSchedule(
 
                         </button>
 
+
                     </div>
 
                 `;
@@ -1676,6 +2183,7 @@ function renderSchedule(
         ).join("");
 
 }
+
 
 
 /* =====================================================
@@ -1724,8 +2232,9 @@ function toggleCompleted(
 }
 
 
+
 /* =====================================================
-   برنامج اليوم
+   عرض برنامج اليوم
 ===================================================== */
 
 function updateTodaySchedule() {
@@ -1742,8 +2251,9 @@ function updateTodaySchedule() {
 }
 
 
+
 /* =====================================================
-   عرض يوم معين
+   اختيار يوم من الأسبوع
 ===================================================== */
 
 function showDay(day) {
@@ -1773,6 +2283,7 @@ function showDay(day) {
         );
 
 }
+
 
 
 /* =====================================================
@@ -1806,13 +2317,19 @@ function updateStats() {
         lesson => {
 
             totalMinutes +=
+
                 (
+
                     timeToSeconds(
                         lesson.end
-                    ) -
+                    )
+
+                    -
+
                     timeToSeconds(
                         lesson.start
                     )
+
                 ) / 60;
 
         }
@@ -1838,11 +2355,18 @@ function updateStats() {
 
 
     const percent =
+
         lessons.length > 0
-            ? Math.round(
+
+            ?
+
+            Math.round(
                 (completed / lessons.length) * 100
             )
-            : 0;
+
+            :
+
+            0;
 
 
     document.getElementById(
@@ -1859,6 +2383,7 @@ function updateStats() {
 }
 
 
+
 /* =====================================================
    التنبيهات التلقائية
 ===================================================== */
@@ -1868,10 +2393,13 @@ let lastStartAlert = "";
 let lastEndAlert = "";
 
 
+
 function checkLessonAlerts() {
 
     if (!notificationsEnabled) {
+
         return;
+
     }
 
 
@@ -1912,6 +2440,7 @@ function checkLessonAlerts() {
             ) {
 
                 const key =
+
                     `${day}-${lesson.start}-${parts.year}-${parts.month}-${parts.day}`;
 
 
@@ -1927,12 +2456,15 @@ function checkLessonAlerts() {
 
 
                     alert(
+
                         `🔔 حان وقت الدراسة!\n\n${lesson.subject}\n\n⏰ ${formatTime(lesson.start)} → ${formatTime(lesson.end)}`
+
                     );
 
                 }
 
             }
+
 
 
             /* نهاية الحصة */
@@ -1942,6 +2474,7 @@ function checkLessonAlerts() {
             ) {
 
                 const key =
+
                     `${day}-${lesson.end}-${parts.year}-${parts.month}-${parts.day}`;
 
 
@@ -1957,7 +2490,9 @@ function checkLessonAlerts() {
 
 
                     alert(
+
                         `🔔 انتهت الحصة!\n\n${lesson.subject}\n\n☕ حان وقت الراحة.`
+
                     );
 
                 }
@@ -1970,8 +2505,9 @@ function checkLessonAlerts() {
 }
 
 
+
 /* =====================================================
-   تحديث الموقع
+   تحديث كل شيء
 ===================================================== */
 
 function updateAll() {
@@ -1989,8 +2525,9 @@ function updateAll() {
 }
 
 
+
 /* =====================================================
-   تشغيل الموقع
+   بداية الموقع
 ===================================================== */
 
 updateAll();
@@ -2002,6 +2539,7 @@ showDay(
 
 
 updateNotificationButton();
+
 
 
 /* =====================================================
@@ -2020,6 +2558,7 @@ setInterval(
 );
 
 </script>
+
 
 </body>
 
