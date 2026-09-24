@@ -935,7 +935,7 @@ id="contact">
 <div class="contact-description">
 
 إذا كان لديك اقتراح أو سؤال أو إضافة جيدة للمشروع،
-اكتب اسمك وسؤالك أو اقتراحك، ثم اضغط على إرسال السؤال.
+اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك، ثم اضغط على إرسال السؤال.
 
 </div>
 
@@ -956,6 +956,28 @@ name="name"
 placeholder="اكتب اسمك هنا"
 maxlength="80"
 required>
+
+<label for="visitorEmail">
+📧 بريدك الإلكتروني
+</label>
+
+<input
+type="email"
+id="visitorEmail"
+name="email"
+placeholder="example@gmail.com"
+maxlength="150"
+autocomplete="email"
+required>
+
+<!--
+هذا يجعل زر Reply في Gmail يرد مباشرة على بريد الطالب.
+-->
+<input
+type="hidden"
+id="replyTo"
+name="_replyto"
+value="">
 
 <label for="visitorQuestion">
 💬 سؤالك أو اقتراحك
@@ -2824,6 +2846,11 @@ document.getElementById(
 "visitorName"
 ).value.trim();
 
+const email =
+document.getElementById(
+"visitorEmail"
+).value.trim();
+
 const message =
 document.getElementById(
 "visitorQuestion"
@@ -2831,11 +2858,12 @@ document.getElementById(
 
 if(
 !name||
+!email||
 !message
 ){
 
 contactStatus.textContent =
-"⚠️ اكتب اسمك وسؤالك أو اقتراحك أولاً.";
+"⚠️ اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك أولاً.";
 
 contactStatus.className =
 "contact-error";
@@ -2843,6 +2871,30 @@ contactStatus.className =
 return;
 
 }
+
+/* التأكد من صحة البريد */
+
+const emailPattern =
+^[^\s@]+@[^\s@]+\.[^\s@]+$;
+
+if(!emailPattern.test(email)){
+
+contactStatus.textContent =
+"⚠️ أدخل بريدًا إلكترونيًا صحيحًا.";
+
+contactStatus.className =
+"contact-error";
+
+return;
+
+}
+
+/* جعل الرد من Gmail يذهب مباشرة إلى بريد الطالب */
+
+document.getElementById(
+"replyTo"
+).value =
+email;
 
 contactSubmit.disabled =
 true;
@@ -2899,7 +2951,7 @@ contactForm.reset();
 }catch(error){
 
 contactStatus.textContent =
-"❌ لم يتم الإرسال. تأكد من الضغط على Activate Form في رسالة FormSubmit التي وصلتك إلى Gmail.";
+"❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلتك إلى Gmail.";
 
 contactStatus.className =
 "contact-error";
