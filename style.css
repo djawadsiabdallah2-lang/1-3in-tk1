@@ -1,801 +1,571 @@
-/* =====================================================
-   إعدادات عامة
-===================================================== */
+/* =========================================================
+   برنامج دراستي — style.css
+========================================================= */
+
+:root {
+    --bg: #101820;
+    --nav: rgba(27, 38, 59, 0.95);
+    --card: #182631;
+    --text: #ffffff;
+    --muted: #b8c7d1;
+
+    --blue: #00a8ff;
+    --green: #20c997;
+    --red: #ff5c5c;
+    --orange: #ff9800;
+
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
+
 
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
-    font-family: Arial, Tahoma, sans-serif;
-    background: #0b1120;
-    color: #f8fafc;
-    min-height: 100vh;
-    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+
+    transition:
+        background 0.3s,
+        color 0.3s;
 }
 
 
-/* =====================================================
-   الخلفية
-===================================================== */
+/* =========================================================
+   الوضع الفاتح
+========================================================= */
 
-body::before {
-    content: "";
-    position: fixed;
-
-    top: -200px;
-    right: -200px;
-
-    width: 500px;
-    height: 500px;
-
-    background: rgba(37, 99, 235, 0.12);
-
-    border-radius: 50%;
-
-    filter: blur(100px);
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    bottom: -250px;
-    left: -200px;
-
-    width: 500px;
-    height: 500px;
-
-    background: rgba(14, 165, 233, 0.08);
-
-    border-radius: 50%;
-
-    filter: blur(100px);
-
-    pointer-events: none;
-
-    z-index: -1;
+body.light {
+    --bg: #f2f6f9;
+    --nav: rgba(255, 255, 255, 0.95);
+    --card: #ffffff;
+    --text: #17212b;
+    --muted: #56616b;
+    --border: rgba(0, 0, 0, 0.08);
 }
 
 
-/* =====================================================
-   الهيدر
-===================================================== */
+/* =========================================================
+   شريط التنقل
+========================================================= */
 
-header {
-    width: 100%;
-
-    background: rgba(15, 23, 42, 0.92);
-
-    border-bottom: 1px solid #1e293b;
-
-    padding: 17px 6%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
+nav {
     position: sticky;
-
     top: 0;
 
     z-index: 1000;
 
-    backdrop-filter: blur(15px);
+    background: var(--nav);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid var(--border);
 }
 
 
-/* الشعار */
-
 .logo {
-    font-size: 24px;
-
+    font-size: 22px;
     font-weight: bold;
 
-    color: #f8fafc;
+    color: var(--blue);
 
     white-space: nowrap;
 }
 
 
-/* معلومات اليوم */
-
-.header-info {
-    text-align: left;
-
+.nav-links {
     display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 2px;
-}
-
-#dayName {
-    color: #38bdf8;
-
-    font-size: 17px;
-
-    font-weight: bold;
-}
-
-#currentDate {
-    color: #94a3b8;
-
-    font-size: 13px;
-}
-
-
-/* =====================================================
-   المحتوى الرئيسي
-===================================================== */
-
-main {
-    width: 90%;
-
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 35px 0 70px;
-}
-
-section {
-    margin-bottom: 28px;
-}
-
-section h2 {
-    font-size: 23px;
-
-    margin-bottom: 15px;
-
-    color: #f8fafc;
-}
-
-
-/* =====================================================
-   الترحيب
-===================================================== */
-
-.welcome {
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            #172554,
-            #0f172a 70%
-        );
-
-    border: 1px solid #1e40af;
-
-    border-radius: 22px;
-
-    padding: 42px 25px;
-
-    text-align: center;
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.25);
-}
-
-.welcome::before {
-    content: "📚";
-
-    position: absolute;
-
-    font-size: 140px;
-
-    left: -20px;
-
-    bottom: -55px;
-
-    opacity: 0.05;
-
-    transform: rotate(-15deg);
-}
-
-.welcome h1 {
-    position: relative;
-
-    font-size: 30px;
-
-    margin-bottom: 10px;
-
-    color: #ffffff;
-}
-
-.welcome p {
-    position: relative;
-
-    color: #94a3b8;
-
-    font-size: 17px;
-}
-
-
-/* =====================================================
-   الساعة
-===================================================== */
-
-.clock-section {
-    background: rgba(15, 23, 42, 0.8);
-
-    border: 1px solid #1e293b;
-
-    border-radius: 20px;
-
-    padding: 28px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.18);
-}
-
-.clock-label {
-    color: #94a3b8;
-
-    font-size: 15px;
-
-    margin-bottom: 8px;
-}
-
-#liveClock {
-    color: #38bdf8;
-
-    font-size: 52px;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    direction: ltr;
-
-    text-shadow:
-        0 0 25px rgba(56, 189, 248, 0.2);
-}
-
-
-/* =====================================================
-   التنبيهات
-===================================================== */
-
-.notification-section {
-    text-align: center;
-
-    padding: 5px 0;
-}
-
-#notificationButton {
-    border: none;
-
-    background: #2563eb;
-
-    color: white;
-
-    padding: 13px 25px;
-
-    border-radius: 12px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s,
-        background 0.2s,
-        box-shadow 0.2s;
-}
-
-#notificationButton:hover {
-    background: #1d4ed8;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-#notificationButton:active {
-    transform: translateY(0);
-}
-
-#notificationButton.enabled {
-    background: #16a34a;
-
-    box-shadow:
-        0 8px 20px rgba(22, 163, 74, 0.18);
-}
-
-#notificationStatus {
-    color: #64748b;
-
-    font-size: 13px;
-
-    margin-top: 9px;
-}
-
-
-/* =====================================================
-   بطاقة الحصة الحالية
-===================================================== */
-
-.current-card {
-    position: relative;
-
-    overflow: hidden;
-
-    min-height: 350px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #172033,
-            #0f172a
-        );
-
-    border: 1px solid #334155;
-
-    border-radius: 22px;
-
-    padding: 35px 25px;
-
-    text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
 
     align-items: center;
 
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.25);
+    gap: 15px;
+
+    flex-wrap: wrap;
 }
 
-.current-card::before {
+
+.nav-links a {
+    position: relative;
+
+    padding: 5px;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+
+.nav-links a::after {
     content: "";
 
     position: absolute;
 
-    top: -100px;
-    right: -100px;
+    bottom: -3px;
+    right: 0;
 
-    width: 250px;
-    height: 250px;
+    width: 0;
+    height: 2px;
+
+    background: var(--blue);
+
+    transition: 0.3s;
+}
+
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   زر الوضع الليلي
+========================================================= */
+
+#theme-button {
+    position: fixed;
+
+    left: 15px;
+    top: 75px;
+
+    z-index: 1100;
+
+    border: none;
+
+    background: var(--blue);
+    color: white;
+
+    width: 45px;
+    height: 45px;
 
     border-radius: 50%;
 
-    background: rgba(56, 189, 248, 0.06);
+    cursor: pointer;
 
-    filter: blur(20px);
+    font-size: 20px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+    transition: 0.2s;
 }
 
-.current-icon {
-    font-size: 58px;
 
-    margin-bottom: 4px;
-
-    position: relative;
+#theme-button:hover {
+    transform: scale(1.08);
 }
 
-.break-icon {
-    font-size: 62px;
 
-    margin-bottom: 4px;
+/* =========================================================
+   الحاوية
+========================================================= */
 
-    position: relative;
+.container {
+    width: min(1100px, 92%);
+
+    margin: 30px auto;
 }
 
-.waiting {
-    font-size: 58px;
 
-    margin-bottom: 5px;
+/* =========================================================
+   العنوان الرئيسي
+========================================================= */
 
-    position: relative;
+header {
+    text-align: center;
+
+    padding: 35px 15px;
 }
 
-.status-label {
-    position: relative;
 
-    color: #38bdf8;
+header h1 {
+    font-size: 34px;
 
-    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+header p {
+    color: var(--muted);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   الساعة
+========================================================= */
+
+.clock {
+    text-align: center;
+
+    font-size: 20px;
+
+    color: var(--muted);
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   البطاقات
+========================================================= */
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+.card h2 {
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   الحصة الحالية
+========================================================= */
+
+.current-lesson {
+    text-align: center;
+
+    line-height: 1.8;
+}
+
+
+.lesson-status {
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+
+.current-subject {
+    font-size: 28px;
 
     font-weight: bold;
 
-    margin-bottom: 4px;
-}
-
-.break-label {
-    color: #fbbf24;
-}
-
-.current-card h3 {
-    position: relative;
-
-    font-size: 28px;
+    color: var(--blue);
 
     margin: 8px 0;
-
-    color: #ffffff;
 }
 
-.lesson-time {
-    position: relative;
 
-    color: #38bdf8;
+.current-time {
+    color: var(--muted);
 
     font-size: 17px;
-
-    margin: 5px 0;
-
-    direction: rtl;
 }
 
 
-/* =====================================================
-   العد التنازلي
-===================================================== */
+/* =========================================================
+   مؤقت الحصة
+========================================================= */
 
-.countdown {
-    position: relative;
+.school-timer {
+    margin: 20px auto 10px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: rgba(0, 168, 255, 0.08);
+
+    max-width: 500px;
+}
+
+
+.school-timer-label {
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+
+.school-timer-display {
+    direction: ltr;
 
     font-size: 48px;
 
     font-weight: bold;
 
-    color: #f8fafc;
-
-    margin-top: 9px;
-
-    direction: ltr;
+    color: var(--blue);
 
     letter-spacing: 2px;
-
-    font-variant-numeric: tabular-nums;
 }
 
-.break-countdown {
-    color: #fbbf24;
+
+/* =========================================================
+   زر الجرس
+========================================================= */
+
+.bell-button {
+    border: none;
+
+    background: var(--orange);
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    margin-top: 12px;
+
+    transition: 0.2s;
 }
 
-.countdown-label {
-    position: relative;
 
-    color: #64748b;
-
-    font-size: 13px;
-
-    margin-top: 0;
+.bell-button:hover {
+    transform: translateY(-2px);
 }
 
-.next-lesson-text {
-    position: relative;
 
-    color: #94a3b8;
+.bell-button.active {
+    background: var(--green);
+}
+
+
+/* =========================================================
+   الإحصائيات
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.stat {
+    background: rgba(0, 168, 255, 0.08);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+
+.stat-number {
+    display: block;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: var(--blue);
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   مؤقت الدراسة اليدوي
+========================================================= */
+
+.timer {
+    text-align: center;
+}
+
+
+.timer select {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.timer-display {
+    direction: ltr;
+
+    font-size: 55px;
+
+    font-weight: bold;
+
+    color: var(--blue);
+
+    margin: 15px 0;
+}
+
+
+#timerStatus {
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+
+.timer-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
 
     margin-top: 15px;
 }
 
-.next-lesson-text strong {
-    color: #38bdf8;
-}
 
-
-/* =====================================================
-   شريط تقدم الحصة
-===================================================== */
-
-.mini-progress {
-    position: relative;
-
-    width: 80%;
-
-    max-width: 500px;
-
-    height: 7px;
-
-    background: #020617;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-top: 18px;
-}
-
-.mini-progress div {
-    height: 100%;
-
-    width: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #38bdf8
-        );
-
-    border-radius: 20px;
-
-    transition: width 1s linear;
-}
-
-
-/* =====================================================
-   زر إكمال الحصة
-===================================================== */
-
-.complete-button {
-    position: relative;
-
-    margin-top: 20px;
-
+.timer-buttons button,
+.main-button {
     border: none;
 
-    background: #2563eb;
+    background: var(--blue);
 
     color: white;
 
-    padding: 11px 23px;
+    padding: 11px 18px;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
     cursor: pointer;
 
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: bold;
 
-    transition:
-        background 0.2s,
-        transform 0.2s;
+    transition: 0.2s;
 }
 
-.complete-button:hover {
-    background: #1d4ed8;
 
+.timer-buttons button:hover,
+.main-button:hover {
     transform: translateY(-2px);
+
+    opacity: 0.9;
 }
 
-.complete-button:active {
-    transform: translateY(0);
+
+/* =========================================================
+   برنامج المراجعة
+========================================================= */
+
+.schedule {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
 }
 
 
-/* =====================================================
-   قسم التقدم
-===================================================== */
+.day-card {
+    background: rgba(255, 255, 255, 0.04);
 
-.progress-section {
-    background: rgba(15, 23, 42, 0.85);
+    border-radius: 15px;
 
-    border: 1px solid #1e293b;
-
-    border-radius: 18px;
-
-    padding: 20px 22px;
+    padding: 18px;
 }
 
-.progress-header {
+
+.day-title {
+    color: var(--blue);
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+.lesson {
     display: flex;
 
     justify-content: space-between;
 
     align-items: center;
 
-    margin-bottom: 11px;
+    gap: 8px;
 
-    color: #cbd5e1;
-}
+    padding: 12px;
 
-.progress-header strong {
-    color: #38bdf8;
+    margin: 8px 0;
 
-    font-size: 17px;
-}
+    background: rgba(0, 0, 0, 0.12);
 
-.progress-bar {
-    width: 100%;
+    border-radius: 10px;
 
-    height: 12px;
-
-    background: #020617;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #38bdf8
-        );
-
-    border-radius: 20px;
-
-    transition: width 0.4s ease;
+    transition: 0.2s;
 }
 
 
-/* =====================================================
-   الإحصائيات
-===================================================== */
-
-.stats {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
+.lesson:hover {
+    background: rgba(0, 168, 255, 0.08);
 }
 
-.stat-card {
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #172033,
-            #111827
-        );
-
-    border: 1px solid #293548;
-
-    border-radius: 17px;
-
-    padding: 23px 15px;
-
-    text-align: center;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s;
-}
-
-.stat-card:hover {
-    transform: translateY(-3px);
-
-    border-color: #2563eb;
-}
-
-.stat-card span {
-    font-size: 28px;
-}
-
-.stat-card strong {
-    display: block;
-
-    color: #38bdf8;
-
-    font-size: 28px;
-
-    margin-top: 5px;
-
-    line-height: 1.2;
-}
-
-.stat-card p {
-    color: #64748b;
-
-    font-size: 13px;
-
-    margin-top: 5px;
-}
-
-
-/* =====================================================
-   بطاقات الدروس
-===================================================== */
-
-.lesson-card {
-    position: relative;
-
-    background:
-        linear-gradient(
-            145deg,
-            #172033,
-            #111827
-        );
-
-    border: 1px solid #293548;
-
-    border-radius: 16px;
-
-    padding: 17px;
-
-    margin-bottom: 11px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        background 0.2s;
-}
-
-.lesson-card:hover {
-    transform: translateY(-2px);
-
-    border-color: #38bdf8;
-}
-
-.lesson-card.active {
-    border-color: #38bdf8;
-
-    background:
-        linear-gradient(
-            145deg,
-            #172c45,
-            #111827
-        );
-
-    box-shadow:
-        0 0 25px rgba(56, 189, 248, 0.08);
-}
-
-.lesson-card.completed {
-    opacity: 0.55;
-}
-
-.lesson-number {
-    width: 43px;
-
-    height: 43px;
-
-    min-width: 43px;
-
-    border-radius: 50%;
-
-    background: #1e293b;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    color: #38bdf8;
-
-    font-weight: bold;
-
-    border: 1px solid #334155;
-}
 
 .lesson-info {
     flex: 1;
@@ -803,350 +573,679 @@ section h2 {
     min-width: 0;
 }
 
-.lesson-info h3 {
-    color: #f8fafc;
 
-    font-size: 18px;
-
-    margin-bottom: 4px;
-}
-
-.lesson-info p {
-    color: #64748b;
+.lesson-time {
+    color: var(--muted);
 
     font-size: 14px;
 
-    direction: rtl;
+    margin-top: 4px;
 }
 
-.check-button {
-    width: 45px;
 
-    height: 45px;
+.lesson.completed {
+    opacity: 0.55;
 
-    background: #0f172a;
+    text-decoration: line-through;
+}
 
-    border: 1px solid #293548;
 
-    border-radius: 50%;
+.lesson button {
+    flex-shrink: 0;
 
-    font-size: 22px;
+    border: none;
+
+    background: var(--blue);
+
+    color: white;
+
+    border-radius: 8px;
+
+    padding: 7px 9px;
 
     cursor: pointer;
 
-    transition:
-        transform 0.2s,
-        border-color 0.2s;
-}
-
-.check-button:hover {
-    transform: scale(1.08);
-
-    border-color: #38bdf8;
+    transition: 0.2s;
 }
 
 
-/* =====================================================
-   أزرار أيام الأسبوع
-===================================================== */
+.lesson button:hover {
+    transform: scale(1.05);
+}
 
-.week-buttons {
-    display: flex;
 
-    gap: 8px;
+.lesson button.restore {
+    background: #555;
+}
 
-    flex-wrap: wrap;
+
+.reset-all {
+    background: var(--red);
+
+    margin-top: 10px;
+}
+
+
+.reset-all:hover {
+    background: #e64545;
+}
+
+
+/* =========================================================
+   البرنامج المدرسي
+========================================================= */
+
+.school-schedule {
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+
+th,
+td {
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    text-align: center;
+}
+
+
+th {
+    color: var(--blue);
+
+    background: rgba(0, 168, 255, 0.05);
+}
+
+
+td {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   تواصل معي
+========================================================= */
+
+.contact-card {
+    text-align: center;
+}
+
+
+.contact-description {
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    margin: 10px auto 25px;
+
+    max-width: 750px;
+}
+
+
+/* الحقول */
+
+.contact-field {
+    text-align: right;
 
     margin-bottom: 18px;
 }
 
-.week-buttons button {
-    flex: 1;
 
-    min-width: 100px;
+.contact-field label {
+    display: block;
 
-    background: #172033;
+    margin-bottom: 8px;
 
-    color: #cbd5e1;
+    font-weight: bold;
 
-    border: 1px solid #334155;
+    color: var(--text);
+}
 
-    padding: 11px 15px;
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    font-family: Arial, sans-serif;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+    color: var(--muted);
+
+    opacity: 0.8;
+}
+
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 168, 255, 0.12);
+}
+
+
+.contact-field textarea {
+    resize: vertical;
+
+    min-height: 140px;
+}
+
+
+/* =========================================================
+   زر إرسال السؤال
+========================================================= */
+
+.contact-submit {
+    border: none;
+
+    background: var(--blue);
+
+    color: white;
+
+    padding: 13px 28px;
 
     border-radius: 11px;
 
     cursor: pointer;
 
-    font-size: 14px;
+    font-size: 17px;
 
     font-weight: bold;
 
-    transition:
-        background 0.2s,
-        border-color 0.2s,
-        transform 0.2s;
+    transition: 0.2s;
 }
 
-.week-buttons button:hover {
-    border-color: #38bdf8;
 
-    transform: translateY(-1px);
-}
+.contact-submit:hover {
+    transform: translateY(-2px);
 
-.week-buttons button.selected {
-    background: #2563eb;
-
-    color: white;
-
-    border-color: #2563eb;
+    opacity: 0.9;
 
     box-shadow:
-        0 6px 15px rgba(37, 99, 235, 0.2);
+        0 7px 18px rgba(0, 168, 255, 0.2);
 }
 
 
-/* =====================================================
-   لا توجد حصص
-===================================================== */
-
-.empty {
-    background: #172033;
-
-    border: 1px solid #293548;
-
-    border-radius: 16px;
-
-    padding: 30px;
-
-    text-align: center;
-
-    color: #64748b;
+.contact-submit:active {
+    transform: translateY(0);
 }
 
 
-/* =====================================================
-   الفوتر
-===================================================== */
+.contact-submit:disabled {
+    opacity: 0.6;
 
-footer {
-    text-align: center;
+    cursor: not-allowed;
 
-    padding: 25px 15px;
+    transform: none;
 
-    background: #0f172a;
-
-    border-top: 1px solid #1e293b;
-
-    color: #475569;
-
-    font-size: 13px;
+    box-shadow: none;
 }
 
 
-/* =====================================================
-   شريط التمرير
-===================================================== */
+/* =========================================================
+   حالة إرسال الرسالة
+========================================================= */
 
-::-webkit-scrollbar {
-    width: 8px;
-}
+.contact-status {
+    margin-top: 18px;
 
-::-webkit-scrollbar-track {
-    background: #020617;
-}
+    font-weight: bold;
 
-::-webkit-scrollbar-thumb {
-    background: #334155;
+    min-height: 24px;
 
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    line-height: 1.7;
 }
 
 
-/* =====================================================
-   تحديد النص
-===================================================== */
+.contact-status.success {
+    color: var(--green);
+}
 
-::selection {
-    background: #2563eb;
+
+.contact-status.error {
+    color: var(--red);
+}
+
+
+/* =========================================================
+   نافذة التعديل
+========================================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: 2000;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.modal-content {
+    background: var(--card);
+
+    width: min(450px, 100%);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+.modal-content h2 {
+    color: var(--blue);
+
+    margin-top: 0;
+}
+
+
+.modal-content label {
+    display: block;
+
+    margin-top: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.modal-content input {
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.modal-content input:focus {
+    border-color: var(--blue);
+}
+
+
+/* =========================================================
+   أزرار النافذة
+========================================================= */
+
+.modal-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.modal-buttons button {
+    flex: 1;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+
+.save-button {
+    background: var(--green);
 
     color: white;
 }
 
 
-/* =====================================================
+.cancel-button {
+    background: #555;
+
+    color: white;
+}
+
+
+.save-button:hover,
+.cancel-button:hover {
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   شريط التقدم
+========================================================= */
+
+.progress {
+    width: 100%;
+
+    height: 18px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.progress-bar {
+    height: 100%;
+
+    width: 0%;
+
+    background: var(--blue);
+
+    border-radius: 20px;
+
+    transition: width 0.4s;
+}
+
+
+/* =========================================================
+   الإنجازات
+========================================================= */
+
+.achievements {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.achievement {
+    text-align: center;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    opacity: 0.45;
+
+    transition: 0.2s;
+}
+
+
+.achievement.unlocked {
+    opacity: 1;
+
+    border: 1px solid var(--green);
+}
+
+
+.achievement .icon {
+    font-size: 30px;
+
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   تحسين النصوص
+========================================================= */
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+button {
+    user-select: none;
+}
+
+
+::selection {
+    background: var(--blue);
+
+    color: white;
+}
+
+
+/* =========================================================
+   شريط التمرير
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+
+    height: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #3c4d59;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
+}
+
+
+/* =========================================================
    الهاتف
-===================================================== */
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
-    header {
-        padding: 14px 5%;
-
-        gap: 10px;
+    .stats,
+    .achievements,
+    .schedule {
+        grid-template-columns: 1fr;
     }
+
+
+    nav {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
 
     .logo {
-        font-size: 19px;
+        font-size: 20px;
     }
 
-    .header-info {
-        text-align: left;
-    }
 
-    #dayName {
-        font-size: 14px;
-    }
-
-    #currentDate {
-        font-size: 10px;
-    }
-
-    main {
-        width: 94%;
-
-        padding-top: 25px;
-    }
-
-    .welcome {
-        padding: 30px 15px;
-    }
-
-    .welcome h1 {
-        font-size: 23px;
-    }
-
-    .welcome p {
-        font-size: 14px;
-    }
-
-    #liveClock {
-        font-size: 37px;
-
-        letter-spacing: 2px;
-    }
-
-    .clock-section {
-        padding: 23px 15px;
-    }
-
-    .current-card {
-        min-height: 320px;
-
-        padding: 27px 15px;
-    }
-
-    .current-card h3 {
-        font-size: 22px;
-    }
-
-    .current-icon,
-    .waiting {
-        font-size: 48px;
-    }
-
-    .break-icon {
-        font-size: 52px;
-    }
-
-    .countdown {
-        font-size: 35px;
-    }
-
-    .mini-progress {
-        width: 90%;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
+    .nav-links {
+        justify-content: center;
 
         gap: 10px;
     }
 
-    .stat-card {
-        padding: 18px;
+
+    #theme-button {
+        top: 120px;
     }
 
-    .lesson-card {
-        padding: 14px;
 
-        gap: 10px;
+    header h1 {
+        font-size: 28px;
     }
 
-    .lesson-number {
-        width: 38px;
 
-        height: 38px;
-
-        min-width: 38px;
-
-        font-size: 14px;
-    }
-
-    .lesson-info h3 {
+    header p {
         font-size: 16px;
     }
 
-    .lesson-info p {
-        font-size: 12px;
+
+    .lesson {
+        flex-wrap: wrap;
     }
 
-    .check-button {
-        width: 40px;
 
-        height: 40px;
-
-        font-size: 19px;
+    .lesson-info {
+        flex-basis: 100%;
     }
 
-    .week-buttons {
+
+    .school-timer-display {
+        font-size: 38px;
+    }
+
+
+    .timer-display {
+        font-size: 45px;
+    }
+
+
+    .contact-description {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   الهاتف الصغير
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .container {
+        width: 94%;
+
+        margin-top: 20px;
+    }
+
+
+    .card {
+        padding: 17px;
+
+        border-radius: 15px;
+    }
+
+
+    nav {
+        padding: 12px;
+    }
+
+
+    .nav-links {
         gap: 7px;
     }
 
-    .week-buttons button {
-        flex: 1 1 30%;
 
-        min-width: 0;
+    .nav-links a {
+        font-size: 14px;
+    }
 
-        padding: 10px 5px;
+
+    #theme-button {
+        left: 10px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .current-subject {
+        font-size: 24px;
+    }
+
+
+    .school-timer-display {
+        font-size: 34px;
+    }
+
+
+    .timer-display {
+        font-size: 40px;
+    }
+
+
+    .timer-buttons button {
+        width: 100%;
+    }
+
+
+    .lesson button {
+        padding: 7px 8px;
 
         font-size: 13px;
     }
 
-}
 
-
-/* =====================================================
-   شاشات صغيرة جدًا
-===================================================== */
-
-@media (max-width: 400px) {
-
-    .logo {
-        font-size: 17px;
+    .contact-submit {
+        width: 100%;
     }
 
-    #dayName {
-        font-size: 12px;
+
+    .modal {
+        padding: 12px;
     }
 
-    #currentDate {
-        font-size: 9px;
-    }
 
-    #liveClock {
-        font-size: 31px;
-    }
-
-    .countdown {
-        font-size: 31px;
-    }
-
-    .current-card h3 {
-        font-size: 20px;
+    .modal-content {
+        padding: 20px;
     }
 
 }
