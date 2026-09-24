@@ -1105,61 +1105,78 @@
         </div>
 
 
-        <!-- =========================
-             تواصل معي
-        ========================== -->
+<!-- =========================================
+     تواصل معي
+========================================= -->
 
-        <div
-            class="card contact-card"
-            id="contact">
+<div class="card contact-card">
 
-            <h2>
-                📩 تواصل معي
-            </h2>
+    <h2>
+        📩 تواصل معي
+    </h2>
 
-            <p class="contact-description">
-                إذا كان لديك اقتراح أو سؤال أو إضافة جيدة للمشروع،
-                اكتب اسمك وسؤالك أو اقتراحك، ثم اضغط على إرسال السؤال.
-            </p>
+    <p class="contact-description">
+        إذا كان لديك اقتراح أو سؤال أو إضافة جيدة للمشروع،
+        اكتب اسمك وسؤالك أو اقتراحك، ثم اضغط على إرسال السؤال.
+    </p>
 
+    <form id="contactForm">
 
-            <form
-                class="contact-form"
-                onsubmit="sendQuestion(event)">
+        <div class="contact-field">
 
-                <label for="visitorName">
-                    👤 اسمك
-                </label>
+            <label for="visitorName">
+                👤 اسمك
+            </label>
 
-                <input
-                    type="text"
-                    id="visitorName"
-                    placeholder="اكتب اسمك هنا"
-                    required>
-
-
-                <label for="visitorQuestion">
-                    💬 سؤالك أو اقتراحك
-                </label>
-
-                <textarea
-                    id="visitorQuestion"
-                    placeholder="اكتب سؤالك أو اقتراحك هنا..."
-                    required></textarea>
-
-
-                <button
-                    type="submit"
-                    class="contact-button">
-
-                    📧 إرسال السؤال
-
-                </button>
-
-            </form>
+            <input
+                type="text"
+                id="visitorName"
+                name="name"
+                placeholder="اكتب اسمك هنا"
+                required
+                maxlength="80"
+            >
 
         </div>
 
+
+        <div class="contact-field">
+
+            <label for="visitorMessage">
+                💬 سؤالك أو اقتراحك
+            </label>
+
+            <textarea
+                id="visitorMessage"
+                name="message"
+                placeholder="اكتب سؤالك أو اقتراحك هنا..."
+                required
+                maxlength="1000"
+                rows="6"
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="contact-submit"
+            id="contactSubmit">
+
+            📩 إرسال السؤال
+
+        </button>
+
+
+        <div
+            id="contactStatus"
+            class="contact-status">
+        </div>
+
+    </form>
+
+</div>
+        
     </div>
 
 
