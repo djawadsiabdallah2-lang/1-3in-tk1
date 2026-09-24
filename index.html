@@ -199,7 +199,8 @@ border-radius:10px;
 cursor:pointer;
 font-size:16px;
 font-weight:bold;
-margin-top:12px
+margin-top:12px;
+transition:.2s
 }
 
 .bell-button.active{
@@ -1086,192 +1087,162 @@ const ALGERIA_TIMEZONE =
 const originalSchedule = {
 
 "الأحد":[
-
 {
 id:"sun-english",
 subject:"🇬🇧 الإنجليزية",
 start:"19:00",
 end:"20:00"
 },
-
 {
 id:"sun-islamic",
 subject:"☪️ العلوم الإسلامية",
 start:"20:15",
 end:"21:15"
 },
-
 {
 id:"sun-physics",
 subject:"⚡ الفيزياء",
 start:"21:30",
 end:"22:30"
 }
-
 ],
 
 "الإثنين":[
-
 {
 id:"mon-math",
 subject:"📐 الرياضيات",
 start:"19:00",
 end:"20:00"
 },
-
 {
 id:"mon-science",
 subject:"🔬 العلوم",
 start:"20:15",
 end:"21:15"
 },
-
 {
 id:"mon-physics",
 subject:"⚡ الفيزياء",
 start:"21:30",
 end:"22:30"
 }
-
 ],
 
 "الثلاثاء":[
-
 {
 id:"tue-math",
 subject:"📐 الرياضيات",
 start:"19:00",
 end:"20:00"
 },
-
 {
 id:"tue-natural-science",
 subject:"🔬 العلوم الطبيعية",
 start:"20:15",
 end:"21:15"
 },
-
 {
 id:"tue-arabic",
 subject:"📚 اللغة العربية",
 start:"21:30",
 end:"22:30"
 }
-
 ],
 
 "الأربعاء":[
-
 {
 id:"wed-math",
 subject:"📐 الرياضيات",
 start:"19:00",
 end:"20:00"
 },
-
 {
 id:"wed-french",
 subject:"🇫🇷 الفرنسية",
 start:"20:15",
 end:"21:15"
 },
-
 {
 id:"wed-history",
 subject:"📜 التاريخ",
 start:"21:30",
 end:"22:30"
 }
-
 ],
 
 "الخميس":[
-
 {
 id:"thu-physics",
 subject:"⚡ الفيزياء",
 start:"19:00",
 end:"20:00"
 },
-
 {
 id:"thu-math",
 subject:"📐 الرياضيات",
 start:"20:15",
 end:"21:15"
 },
-
 {
 id:"thu-french",
 subject:"🇫🇷 الفرنسية",
 start:"21:30",
 end:"22:30"
 }
-
 ],
 
 "الجمعة":[
-
 {
 id:"fri-math",
 subject:"📐 مراجعة الرياضيات",
 start:"10:00",
 end:"11:00"
 },
-
 {
 id:"fri-natural-science",
 subject:"🔬 مراجعة العلوم الطبيعية",
 start:"11:15",
 end:"12:15"
 },
-
 {
 id:"fri-french",
 subject:"🇫🇷 مراجعة الفرنسية",
 start:"15:00",
 end:"16:00"
 },
-
 {
 id:"fri-arabic",
 subject:"📚 مراجعة العربية",
 start:"16:15",
 end:"17:15"
 }
-
 ],
 
 "السبت":[
-
 {
 id:"sat-physics",
 subject:"⚡ مراجعة الفيزياء",
 start:"10:00",
 end:"11:00"
 },
-
 {
 id:"sat-english",
 subject:"🇬🇧 مراجعة الإنجليزية",
 start:"11:15",
 end:"12:15"
 },
-
 {
 id:"sat-history",
 subject:"📜 مراجعة التاريخ",
 start:"15:00",
 end:"16:00"
 },
-
 {
 id:"sat-comprehensive",
 subject:"📚 مراجعة شاملة",
 start:"16:15",
 end:"17:15"
 }
-
 ]
 
 };
@@ -1289,7 +1260,6 @@ JSON.stringify(originalSchedule)
 ========================= */
 
 const arabicDays = {
-
 Sunday:"الأحد",
 Monday:"الإثنين",
 Tuesday:"الثلاثاء",
@@ -1297,7 +1267,6 @@ Wednesday:"الأربعاء",
 Thursday:"الخميس",
 Friday:"الجمعة",
 Saturday:"السبت"
-
 };
 
 /* =========================
@@ -1307,7 +1276,6 @@ Saturday:"السبت"
 const schoolSchedule = {
 
 "الأحد":[
-
 ["08:00 - 09:00","💻 إعلام آلي"],
 ["09:00 - 10:00","🏗️ هندسة مدنية"],
 ["10:00 - 11:00","☪️ علوم إسلامية"],
@@ -1315,31 +1283,25 @@ const schoolSchedule = {
 ["13:30 - 14:30","🇫🇷 فرنسية"],
 ["14:30 - 15:30","📚 عربية"],
 ["15:30 - 16:30","⚡ فيزياء"]
-
 ],
 
 "الإثنين":[
-
 ["08:00 - 09:00","📐 رياضيات"],
 ["09:00 - 10:00","📜 تاريخ"],
 ["10:00 - 11:00","📚 عربية"],
 ["11:00 - 12:00","🇬🇧 إنجليزية"],
 ["13:30 - 15:30","🔬 علوم"],
 ["15:30 - 17:30","⚡ فيزياء"]
-
 ],
 
 "الثلاثاء":[
-
 ["08:00 - 09:00","🏗️ هندسة مدنية"],
 ["09:00 - 10:00","📚 عربية"],
 ["10:00 - 11:00","📐 رياضيات"],
 ["11:00 - 12:00","🔬 علوم طبيعية"]
-
 ],
 
 "الأربعاء":[
-
 ["08:00 - 09:00","💻 إعلام آلي"],
 ["09:00 - 10:00","📚 عربية"],
 ["10:00 - 11:00","📐 رياضيات"],
@@ -1347,11 +1309,9 @@ const schoolSchedule = {
 ["13:30 - 14:30","🇫🇷 فرنسية"],
 ["14:30 - 15:30","📜 تاريخ"],
 ["15:30 - 16:30","🇬🇧 إنجليزية"]
-
 ],
 
 "الخميس":[
-
 ["08:00 - 09:00","🔬 علوم"],
 ["09:00 - 10:00","⚡ فيزياء"],
 ["10:00 - 11:00","🏃 تربية بدنية"],
@@ -1359,7 +1319,6 @@ const schoolSchedule = {
 ["13:30 - 14:30","📐 رياضيات"],
 ["14:30 - 15:30","📐 رياضيات"],
 ["15:30 - 17:30","🇫🇷 فرنسية"]
-
 ]
 
 };
@@ -1500,11 +1459,18 @@ new Date()
 
 }
 
-/* =========================
-   نظام المنبه
-========================= */
+/* =====================================================
+   نظام المنبه الجديد
+   يبقى يعمل حتى يضغط الطالب على زر إيقاف المنبه
+===================================================== */
 
 let audioContext = null;
+
+let alarmOscillator = null;
+let alarmGain = null;
+
+let alarmLfo = null;
+let alarmLfoGain = null;
 
 let bellEnabled =
 localStorage.getItem(
@@ -1513,36 +1479,40 @@ localStorage.getItem(
 
 let alarmRinging = false;
 
-let alarmInterval = null;
+/* إنشاء AudioContext */
 
 function createAudioContext(){
 
-if(!audioContext){
-
-const AudioContext =
+const AudioContextClass =
 window.AudioContext ||
 window.webkitAudioContext;
 
-if(!AudioContext){
+if(!AudioContextClass){
 return null;
 }
 
+if(!audioContext){
+
 audioContext =
-new AudioContext();
+new AudioContextClass();
 
 }
 
 if(
-audioContext.state==="suspended"
+audioContext.state === "suspended"
 ){
 
-audioContext.resume();
+audioContext.resume().catch(
+()=>{}
+);
 
 }
 
 return audioContext;
 
 }
+
+/* صوت قصير لاختبار الجرس */
 
 function playBell(){
 
@@ -1552,6 +1522,37 @@ createAudioContext();
 if(!ctx){
 return;
 }
+
+if(ctx.state==="suspended"){
+
+ctx.resume()
+.then(
+()=>{
+playBellSound();
+}
+)
+.catch(
+()=>{}
+);
+
+return;
+
+}
+
+playBellSound();
+
+}
+
+/* إنشاء صوت الجرس */
+
+function playBellSound(){
+
+if(!audioContext){
+return;
+}
+
+const ctx =
+audioContext;
 
 const now =
 ctx.currentTime;
@@ -1572,7 +1573,7 @@ now
 
 oscillator.frequency.exponentialRampToValueAtTime(
 660,
-now+0.35
+now+0.25
 );
 
 gain.gain.setValueAtTime(
@@ -1581,28 +1582,29 @@ now
 );
 
 gain.gain.exponentialRampToValueAtTime(
-0.3,
+0.45,
 now+0.03
 );
 
 gain.gain.exponentialRampToValueAtTime(
 0.0001,
-now+0.55
+now+0.65
 );
 
-oscillator
-.connect(gain)
-.connect(ctx.destination);
+oscillator.connect(gain);
+gain.connect(ctx.destination);
 
 oscillator.start(now);
 
 oscillator.stop(
-now+0.55
+now+0.7
 );
 
 }
 
-/* تشغيل المنبه باستمرار */
+/* =====================================================
+   بدء المنبه المستمر
+===================================================== */
 
 function startAlarm(){
 
@@ -1613,7 +1615,22 @@ alarmRinging
 return;
 }
 
-if(!createAudioContext()){
+const ctx =
+createAudioContext();
+
+if(!ctx){
+
+alert(
+"متصفحك لا يدعم تشغيل الصوت."
+);
+
+return;
+
+}
+
+const startSound = ()=>{
+
+if(alarmRinging){
 return;
 }
 
@@ -1625,6 +1642,12 @@ document.getElementById(
 "bellButton"
 );
 
+if(button){
+
+button.classList.remove(
+"active"
+);
+
 button.classList.add(
 "ringing"
 );
@@ -1632,49 +1655,176 @@ button.classList.add(
 button.textContent =
 "🛑 إيقاف المنبه";
 
-playBell();
-
-alarmInterval =
-setInterval(
-()=>{
-
-if(
-alarmRinging &&
-bellEnabled
-){
-
-playBell();
-
 }
 
-},
-900
+/* صوت مستمر */
+
+alarmOscillator =
+ctx.createOscillator();
+
+alarmGain =
+ctx.createGain();
+
+alarmOscillator.type =
+"sine";
+
+alarmOscillator.frequency.setValueAtTime(
+880,
+ctx.currentTime
 );
 
+alarmGain.gain.setValueAtTime(
+0.0001,
+ctx.currentTime
+);
+
+alarmGain.gain.linearRampToValueAtTime(
+0.35,
+ctx.currentTime+0.05
+);
+
+alarmOscillator.connect(
+alarmGain
+);
+
+alarmGain.connect(
+ctx.destination
+);
+
+alarmOscillator.start();
+
+/* اهتزاز في نغمة الصوت */
+
+alarmLfo =
+ctx.createOscillator();
+
+alarmLfoGain =
+ctx.createGain();
+
+alarmLfo.type =
+"sine";
+
+alarmLfo.frequency.setValueAtTime(
+4,
+ctx.currentTime
+);
+
+alarmLfoGain.gain.setValueAtTime(
+0.16,
+ctx.currentTime
+);
+
+alarmLfo.connect(
+alarmLfoGain
+);
+
+alarmLfoGain.connect(
+alarmGain.gain
+);
+
+alarmLfo.start();
+
+};
+
+/* المتصفح قد يكون أوقف الصوت حتى يتفاعل المستخدم */
+
+if(
+ctx.state==="suspended"
+){
+
+ctx.resume()
+.then(
+startSound
+)
+.catch(
+()=>{}
+);
+
+}else{
+
+startSound();
+
 }
 
-/* إيقاف المنبه */
+}
+
+/* =====================================================
+   إيقاف المنبه
+===================================================== */
 
 function stopAlarm(){
 
 alarmRinging =
 false;
 
-if(alarmInterval){
+/* إيقاف المذبذب */
 
-clearInterval(
-alarmInterval
-);
+if(alarmOscillator){
 
-alarmInterval =
+try{
+alarmOscillator.stop();
+}catch(e){}
+
+try{
+alarmOscillator.disconnect();
+}catch(e){}
+
+alarmOscillator =
 null;
 
 }
+
+/* إيقاف LFO */
+
+if(alarmLfo){
+
+try{
+alarmLfo.stop();
+}catch(e){}
+
+try{
+alarmLfo.disconnect();
+}catch(e){}
+
+alarmLfo =
+null;
+
+}
+
+/* فصل Gain */
+
+if(alarmGain){
+
+try{
+alarmGain.disconnect();
+}catch(e){}
+
+alarmGain =
+null;
+
+}
+
+if(alarmLfoGain){
+
+try{
+alarmLfoGain.disconnect();
+}catch(e){}
+
+alarmLfoGain =
+null;
+
+}
+
+/* تحديث الزر */
 
 const button =
 document.getElementById(
 "bellButton"
 );
+
+if(!button){
+return;
+}
 
 button.classList.remove(
 "ringing"
@@ -1702,9 +1852,13 @@ button.textContent =
 
 }
 
-/* زر الجرس */
+/* =====================================================
+   زر الجرس
+===================================================== */
 
 function enableBell(){
+
+/* إذا كان المنبه يرن، أوقفه */
 
 if(alarmRinging){
 
@@ -1726,6 +1880,8 @@ alert(
 return;
 
 }
+
+/* تفعيل الجرس */
 
 bellEnabled =
 !bellEnabled;
@@ -1749,6 +1905,12 @@ button.classList.add(
 button.textContent =
 "🔕 إيقاف الجرس";
 
+/*
+هذا الصوت مهم جدًا:
+يجعل المتصفح يسمح بالصوت
+لأن المستخدم ضغط بنفسه على الزر.
+*/
+
 playBell();
 
 }else{
@@ -1759,12 +1921,18 @@ stopAlarm();
 
 }
 
+/* تحميل حالة الجرس */
+
 function loadBellState(){
 
 const button =
 document.getElementById(
 "bellButton"
 );
+
+if(!button){
+return;
+}
 
 if(bellEnabled){
 
@@ -1793,7 +1961,6 @@ button.textContent =
 ========================= */
 
 let lastStartBell = "";
-
 let lastEndBell = "";
 
 function updateCurrentLesson(){
@@ -1872,7 +2039,9 @@ document.getElementById(
 "currentLesson"
 );
 
-/* الحصة الحالية */
+/* =========================
+   الحصة الحالية
+========================= */
 
 if(currentLesson){
 
@@ -1930,11 +2099,13 @@ currentLesson.subject
 "-"+
 currentLesson.start;
 
-/* جرس بداية الحصة */
+/* =========================
+   جرس بداية الحصة
+========================= */
 
 if(
 currentSeconds>=startSeconds &&
-currentSeconds<startSeconds+2 &&
+currentSeconds<=startSeconds+3 &&
 lastStartBell!==lessonKey
 ){
 
@@ -1949,11 +2120,13 @@ startAlarm();
 
 }
 
-/* جرس نهاية الحصة */
+/* =========================
+   جرس نهاية الحصة
+========================= */
 
 if(
-remaining<=1 &&
-remaining>0 &&
+remaining<=3 &&
+remaining>=0 &&
 lastEndBell!==lessonKey
 ){
 
@@ -1972,7 +2145,9 @@ return;
 
 }
 
-/* الحصة القادمة */
+/* =========================
+   الحصة القادمة
+========================= */
 
 if(nextLesson){
 
@@ -2020,7 +2195,9 @@ return;
 
 }
 
-/* لا توجد حصص */
+/* =========================
+   لا توجد حصص
+========================= */
 
 if(!lessons.length){
 
@@ -2044,7 +2221,9 @@ return;
 
 }
 
-/* انتهت الحصص */
+/* =========================
+   انتهت الحصص
+========================= */
 
 container.innerHTML = `
 
@@ -2867,8 +3046,6 @@ return;
 
 }
 
-/* التأكد من صحة البريد */
-
 const emailPattern =
 /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -2884,7 +3061,7 @@ return;
 
 }
 
-/* جعل زر Reply في Gmail يرد على بريد الطالب */
+/* جعل Reply في Gmail يرد على بريد الطالب */
 
 document.getElementById(
 "replyTo"
@@ -3013,19 +3190,6 @@ updateStats();
 
 },
 1000
-);
-
-document.addEventListener(
-"click",
-()=>{
-
-if(bellEnabled){
-
-createAudioContext();
-
-}
-
-}
 );
 
 </script>
