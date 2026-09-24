@@ -970,9 +970,6 @@ maxlength="150"
 autocomplete="email"
 required>
 
-<!--
-هذا يجعل زر Reply في Gmail يرد مباشرة على بريد الطالب.
--->
 <input
 type="hidden"
 id="replyTo"
@@ -988,8 +985,7 @@ id="visitorQuestion"
 name="message"
 placeholder="اكتب سؤالك أو اقتراحك هنا..."
 maxlength="1000"
-required>
-</textarea>
+required></textarea>
 
 <input
 type="hidden"
@@ -2384,8 +2380,7 @@ schedule[
 editingDay
 ].find(
 item=>
-item.id===
-editingId
+item.id===editingId
 );
 
 if(lesson){
@@ -2875,7 +2870,7 @@ return;
 /* التأكد من صحة البريد */
 
 const emailPattern =
-^[^\s@]+@[^\s@]+\.[^\s@]+$;
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if(!emailPattern.test(email)){
 
@@ -2889,7 +2884,7 @@ return;
 
 }
 
-/* جعل الرد من Gmail يذهب مباشرة إلى بريد الطالب */
+/* جعل زر Reply في Gmail يرد على بريد الطالب */
 
 document.getElementById(
 "replyTo"
@@ -2967,7 +2962,9 @@ contactSubmit.textContent =
 }
 );
 
-/* إغلاق نافذة التعديل */
+/* =========================
+   إغلاق نافذة التعديل
+========================= */
 
 document.getElementById(
 "editModal"
