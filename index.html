@@ -1,969 +1,52 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>برنامج 1ع تك1 | برنامج المراجعة والدراسة</title>
-
-<meta name="description" content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة لتلاميذ السنة الأولى ثانوي تقني. يحتوي على برنامج المراجعة، البرنامج المدرسي، المؤقت، الحصص والإنجازات.">
-
-<meta name="keywords" content="برنامج 1ع تك1, 1ع تك1, برنامج 1ع تك, السنة الأولى ثانوي تقني, برنامج الدراسة, برنامج المراجعة, مراجعة 1ع تك1">
-
-<meta name="author" content="برنامج 1ع تك1">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://djawadsiabdallah2-lang.github.io/1-3in-tk1/">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="برنامج 1ع تك1">
-<meta property="og:description" content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة للسنة الأولى ثانوي تقني.">
-<meta property="og:url" content="https://djawadsiabdallah2-lang.github.io/1-3in-tk1/">
-<meta property="og:site_name" content="برنامج 1ع تك1">
-<meta property="og:locale" content="ar_DZ">
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="برنامج 1ع تك1">
-<meta name="twitter:description" content="برنامج الدراسة والمراجعة للسنة الأولى ثانوي تقني.">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "برنامج 1ع تك1",
-  "alternateName": [
-    "1ع تك1",
-    "برنامج 1ع تك",
-    "برنامج 1ع تك1 للدراسة"
-  ],
-  "url": "https://djawadsiabdallah2-lang.github.io/1-3in-tk1/",
-  "description": "برنامج 1ع تك1 لتنظيم الدراسة والمراجعة للسنة الأولى ثانوي تقني.",
-  "inLanguage": "ar-DZ"
-}
-</script>
-
-<style>
-:root{
---bg:#101820;
---nav:rgba(27,38,59,.95);
---card:#182631;
---text:#fff;
---muted:#b8c7d1;
---blue:#00a8ff;
---green:#20c997;
---red:#ff5c5c;
---orange:#ff9800;
---border:rgba(255,255,255,.08)
-}
-
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-transition:.3s
-}
-
-body.light{
---bg:#f2f6f9;
---nav:rgba(255,255,255,.95);
---card:#fff;
---text:#17212b;
---muted:#56616b;
---border:rgba(0,0,0,.08)
-}
-
-nav{
-position:sticky;
-top:0;
-z-index:1000;
-background:var(--nav);
-backdrop-filter:blur(10px);
-padding:15px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid var(--border)
-}
-
-.logo{
-font-size:22px;
-font-weight:bold;
-color:var(--blue)
-}
-
-.nav-links{
-display:flex;
-gap:18px;
-flex-wrap:wrap
-}
-
-.nav-links a{
-color:var(--text);
-text-decoration:none;
-font-weight:bold;
-padding:5px;
-position:relative
-}
-
-.nav-links a:after{
-content:"";
-position:absolute;
-right:0;
-bottom:-3px;
-width:0;
-height:2px;
-background:var(--blue);
-transition:.3s
-}
-
-.nav-links a:hover:after,
-.nav-links a.active:after{
-width:100%
-}
-
-#theme-button{
-position:fixed;
-left:15px;
-top:75px;
-z-index:1100;
-border:0;
-background:var(--blue);
-color:#fff;
-width:45px;
-height:45px;
-border-radius:50%;
-cursor:pointer;
-font-size:20px
-}
-
-.container{
-width:min(1100px,92%);
-margin:30px auto
-}
-
-header{
-text-align:center;
-padding:35px 15px
-}
-
-header h1{
-font-size:34px;
-margin-bottom:10px
-}
-
-header p{
-color:var(--muted);
-font-size:18px
-}
-
-.clock{
-text-align:center;
-font-size:20px;
-color:var(--muted);
-margin-bottom:20px
-}
-
-.card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:22px;
-margin-bottom:20px;
-box-shadow:0 8px 25px rgba(0,0,0,.12)
-}
-
-.card h2{
-margin-top:0;
-color:var(--blue)
-}
-
-.current-lesson{
-text-align:center;
-line-height:1.8
-}
-
-.lesson-status{
-font-size:19px;
-margin-bottom:8px
-}
-
-.current-subject{
-font-size:28px;
-font-weight:bold;
-color:var(--blue);
-margin:8px 0
-}
-
-.current-time{
-color:var(--muted);
-font-size:17px
-}
-
-.school-timer{
-margin:20px auto 10px;
-padding:18px;
-border-radius:15px;
-background:rgba(0,168,255,.08);
-max-width:500px
-}
-
-.school-timer-label{
-color:var(--muted);
-margin-bottom:5px
-}
-
-.school-timer-display{
-direction:ltr;
-font-size:48px;
-font-weight:bold;
-color:var(--blue);
-letter-spacing:2px
-}
-
-.bell-button{
-border:0;
-background:var(--orange);
-color:#fff;
-padding:12px 20px;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
-font-weight:bold;
-margin-top:12px;
-transition:.2s
-}
-
-.bell-button.active{
-background:var(--green)
-}
-
-.bell-button.ringing{
-background:var(--red);
-animation:alarmPulse .8s infinite
-}
-
-@keyframes alarmPulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.06)}
-100%{transform:scale(1)}
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px
-}
-
-.stat{
-background:rgba(0,168,255,.08);
-border-radius:15px;
-padding:20px;
-text-align:center
-}
-
-.stat-number{
-font-size:30px;
-font-weight:bold;
-color:var(--blue);
-display:block;
-margin-bottom:8px
-}
-
-.timer{
-text-align:center
-}
-
-.timer select{
-padding:10px;
-border-radius:10px;
-border:1px solid var(--border);
-background:var(--card);
-color:var(--text);
-font-size:16px
-}
-
-.timer-display{
-direction:ltr;
-font-size:55px;
-font-weight:bold;
-color:var(--blue);
-margin:15px 0
-}
-
-.timer-buttons{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-margin-top:15px
-}
-
-.timer-buttons button,
-.main-button{
-border:0;
-background:var(--blue);
-color:#fff;
-padding:11px 18px;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
-font-weight:bold
-}
-
-.achievements{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px
-}
-
-.achievement{
-text-align:center;
-padding:15px;
-border-radius:14px;
-background:rgba(255,255,255,.05);
-opacity:.45
-}
-
-.achievement.unlocked{
-opacity:1;
-border:1px solid var(--green)
-}
-
-.achievement .icon{
-font-size:30px;
-display:block;
-margin-bottom:8px
-}
-
-.schedule{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px
-}
-
-.day-card{
-background:rgba(255,255,255,.04);
-border-radius:15px;
-padding:18px
-}
-
-.day-title{
-color:var(--blue);
-font-size:21px;
-font-weight:bold;
-margin-bottom:12px
-}
-
-.lesson{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:8px;
-padding:12px;
-margin:8px 0;
-background:rgba(0,0,0,.12);
-border-radius:10px
-}
-
-.lesson-info{
-flex:1
-}
-
-.lesson-time{
-color:var(--muted);
-font-size:14px
-}
-
-.lesson.completed{
-opacity:.55;
-text-decoration:line-through
-}
-
-.lesson button{
-border:0;
-background:var(--blue);
-color:#fff;
-border-radius:8px;
-padding:7px 9px;
-cursor:pointer
-}
-
-.lesson button.restore{
-background:#555
-}
-
-.reset-all{
-background:var(--red);
-margin-top:10px
-}
-
-.school-schedule{
-overflow-x:auto
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:750px
-}
-
-th,
-td{
-padding:12px;
-border:1px solid var(--border);
-text-align:center
-}
-
-th{
-color:var(--blue)
-}
-
-.contact-card{
-text-align:center
-}
-
-.contact-card h2{
-margin-bottom:12px
-}
-
-.contact-description{
-color:var(--muted);
-line-height:1.8;
-margin-bottom:25px
-}
-
-.contact-form{
-width:min(650px,100%);
-margin:auto;
-text-align:right
-}
-
-.contact-form label{
-display:block;
-margin:0 0 7px;
-font-weight:bold
-}
-
-.contact-form input,
-.contact-form textarea{
-width:100%;
-padding:13px;
-border-radius:10px;
-border:1px solid var(--border);
-background:rgba(255,255,255,.05);
-color:var(--text);
-font-family:Arial,sans-serif;
-font-size:16px;
-outline:0;
-margin-bottom:16px
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus{
-border-color:var(--blue);
-box-shadow:0 0 0 3px rgba(0,168,255,.12)
-}
-
-.contact-form textarea{
-min-height:150px;
-resize:vertical;
-line-height:1.7
-}
-
-.contact-submit{
-width:100%;
-padding:13px 25px;
-border:0;
-background:var(--blue);
-color:#fff;
-border-radius:10px;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-transition:.3s
-}
-
-.contact-submit:hover{
-transform:translateY(-2px);
-opacity:.9
-}
-
-.contact-submit:disabled{
-opacity:.6;
-cursor:not-allowed
-}
-
-#contactStatus{
-margin-top:14px;
-text-align:center;
-font-weight:bold;
-line-height:1.7
-}
-
-.contact-success{
-color:var(--green)
-}
-
-.contact-error{
-color:var(--red)
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.7);
-z-index:2000;
-align-items:center;
-justify-content:center;
-padding:20px
-}
-
-.modal-content{
-background:var(--card);
-width:min(450px,100%);
-border-radius:18px;
-padding:25px
-}
-
-.modal-content h2{
-color:var(--blue)
-}
-
-.modal-content label{
-display:block;
-margin-top:12px;
-margin-bottom:5px
-}
-
-.modal-content input{
-width:100%;
-padding:11px;
-border-radius:9px;
-border:1px solid var(--border);
-background:rgba(255,255,255,.05);
-color:var(--text)
-}
-
-.modal-buttons{
-display:flex;
-gap:10px;
-margin-top:18px
-}
-
-.modal-buttons button{
-flex:1;
-padding:11px;
-border:0;
-border-radius:9px;
-cursor:pointer;
-font-weight:bold
-}
-
-.save-button{
-background:var(--green);
-color:#fff
-}
-
-.cancel-button{
-background:#555;
-color:#fff
-}
-
-@media(max-width:800px){
-
-.stats,
-.achievements,
-.schedule{
-grid-template-columns:1fr
-}
-
-nav{
-flex-direction:column;
-gap:12px
-}
-
-#theme-button{
-top:120px
-}
-
-.lesson{
-flex-wrap:wrap
-}
-
-.school-timer-display{
-font-size:38px
-}
-
-}
-</style>
-</head>
-
-<body>
-
-<nav>
-
-<div class="logo">
-📚 برنامج 1ع تك1
-</div>
-
-<div class="nav-links">
-
-<a href="#home" class="active">
-الرئيسية
-</a>
-
-<a href="#contact">
-تواصل معي
-</a>
-
-</div>
-
-</nav>
-
-<button id="theme-button" onclick="toggleTheme()">🌙</button>
-
-<div class="container" id="home">
-
-<header>
-
-<h1>📚 برنامج 1ع تك1</h1>
-
-<p>
-برنامج الدراسة والمراجعة للسنة الأولى ثانوي تقني
-</p>
-
-</header>
-
-<div class="clock" id="clock">
-🕐 جاري تحميل الوقت...
-</div>
-
-<div class="card">
-
-<h2>📖 الحصة الحالية</h2>
-
-<div class="current-lesson" id="currentLesson">
-جاري التحقق من الحصة...
-</div>
-
-<button
-id="bellButton"
-class="bell-button"
-onclick="enableBell">
-
-🔔 تفعيل الجرس
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h2>📊 إحصائياتي</h2>
-
-<div class="stats">
-
-<div class="stat">
-<span class="stat-number" id="todayLessons">0</span>
-حصص اليوم
-</div>
-
-<div class="stat">
-<span class="stat-number" id="completedLessons">0</span>
-حصص مكتملة
-</div>
-
-<div class="stat">
-<span class="stat-number" id="studyHours">0</span>
-حصص منجزة
-</div>
-
-</div>
-
-</div>
-
-<div class="card timer">
-
-<h2>⏱️ مؤقت الدراسة</h2>
-
-<select id="timerSelect" onchange="changeTimer()">
-
-<option value="25">25 دقيقة</option>
-<option value="45">45 دقيقة</option>
-<option value="60">60 دقيقة</option>
-
-</select>
-
-<div class="timer-display" id="timerDisplay">
-25:00
-</div>
-
-<div id="timerStatus">
-جاهز للدراسة 💪
-</div>
-
-<div class="timer-buttons">
-
-<button onclick="startTimer()">▶️ بدء</button>
-<button onclick="pauseTimer()">⏸️ إيقاف</button>
-<button onclick="resetTimer()">🔄 إعادة</button>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>🏆 الإنجازات</h2>
-
-<div class="achievements">
-
-<div class="achievement" id="achievement1">
-<span class="icon">🥉</span>
-<strong>البداية</strong>
-<br>
-أول حصة
-</div>
-
-<div class="achievement" id="achievement5">
-<span class="icon">🥈</span>
-<strong>المجتهد</strong>
-<br>
-5 حصص
-</div>
-
-<div class="achievement" id="achievement10">
-<span class="icon">🥇</span>
-<strong>المتميز</strong>
-<br>
-10 حصص
-</div>
-
-<div class="achievement" id="achievement25">
-<span class="icon">🏆</span>
-<strong>الأسطورة</strong>
-<br>
-25 حصة
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>📅 برنامج المراجعة الأسبوعي</h2>
-
-<div class="schedule" id="schedule"></div>
-
-<button
-class="main-button reset-all"
-onclick="resetAllSchedule()">
-
-🔄 إعادة برنامج المراجعة الأصلي بالكامل
-
-</button>
-
-</div>
-
-<div class="card school-schedule">
-
-<h2>🏫 البرنامج المدرسي</h2>
-
-<table>
-
-<thead>
-
-<tr>
-<th>اليوم</th>
-<th>الوقت</th>
-<th>المادة</th>
-</tr>
-
-</thead>
-
-<tbody id="schoolScheduleBody"></tbody>
-
-</table>
-
-</div>
-
-<div class="card contact-card" id="contact">
-
-<h2>📩 تواصل معي</h2>
-
-<div class="contact-description">
-
-إذا كان لديك اقتراح أو سؤال أو إضافة جيدة للمشروع،
-اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك، ثم اضغط على إرسال السؤال.
-
-</div>
-
-<form
-class="contact-form"
-id="contactForm"
-action="https://formsubmit.co/ajax/a42d66ac3a3d45512c5b907c8ebcef1f"
-method="POST">
-
-<label for="visitorName">👤 اسمك</label>
-
-<input
-type="text"
-id="visitorName"
-name="name"
-placeholder="اكتب اسمك هنا"
-maxlength="80"
-required>
-
-<label for="visitorEmail">📧 بريدك الإلكتروني</label>
-
-<input
-type="email"
-id="visitorEmail"
-name="email"
-placeholder="example@gmail.com"
-maxlength="150"
-autocomplete="email"
-required>
-
-<input
-type="hidden"
-id="replyTo"
-name="_replyto"
-value="">
-
-<label for="visitorQuestion">💬 سؤالك أو اقتراحك</label>
-
-<textarea
-id="visitorQuestion"
-name="message"
-placeholder="اكتب سؤالك أو اقتراحك هنا..."
-maxlength="1000"
-required></textarea>
-
-<input
-type="hidden"
-name="_subject"
-value="رسالة جديدة من برنامج 1ع تك1">
-
-<input
-type="hidden"
-name="_template"
-value="table">
-
-<button
-type="submit"
-class="contact-submit"
-id="contactSubmit">
-
-📧 إرسال السؤال
-
-</button>
-
-<div id="contactStatus" aria-live="polite"></div>
-
-</form>
-
-</div>
-
-</div>
-
-<div class="modal" id="editModal">
-
-<div class="modal-content">
-
-<h2>✏️ تعديل الحصة</h2>
-
-<label>اليوم</label>
-
-<input type="text" id="editDay" readonly>
-
-<label>وقت البداية</label>
-
-<input type="time" id="editStart">
-
-<label>وقت النهاية</label>
-
-<input type="time" id="editEnd">
-
-<div class="modal-buttons">
-
-<button class="save-button" onclick="saveEdit()">
-💾 حفظ
-</button>
-
-<button class="cancel-button" onclick="closeModal()">
-إلغاء
-</button>
-
-</div>
-
-</div>
-
-</div>
-
 <script>
 
-const ALGERIA_TIMEZONE="Africa/Algiers";
+const ALGERIA_TIMEZONE = "Africa/Algiers";
 
-const originalSchedule={
-
+const originalSchedule = {
 "الأحد":[
 {id:"sun-english",subject:"🇬🇧 الإنجليزية",start:"19:00",end:"20:00"},
 {id:"sun-islamic",subject:"☪️ العلوم الإسلامية",start:"20:15",end:"21:15"},
 {id:"sun-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
 ],
-
 "الإثنين":[
 {id:"mon-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
 {id:"mon-science",subject:"🔬 العلوم",start:"20:15",end:"21:15"},
 {id:"mon-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
 ],
-
 "الثلاثاء":[
 {id:"tue-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
 {id:"tue-natural-science",subject:"🔬 العلوم الطبيعية",start:"20:15",end:"21:15"},
 {id:"tue-arabic",subject:"📚 اللغة العربية",start:"21:30",end:"22:30"}
 ],
-
 "الأربعاء":[
 {id:"wed-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
 {id:"wed-french",subject:"🇫🇷 الفرنسية",start:"20:15",end:"21:15"},
 {id:"wed-history",subject:"📜 التاريخ",start:"21:30",end:"22:30"}
 ],
-
 "الخميس":[
 {id:"thu-physics",subject:"⚡ الفيزياء",start:"19:00",end:"20:00"},
 {id:"thu-math",subject:"📐 الرياضيات",start:"20:15",end:"21:15"},
 {id:"thu-french",subject:"🇫🇷 الفرنسية",start:"21:30",end:"22:30"}
 ],
-
 "الجمعة":[
 {id:"fri-math",subject:"📐 مراجعة الرياضيات",start:"10:00",end:"11:00"},
 {id:"fri-natural-science",subject:"🔬 مراجعة العلوم الطبيعية",start:"11:15",end:"12:15"},
 {id:"fri-french",subject:"🇫🇷 مراجعة الفرنسية",start:"15:00",end:"16:00"},
 {id:"fri-arabic",subject:"📚 مراجعة العربية",start:"16:15",end:"17:15"}
 ],
-
 "السبت":[
 {id:"sat-physics",subject:"⚡ مراجعة الفيزياء",start:"10:00",end:"11:00"},
 {id:"sat-english",subject:"🇬🇧 مراجعة الإنجليزية",start:"11:15",end:"12:15"},
 {id:"sat-history",subject:"📜 مراجعة التاريخ",start:"15:00",end:"16:00"},
 {id:"sat-comprehensive",subject:"📚 مراجعة شاملة",start:"16:15",end:"17:15"}
 ]
-
 };
 
-let schedule=
-JSON.parse(localStorage.getItem("myStudySchedule"))||
+let schedule =
+JSON.parse(localStorage.getItem("myStudySchedule")) ||
 JSON.parse(JSON.stringify(originalSchedule));
 
-const arabicDays={
+const arabicDays = {
 Sunday:"الأحد",
 Monday:"الإثنين",
 Tuesday:"الثلاثاء",
@@ -973,8 +56,7 @@ Friday:"الجمعة",
 Saturday:"السبت"
 };
 
-const schoolSchedule={
-
+const schoolSchedule = {
 "الأحد":[
 ["08:00 - 09:00","💻 إعلام آلي"],
 ["09:00 - 10:00","🏗️ هندسة مدنية"],
@@ -984,7 +66,6 @@ const schoolSchedule={
 ["14:30 - 15:30","📚 عربية"],
 ["15:30 - 16:30","⚡ فيزياء"]
 ],
-
 "الإثنين":[
 ["08:00 - 09:00","📐 رياضيات"],
 ["09:00 - 10:00","📜 تاريخ"],
@@ -993,14 +74,12 @@ const schoolSchedule={
 ["13:30 - 15:30","🔬 علوم"],
 ["15:30 - 17:30","⚡ فيزياء"]
 ],
-
 "الثلاثاء":[
 ["08:00 - 09:00","🏗️ هندسة مدنية"],
 ["09:00 - 10:00","📚 عربية"],
 ["10:00 - 11:00","📐 رياضيات"],
 ["11:00 - 12:00","🔬 علوم طبيعية"]
 ],
-
 "الأربعاء":[
 ["08:00 - 09:00","💻 إعلام آلي"],
 ["09:00 - 10:00","📚 عربية"],
@@ -1010,7 +89,6 @@ const schoolSchedule={
 ["14:30 - 15:30","📜 تاريخ"],
 ["15:30 - 16:30","🇬🇧 إنجليزية"]
 ],
-
 "الخميس":[
 ["08:00 - 09:00","🔬 علوم"],
 ["09:00 - 10:00","⚡ فيزياء"],
@@ -1020,38 +98,27 @@ const schoolSchedule={
 ["14:30 - 15:30","📐 رياضيات"],
 ["15:30 - 16:30","🇫🇷 فرنسية"]
 ]
-
 };
 
 function timeToMinutes(time){
-
 const parts=time.split(":");
-
 return Number(parts[0])*60+Number(parts[1]);
-
 }
 
 function formatRemaining(seconds){
-
 seconds=Math.max(0,Math.floor(seconds));
-
 const hours=Math.floor(seconds/3600);
-
 const minutes=Math.floor((seconds%3600)/60);
-
 const secs=seconds%60;
 
 if(hours){
-
 return String(hours).padStart(2,"0")+":"+
 String(minutes).padStart(2,"0")+":"+
 String(secs).padStart(2,"0");
-
 }
 
 return String(minutes).padStart(2,"0")+":"+
 String(secs).padStart(2,"0");
-
 }
 
 function getAlgeriaTime(){
@@ -1078,15 +145,14 @@ result[part.type]=part.value;
 
 let hour=Number(result.hour);
 
-if(hour===24)hour=0;
+if(hour===24) hour=0;
 
-return{
+return {
 weekday:result.weekday,
-hour:hour,
+hour,
 minute:Number(result.minute),
 second:Number(result.second)
 };
-
 }
 
 function updateClock(){
@@ -1107,8 +173,12 @@ hour12:false
 
 document.getElementById("clock").textContent=
 "🕐 "+formatter.format(new Date());
-
 }
+
+
+/* =========================
+   نظام الجرس
+========================= */
 
 let audioContext=null;
 let alarmOscillator=null;
@@ -1116,18 +186,20 @@ let alarmGain=null;
 let alarmLfo=null;
 let alarmLfoGain=null;
 
-let bellEnabled=
+let bellEnabled =
 localStorage.getItem("studyBellEnabled")==="true";
 
 let alarmRinging=false;
 
 function createAudioContext(){
 
-const AudioContextClass=
-window.AudioContext||
+const AudioContextClass =
+window.AudioContext ||
 window.webkitAudioContext;
 
-if(!AudioContextClass)return null;
+if(!AudioContextClass){
+return null;
+}
 
 if(!audioContext){
 audioContext=new AudioContextClass();
@@ -1138,14 +210,13 @@ audioContext.resume().catch(()=>{});
 }
 
 return audioContext;
-
 }
 
 function playBell(){
 
 const ctx=createAudioContext();
 
-if(!ctx)return;
+if(!ctx) return;
 
 if(ctx.state==="suspended"){
 
@@ -1154,64 +225,71 @@ playBellSound();
 }).catch(()=>{});
 
 return;
-
 }
 
 playBellSound();
-
 }
 
 function playBellSound(){
 
-if(!audioContext)return;
+if(!audioContext) return;
 
 const ctx=audioContext;
-
 const now=ctx.currentTime;
 
 const oscillator=ctx.createOscillator();
-
 const gain=ctx.createGain();
 
 oscillator.type="sine";
 
 oscillator.frequency.setValueAtTime(880,now);
+oscillator.frequency.exponentialRampToValueAtTime(
+660,
+now+0.25
+);
 
-oscillator.frequency.exponentialRampToValueAtTime(660,now+0.25);
+gain.gain.setValueAtTime(0.0001,now);
 
-gain.gain.setValueAtTime(.0001,now);
+gain.gain.exponentialRampToValueAtTime(
+0.45,
+now+0.03
+);
 
-gain.gain.exponentialRampToValueAtTime(.45,now+.03);
-
-gain.gain.exponentialRampToValueAtTime(.0001,now+.65);
+gain.gain.exponentialRampToValueAtTime(
+0.0001,
+now+0.65
+);
 
 oscillator.connect(gain);
-
 gain.connect(ctx.destination);
 
 oscillator.start(now);
-
-oscillator.stop(now+.7);
-
+oscillator.stop(now+0.7);
 }
+
+
+/*
+المنبه يبقى مشتغلاً
+حتى يضغط الطالب على زر إيقاف المنبه
+*/
 
 function startAlarm(){
 
-if(!bellEnabled||alarmRinging)return;
+if(!bellEnabled || alarmRinging){
+return;
+}
 
 const ctx=createAudioContext();
 
 if(!ctx){
-
-alert("متصفحك لا يدعم تشغيل الصوت.");
-
 return;
-
 }
 
 const startSound=()=>{
 
-if(alarmRinging)return;
+if(alarmRinging){
+return;
+}
 
 alarmRinging=true;
 
@@ -1220,43 +298,58 @@ const button=document.getElementById("bellButton");
 if(button){
 
 button.classList.remove("active");
-
 button.classList.add("ringing");
 
 button.textContent="🛑 إيقاف المنبه";
-
 }
 
-alarmOscillator=ctx.createOscillator();
 
+/* الصوت الرئيسي */
+
+alarmOscillator=ctx.createOscillator();
 alarmGain=ctx.createGain();
 
 alarmOscillator.type="sine";
 
-alarmOscillator.frequency.setValueAtTime(880,ctx.currentTime);
+alarmOscillator.frequency.setValueAtTime(
+880,
+ctx.currentTime
+);
 
-alarmGain.gain.setValueAtTime(.0001,ctx.currentTime);
+alarmGain.gain.setValueAtTime(
+0.0001,
+ctx.currentTime
+);
 
-alarmGain.gain.linearRampToValueAtTime(.35,ctx.currentTime+.05);
+alarmGain.gain.linearRampToValueAtTime(
+0.35,
+ctx.currentTime+0.05
+);
 
 alarmOscillator.connect(alarmGain);
-
 alarmGain.connect(ctx.destination);
 
 alarmOscillator.start();
 
-alarmLfo=ctx.createOscillator();
 
+/* اهتزاز صوتي */
+
+alarmLfo=ctx.createOscillator();
 alarmLfoGain=ctx.createGain();
 
 alarmLfo.type="sine";
 
-alarmLfo.frequency.setValueAtTime(4,ctx.currentTime);
+alarmLfo.frequency.setValueAtTime(
+4,
+ctx.currentTime
+);
 
-alarmLfoGain.gain.setValueAtTime(.16,ctx.currentTime);
+alarmLfoGain.gain.setValueAtTime(
+0.16,
+ctx.currentTime
+);
 
 alarmLfo.connect(alarmLfoGain);
-
 alarmLfoGain.connect(alarmGain.gain);
 
 alarmLfo.start();
@@ -1265,7 +358,9 @@ alarmLfo.start();
 
 if(ctx.state==="suspended"){
 
-ctx.resume().then(startSound).catch(()=>{});
+ctx.resume()
+.then(startSound)
+.catch(()=>{});
 
 }else{
 
@@ -1281,43 +376,53 @@ alarmRinging=false;
 
 if(alarmOscillator){
 
-try{alarmOscillator.stop();}catch(e){}
+try{
+alarmOscillator.stop();
+}catch(e){}
 
-try{alarmOscillator.disconnect();}catch(e){}
+try{
+alarmOscillator.disconnect();
+}catch(e){}
 
 alarmOscillator=null;
-
 }
 
 if(alarmLfo){
 
-try{alarmLfo.stop();}catch(e){}
+try{
+alarmLfo.stop();
+}catch(e){}
 
-try{alarmLfo.disconnect();}catch(e){}
+try{
+alarmLfo.disconnect();
+}catch(e){}
 
 alarmLfo=null;
-
 }
 
 if(alarmGain){
 
-try{alarmGain.disconnect();}catch(e){}
+try{
+alarmGain.disconnect();
+}catch(e){}
 
 alarmGain=null;
-
 }
 
 if(alarmLfoGain){
 
-try{alarmLfoGain.disconnect();}catch(e){}
+try{
+alarmLfoGain.disconnect();
+}catch(e){}
 
 alarmLfoGain=null;
-
 }
 
 const button=document.getElementById("bellButton");
 
-if(!button)return;
+if(!button){
+return;
+}
 
 button.classList.remove("ringing");
 
@@ -1337,12 +442,18 @@ button.textContent="🔔 تفعيل الجرس";
 
 }
 
+
+/*
+هذه هي الدالة التي يصل إليها زر الجرس
+*/
+
 function enableBell(){
+
+/* إذا كان المنبه يرن، فالضغط يوقفه */
 
 if(alarmRinging){
 
 stopAlarm();
-
 return;
 
 }
@@ -1352,7 +463,6 @@ const ctx=createAudioContext();
 if(!ctx){
 
 alert("متصفحك لا يدعم تشغيل الجرس.");
-
 return;
 
 }
@@ -1370,7 +480,14 @@ if(bellEnabled){
 
 button.classList.add("active");
 
+button.classList.remove("ringing");
+
 button.textContent="🔕 إيقاف الجرس";
+
+/*
+تشغيل صوت قصير فور التفعيل
+حتى يسمح المتصفح بالصوت لاحقاً
+*/
 
 playBell();
 
@@ -1386,7 +503,9 @@ function loadBellState(){
 
 const button=document.getElementById("bellButton");
 
-if(!button)return;
+if(!button){
+return;
+}
 
 if(bellEnabled){
 
@@ -1402,7 +521,25 @@ button.textContent="🔔 تفعيل الجرس";
 
 }
 
+/*
+إصلاح مهم:
+ربط الزر بالجافاسكربت مباشرة
+حتى لو كان onclick في HTML مكتوباً بشكل خاطئ.
+*/
+
+button.onclick=null;
+
+button.addEventListener(
+"click",
+enableBell
+);
+
 }
+
+
+/* =========================
+   الحصة الحالية
+========================= */
 
 let lastStartBell="";
 let lastEndBell="";
@@ -1413,7 +550,7 @@ const now=getAlgeriaTime();
 
 const day=arabicDays[now.weekday];
 
-const currentSeconds=
+const currentSeconds =
 now.hour*3600+
 now.minute*60+
 now.second;
@@ -1430,11 +567,10 @@ let nextLesson=null;
 for(const lesson of sortedLessons){
 
 const startSeconds=timeToMinutes(lesson.start)*60;
-
 const endSeconds=timeToMinutes(lesson.end)*60;
 
 if(
-currentSeconds>=startSeconds&&
+currentSeconds>=startSeconds &&
 currentSeconds<endSeconds
 ){
 
@@ -1443,21 +579,30 @@ break;
 
 }
 
-if(startSeconds>currentSeconds&&!nextLesson){
+if(
+startSeconds>currentSeconds &&
+!nextLesson
+){
+
 nextLesson=lesson;
-}
 
 }
 
-const container=document.getElementById("currentLesson");
+}
+
+const container=
+document.getElementById("currentLesson");
 
 if(currentLesson){
 
-const startSeconds=timeToMinutes(currentLesson.start)*60;
+const startSeconds=
+timeToMinutes(currentLesson.start)*60;
 
-const endSeconds=timeToMinutes(currentLesson.end)*60;
+const endSeconds=
+timeToMinutes(currentLesson.end)*60;
 
-const remaining=endSeconds-currentSeconds;
+const remaining=
+endSeconds-currentSeconds;
 
 container.innerHTML=`
 
@@ -1487,30 +632,34 @@ ${formatRemaining(remaining)}
 
 `;
 
-const lessonKey=
-day+"-"+(currentLesson.id||currentLesson.subject)+"-"+currentLesson.start;
+const lessonKey =
+day+"-"+(currentLesson.id||currentLesson.subject);
 
 if(
-currentSeconds>=startSeconds&&
-currentSeconds<=startSeconds+3&&
+currentSeconds>=startSeconds &&
+currentSeconds<=startSeconds+2 &&
 lastStartBell!==lessonKey
 ){
 
 lastStartBell=lessonKey;
 
-if(bellEnabled)startAlarm();
+if(bellEnabled){
+startAlarm();
+}
 
 }
 
 if(
-remaining<=3&&
-remaining>=0&&
+remaining<=2 &&
+remaining>=0 &&
 lastEndBell!==lessonKey
 ){
 
 lastEndBell=lessonKey;
 
-if(bellEnabled)startAlarm();
+if(bellEnabled){
+startAlarm();
+}
 
 }
 
@@ -1520,9 +669,11 @@ return;
 
 if(nextLesson){
 
-const startSeconds=timeToMinutes(nextLesson.start)*60;
+const startSeconds=
+timeToMinutes(nextLesson.start)*60;
 
-const secondsUntil=startSeconds-currentSeconds;
+const secondsUntil=
+startSeconds-currentSeconds;
 
 container.innerHTML=`
 
@@ -1597,6 +748,11 @@ container.innerHTML=`
 
 }
 
+
+/* =========================
+   برنامج المراجعة
+========================= */
+
 function renderSchedule(){
 
 const container=document.getElementById("schedule");
@@ -1615,9 +771,12 @@ dayCard.innerHTML=
 schedule[day].forEach(lesson=>{
 
 const completed=
-localStorage.getItem(`completed-${lesson.id}`)==="true";
+localStorage.getItem(
+`completed-${lesson.id}`
+)==="true";
 
-const lessonDiv=document.createElement("div");
+const lessonDiv=
+document.createElement("div");
 
 lessonDiv.className=
 "lesson"+(completed?" completed":"");
@@ -1645,7 +804,9 @@ ${completed?"↩️":"✅"}
 <button
 class="restore"
 onclick="restoreLesson('${day}','${lesson.id}')">
+
 ↩️ الأصل
+
 </button>
 
 `;
@@ -1659,7 +820,6 @@ container.appendChild(dayCard);
 });
 
 updateStats();
-
 updateCurrentLesson();
 
 }
@@ -1671,7 +831,10 @@ const key=`completed-${id}`;
 const current=
 localStorage.getItem(key)==="true";
 
-localStorage.setItem(key,String(!current));
+localStorage.setItem(
+key,
+String(!current)
+);
 
 renderSchedule();
 
@@ -1679,25 +842,37 @@ renderSchedule();
 
 function updateStats(){
 
-const allLessons=Object.values(schedule).flat();
+const allLessons=
+Object.values(schedule).flat();
 
-const completed=allLessons.filter(
+const completed=
+allLessons.filter(
 lesson=>
-localStorage.getItem(`completed-${lesson.id}`)==="true"
+localStorage.getItem(
+`completed-${lesson.id}`
+)==="true"
 ).length;
 
-document.getElementById("completedLessons").textContent=completed;
+document.getElementById(
+"completedLessons"
+).textContent=completed;
 
 const now=getAlgeriaTime();
 
-const today=arabicDays[now.weekday];
+const today=
+arabicDays[now.weekday];
 
-const todayLessons=schedule[today]||[];
+const todayLessons=
+schedule[today]||[];
 
-document.getElementById("todayLessons").textContent=
+document.getElementById(
+"todayLessons"
+).textContent=
 todayLessons.length;
 
-document.getElementById("studyHours").textContent=
+document.getElementById(
+"studyHours"
+).textContent=
 completed;
 
 const achievements=[
@@ -1709,21 +884,34 @@ const achievements=[
 
 achievements.forEach(item=>{
 
-document.getElementById(item[0]).classList.toggle(
+const element=
+document.getElementById(item[0]);
+
+if(element){
+
+element.classList.toggle(
 "unlocked",
 completed>=item[1]
 );
 
+}
+
 });
 
 }
+
+
+/* =========================
+   تعديل الحصص
+========================= */
 
 let editingDay=null;
 let editingId=null;
 
 function openEdit(day,id){
 
-const lesson=schedule[day].find(
+const lesson=
+schedule[day].find(
 item=>item.id===id
 );
 
@@ -1732,19 +920,29 @@ if(!lesson)return;
 editingDay=day;
 editingId=id;
 
-document.getElementById("editDay").value=day;
+document.getElementById(
+"editDay"
+).value=day;
 
-document.getElementById("editStart").value=lesson.start;
+document.getElementById(
+"editStart"
+).value=lesson.start;
 
-document.getElementById("editEnd").value=lesson.end;
+document.getElementById(
+"editEnd"
+).value=lesson.end;
 
-document.getElementById("editModal").style.display="flex";
+document.getElementById(
+"editModal"
+).style.display="flex";
 
 }
 
 function closeModal(){
 
-document.getElementById("editModal").style.display="none";
+document.getElementById(
+"editModal"
+).style.display="none";
 
 editingDay=null;
 editingId=null;
@@ -1755,27 +953,38 @@ function saveEdit(){
 
 if(!editingDay||!editingId)return;
 
-const start=document.getElementById("editStart").value;
+const start=
+document.getElementById(
+"editStart"
+).value;
 
-const end=document.getElementById("editEnd").value;
+const end=
+document.getElementById(
+"editEnd"
+).value;
 
 if(!start||!end){
 
 alert("اختر وقت البداية والنهاية.");
+return;
+
+}
+
+if(
+timeToMinutes(start)>=
+timeToMinutes(end)
+){
+
+alert(
+"وقت النهاية يجب أن يكون بعد وقت البداية."
+);
 
 return;
 
 }
 
-if(timeToMinutes(start)>=timeToMinutes(end)){
-
-alert("وقت النهاية يجب أن يكون بعد وقت البداية.");
-
-return;
-
-}
-
-const lesson=schedule[editingDay].find(
+const lesson=
+schedule[editingDay].find(
 item=>item.id===editingId
 );
 
@@ -1799,11 +1008,13 @@ renderSchedule();
 
 function restoreLesson(day,id){
 
-const original=originalSchedule[day].find(
+const original=
+originalSchedule[day].find(
 item=>item.id===id
 );
 
-const current=schedule[day].find(
+const current=
+schedule[day].find(
 item=>item.id===id
 );
 
@@ -1827,7 +1038,8 @@ if(!confirm(
 "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
 ))return;
 
-schedule=JSON.parse(
+schedule=
+JSON.parse(
 JSON.stringify(originalSchedule)
 );
 
@@ -1838,9 +1050,16 @@ JSON.stringify(schedule)
 
 renderSchedule();
 
-alert("تمت إعادة البرنامج الأصلي ✅");
+alert(
+"تمت إعادة البرنامج الأصلي ✅"
+);
 
 }
+
+
+/* =========================
+   الوضع الليلي
+========================= */
 
 function toggleTheme(){
 
@@ -1854,7 +1073,9 @@ localStorage.setItem(
 light?"light":"dark"
 );
 
-document.getElementById("theme-button").textContent=
+document.getElementById(
+"theme-button"
+).textContent=
 light?"☀️":"🌙";
 
 }
@@ -1864,12 +1085,22 @@ function loadTheme(){
 const light=
 localStorage.getItem("studyTheme")==="light";
 
-document.body.classList.toggle("light",light);
+document.body.classList.toggle(
+"light",
+light
+);
 
-document.getElementById("theme-button").textContent=
+document.getElementById(
+"theme-button"
+).textContent=
 light?"☀️":"🌙";
 
 }
+
+
+/* =========================
+   مؤقت الدراسة
+========================= */
 
 let timerSeconds=25*60;
 let timerInterval=null;
@@ -1877,18 +1108,22 @@ let timerRunning=false;
 
 function formatTimer(seconds){
 
-const minutes=Math.floor(seconds/60);
+const minutes=
+Math.floor(seconds/60);
 
 const secs=seconds%60;
 
-return String(minutes).padStart(2,"0")+":"+
+return String(minutes).padStart(2,"0")+
+":"+
 String(secs).padStart(2,"0");
 
 }
 
 function updateTimerDisplay(){
 
-document.getElementById("timerDisplay").textContent=
+document.getElementById(
+"timerDisplay"
+).textContent=
 formatTimer(timerSeconds);
 
 }
@@ -1897,13 +1132,18 @@ function changeTimer(){
 
 if(timerRunning)return;
 
-const minutes=Number(
-document.getElementById("timerSelect").value
+const minutes=
+Number(
+document.getElementById(
+"timerSelect"
+).value
 );
 
 timerSeconds=minutes*60;
 
-document.getElementById("timerStatus").textContent=
+document.getElementById(
+"timerStatus"
+).textContent=
 "جاهز للدراسة 💪";
 
 updateTimerDisplay();
@@ -1918,7 +1158,9 @@ createAudioContext();
 
 timerRunning=true;
 
-document.getElementById("timerStatus").textContent=
+document.getElementById(
+"timerStatus"
+).textContent=
 "📚 وقت الدراسة الآن...";
 
 timerInterval=setInterval(()=>{
@@ -1946,10 +1188,11 @@ if(!timerRunning)return;
 clearInterval(timerInterval);
 
 timerInterval=null;
-
 timerRunning=false;
 
-document.getElementById("timerStatus").textContent=
+document.getElementById(
+"timerStatus"
+).textContent=
 "⏸️ تم إيقاف المؤقت مؤقتًا";
 
 }
@@ -1959,16 +1202,20 @@ function resetTimer(){
 clearInterval(timerInterval);
 
 timerInterval=null;
-
 timerRunning=false;
 
-const minutes=Number(
-document.getElementById("timerSelect").value
+const minutes=
+Number(
+document.getElementById(
+"timerSelect"
+).value
 );
 
 timerSeconds=minutes*60;
 
-document.getElementById("timerStatus").textContent=
+document.getElementById(
+"timerStatus"
+).textContent=
 "جاهز للدراسة 💪";
 
 updateTimerDisplay();
@@ -1980,14 +1227,15 @@ function finishTimer(){
 clearInterval(timerInterval);
 
 timerInterval=null;
-
 timerRunning=false;
 
 timerSeconds=0;
 
 updateTimerDisplay();
 
-document.getElementById("timerStatus").textContent=
+document.getElementById(
+"timerStatus"
+).textContent=
 "🎉 انتهى وقت الدراسة!";
 
 if(bellEnabled){
@@ -1996,27 +1244,41 @@ startAlarm();
 
 }else{
 
-alert("🎉 انتهى وقت الدراسة! أحسنت.");
+alert(
+"🎉 انتهى وقت الدراسة! أحسنت."
+);
 
 }
 
 }
+
+
+/* =========================
+   البرنامج المدرسي
+========================= */
 
 function renderSchoolSchedule(){
 
-const body=document.getElementById("schoolScheduleBody");
+const body=
+document.getElementById(
+"schoolScheduleBody"
+);
 
 body.innerHTML="";
 
-Object.entries(schoolSchedule).forEach(([day,items])=>{
+Object.entries(
+schoolSchedule
+).forEach(([day,items])=>{
 
 items.forEach((item,index)=>{
 
-const row=document.createElement("tr");
+const row=
+document.createElement("tr");
 
 if(index===0){
 
-const dayCell=document.createElement("td");
+const dayCell=
+document.createElement("td");
 
 dayCell.rowSpan=items.length;
 
@@ -2041,63 +1303,91 @@ body.appendChild(row);
 
 }
 
+
+/* =========================
+   نموذج التواصل
+========================= */
+
 const contactForm=
-document.getElementById("contactForm");
+document.getElementById(
+"contactForm"
+);
 
 const contactSubmit=
-document.getElementById("contactSubmit");
+document.getElementById(
+"contactSubmit"
+);
 
 const contactStatus=
-document.getElementById("contactStatus");
+document.getElementById(
+"contactStatus"
+);
 
-contactForm.addEventListener("submit",async event=>{
+if(contactForm){
+
+contactForm.addEventListener(
+"submit",
+async event=>{
 
 event.preventDefault();
 
 const name=
-document.getElementById("visitorName").value.trim();
+document.getElementById(
+"visitorName"
+).value.trim();
 
 const email=
-document.getElementById("visitorEmail").value.trim();
+document.getElementById(
+"visitorEmail"
+).value.trim();
 
 const message=
-document.getElementById("visitorQuestion").value.trim();
+document.getElementById(
+"visitorQuestion"
+).value.trim();
 
 if(!name||!email||!message){
 
 contactStatus.textContent=
 "⚠️ اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك أولاً.";
 
-contactStatus.className="contact-error";
+contactStatus.className=
+"contact-error";
 
 return;
 
 }
 
-const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailPattern=
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if(!emailPattern.test(email)){
 
 contactStatus.textContent=
 "⚠️ أدخل بريدًا إلكترونيًا صحيحًا.";
 
-contactStatus.className="contact-error";
+contactStatus.className=
+"contact-error";
 
 return;
 
 }
 
-document.getElementById("replyTo").value=email;
+document.getElementById(
+"replyTo"
+).value=email;
 
 contactSubmit.disabled=true;
 
-contactSubmit.textContent="⏳ جارٍ إرسال السؤال...";
+contactSubmit.textContent=
+"⏳ جارٍ إرسال السؤال...";
 
 contactStatus.textContent="";
 
 try{
 
-const response=await fetch(
+const response=
+await fetch(
 contactForm.action,
 {
 method:"POST",
@@ -2108,45 +1398,76 @@ body:new FormData(contactForm)
 }
 );
 
-const data=await response.json().catch(()=>({}));
+const data=
+await response.json()
+.catch(()=>({}));
 
-if(!response.ok||data.success===false){
+if(
+!response.ok||
+data.success===false
+){
 
-throw new Error("Send failed");
+throw new Error(
+"Send failed"
+);
 
 }
 
 contactStatus.textContent=
 "✅ تم إرسال سؤالك بنجاح! شكرًا لك.";
 
-contactStatus.className="contact-success";
+contactStatus.className=
+"contact-success";
 
 contactForm.reset();
 
 }catch(error){
 
 contactStatus.textContent=
-"❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلتك إلى Gmail.";
+"❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلت إلى Gmail.";
 
-contactStatus.className="contact-error";
+contactStatus.className=
+"contact-error";
 
 }
 
 contactSubmit.disabled=false;
 
-contactSubmit.textContent="📧 إرسال السؤال";
+contactSubmit.textContent=
+"📧 إرسال السؤال";
 
-});
+}
+);
 
-document.getElementById("editModal").addEventListener(
+}
+
+
+/* =========================
+   إغلاق نافذة التعديل
+========================= */
+
+document.getElementById(
+"editModal"
+).addEventListener(
 "click",
 event=>{
 
-if(event.target===event.currentTarget){
+if(
+event.target===
+event.currentTarget
+){
+
 closeModal();
+
 }
 
-});
+}
+);
+
+
+/* =========================
+   تشغيل الموقع
+========================= */
 
 loadTheme();
 
@@ -2173,6 +1494,3 @@ updateStats();
 },1000);
 
 </script>
-
-</body>
-</html>
