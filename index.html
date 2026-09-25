@@ -1380,201 +1380,319 @@ function updateClock(){
     document.getElementById("clock").textContent=
     "🕐 "+formatter.format(new Date());
 }
-
 /* =========================
-   BELL
+   BELL - جرس المدرسة
 ========================= */
 
-let audioContext=null;
-let alarmOscillator=null;
-let alarmGain=null;
-let alarmLfo=null;
-let alarmLfoGain=null;
+let audioContext = null;
 
-let bellEnabled=
-localStorage.getItem("studyBellEnabled")==="true";
+let alarmRinging = false;
+let schoolBellInterval = null;
 
-let alarmRinging=false;
+let bellEnabled =
+    localStorage.getItem("studyBellEnabled") === "true";
 
 function createAudioContext(){
 
-    const AudioContextClass=
-    window.AudioContext||
-    window.webkitAudioContext;
+    const AudioContextClass =
+        window.AudioContext ||
+        window.webkitAudioContext;
 
-    if(!AudioContextClass)return null;
+    if(!AudioContextClass) return null;
 
     if(!audioContext){
-        audioContext=new AudioContextClass();
+        audioContext = new AudioContextClass();
     }
 
-    if(audioContext.state==="suspended"){
+    if(audioContext.state === "suspended"){
         audioContext.resume().catch(()=>{});
     }
 
     return audioContext;
 }
 
-function playBell(){
 
-    const ctx=createAudioContext();
+/* 🔔 نغمة جرس المدرسة */
 
-    if(!ctx)return;
+function playSchoolBell(){
 
-    const sound=()=>{
+    const ctx = createAudioContext();
 
-        const now=ctx.currentTime;
+    if(!ctx) return;
 
-        const oscillator=ctx.createOscillator();
-        const gain=ctx.createGain();
+    const ring = () => {
 
-        oscillator.type="sine";
+        const now = ctx.currentTime;
 
-        oscillator.frequency.setValueAtTime(880,now);
-        oscillator.frequency.exponentialRampToValueAtTime(
-            660,
-            now+.25
-        );
+        /*
+         * عدة ترددات معًا حتى يصبح الصوت
+         * أقرب إلى الجرس المدرسي المعدني.
+         */
 
-        gain.gain.setValueAtTime(.0001,now);
-        gain.gain.exponentialRampToValueAtTime(
-            .45,
-            now+.03
-        );
+        const frequencies = [
+            {frequency:520, volume:.42},
+            {frequency:780, volume:.30},
+            {frequency:1040, volume:.22},
+            {frequency:1300, volume:.15},
+            {frequency:1560, volume:.10}
+        ];
 
-        gain.gain.exponentialRampToValueAtTime(
-            .0001,
-            now+.65
-        );
+        frequencies.forEach(item => {
 
-        oscillator.connect(gain);
-        gain.connect(ctx.destination);
+            const oscillator =
+                ctx.createOscillator();
 
-        oscillator.start(now);
-        oscillator.stop(now+.7);
+            const gain =
+                ctx.createGain();
+
+            oscillator.type = "sine";
+
+            oscillator.frequency.setValueAtTime(
+                item.frequency,
+                now
+            );
+
+            /*
+             * بداية قوية ثم رنين تدريجي
+             */
+
+            gain.gain.setValueAtTime(
+                0.0001,
+                now
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                item.volume,
+                now + 0.025
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.0001,
+                now + 0.9
+            );
+
+            oscillator.connect(gain);
+            gain.connect(ctx.destination);
+
+            oscillator.start(now);
+
+            oscillator.stop(now + 0.95);
+        });
+
     };
 
-    if(ctx.state==="suspended"){
-        ctx.resume().then(sound).catch(()=>{});
+    if(ctx.state === "suspended"){
+
+        ctx.resume()
+            .then(ring)
+            .catch(()=>{});
+
     }else{
-        sound();
+
+        ring();
     }
 }
+
+
+/*
+ * 🔔 جرس المدرسة المستمر
+ *
+ * يصدر رنينًا متكررًا حتى يضغط الطالب
+ * على زر "إيقاف المنبه".
+ */
 
 function startAlarm(){
 
-    if(!bellEnabled||alarmRinging)return;
+    if(!bellEnabled || alarmRinging){
+        return;
+    }
 
-    const ctx=createAudioContext();
+    const ctx = createAudioContext();
 
-    if(!ctx)return;
+    if(!ctx) return;
 
-    const startSound=()=>{
+    const beginAlarm = () => {
 
-        if(alarmRinging)return;
+        if(alarmRinging) return;
 
-        alarmRinging=true;
+        alarmRinging = true;
 
-        const button=document.getElementById("bellButton");
+        const button =
+            document.getElementById("bellButton");
 
         if(button){
+
             button.classList.remove("active");
             button.classList.add("ringing");
-            button.textContent="🛑 إيقاف المنبه";
+
+            button.textContent =
+                "🛑 إيقاف المنبه";
         }
 
-        alarmOscillator=ctx.createOscillator();
-        alarmGain=ctx.createGain();
+        /*
+         * أول رنة فورًا
+         */
 
-        alarmOscillator.type="sine";
-        alarmOscillator.frequency.setValueAtTime(
-            880,
-            ctx.currentTime
-        );
+        playSchoolBell();
 
-        alarmGain.gain.setValueAtTime(
-            .0001,
-            ctx.currentTime
-        );
+        /*
+         * تكرار الجرس كل 1.2 ثانية
+         * مثل جرس المدرسة.
+         */
 
-        alarmGain.gain.linearRampToValueAtTime(
-            .35,
-            ctx.currentTime+.05
-        );
+        schoolBellInterval =
+            setInterval(() => {
 
-        alarmOscillator.connect(alarmGain);
-        alarmGain.connect(ctx.destination);
+                if(!alarmRinging){
+                    return;
+                }
 
-        alarmOscillator.start();
+                playSchoolBell();
 
-        alarmLfo=ctx.createOscillator();
-        alarmLfoGain=ctx.createGain();
-
-        alarmLfo.type="sine";
-        alarmLfo.frequency.setValueAtTime(
-            4,
-            ctx.currentTime
-        );
-
-        alarmLfoGain.gain.setValueAtTime(
-            .16,
-            ctx.currentTime
-        );
-
-        alarmLfo.connect(alarmLfoGain);
-        alarmLfoGain.connect(alarmGain.gain);
-
-        alarmLfo.start();
+            },1200);
     };
 
-    if(ctx.state==="suspended"){
-        ctx.resume().then(startSound).catch(()=>{});
+    if(ctx.state === "suspended"){
+
+        ctx.resume()
+            .then(beginAlarm)
+            .catch(()=>{});
+
     }else{
-        startSound();
+
+        beginAlarm();
     }
 }
 
+
+/*
+ * 🛑 إيقاف جرس المدرسة
+ */
+
 function stopAlarm(){
 
-    alarmRinging=false;
+    alarmRinging = false;
 
-    if(alarmOscillator){
-        try{alarmOscillator.stop();}catch(e){}
-        try{alarmOscillator.disconnect();}catch(e){}
-        alarmOscillator=null;
+    if(schoolBellInterval){
+
+        clearInterval(
+            schoolBellInterval
+        );
+
+        schoolBellInterval = null;
     }
 
-    if(alarmLfo){
-        try{alarmLfo.stop();}catch(e){}
-        try{alarmLfo.disconnect();}catch(e){}
-        alarmLfo=null;
-    }
+    const button =
+        document.getElementById("bellButton");
 
-    if(alarmGain){
-        try{alarmGain.disconnect();}catch(e){}
-        alarmGain=null;
-    }
-
-    if(alarmLfoGain){
-        try{alarmLfoGain.disconnect();}catch(e){}
-        alarmLfoGain=null;
-    }
-
-    const button=document.getElementById("bellButton");
-
-    if(!button)return;
+    if(!button) return;
 
     button.classList.remove("ringing");
 
     if(bellEnabled){
+
         button.classList.add("active");
-        button.textContent="🔕 إيقاف الجرس";
+
+        button.textContent =
+            "🔕 إيقاف الجرس";
+
     }else{
+
         button.classList.remove("active");
-        button.textContent="🔔 تفعيل الجرس";
+
+        button.textContent =
+            "🔔 تفعيل الجرس";
     }
 }
 
+
+/*
+ * 🔘 تفعيل / تعطيل الجرس
+ */
+
+function enableBell(){
+
+    /*
+     * إذا كان المنبه يرن،
+     * الزر يوقفه مباشرة.
+     */
+
+    if(alarmRinging){
+
+        stopAlarm();
+
+        return;
+    }
+
+    const ctx = createAudioContext();
+
+    if(!ctx){
+
+        alert(
+            "متصفحك لا يدعم تشغيل الجرس."
+        );
+
+        return;
+    }
+
+    bellEnabled = !bellEnabled;
+
+    localStorage.setItem(
+        "studyBellEnabled",
+        String(bellEnabled)
+    );
+
+    const button =
+        document.getElementById("bellButton");
+
+    if(bellEnabled){
+
+        button.classList.add("active");
+
+        button.textContent =
+            "🔕 إيقاف الجرس";
+
+        /*
+         * رنة تجريبية عند التفعيل
+         * للسماح للمتصفح بتشغيل الصوت.
+         */
+
+        playSchoolBell();
+
+    }else{
+
+        stopAlarm();
+    }
+}
+
+
+/*
+ * تحميل حالة الجرس
+ */
+
+function loadBellState(){
+
+    const button =
+        document.getElementById("bellButton");
+
+    if(!button) return;
+
+    if(bellEnabled){
+
+        button.classList.add("active");
+
+        button.textContent =
+            "🔕 إيقاف الجرس";
+
+    }else{
+
+        button.classList.remove("active");
+
+        button.textContent =
+            "🔔 تفعيل الجرس";
+    }
+}
+    
 function enableBell(){
 
     if(alarmRinging){
