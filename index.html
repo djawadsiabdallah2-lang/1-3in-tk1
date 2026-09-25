@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>برنامج 1ع تك1 | برنامج الدراسة والمراجعة</title>
+<title>برنامج 1ع تك1 | برنامج المراجعة والدراسة</title>
 
-<meta name="description" content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة والبرنامج المدرسي للسنة الأولى ثانوي.">
+<meta name="description" content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة لتلاميذ السنة الأولى ثانوي تقني. يحتوي على برنامج المراجعة، البرنامج المدرسي، المؤقت، الحصص والإنجازات.">
 
-<meta name="keywords" content="برنامج 1ع تك1, 1ع تك1, برنامج الدراسة, برنامج المراجعة, السنة الأولى ثانوي, برنامج أولى ثانوي">
+<meta name="keywords" content="برنامج 1ع تك1, 1ع تك1, برنامج 1ع تك, السنة الأولى ثانوي تقني, برنامج الدراسة, برنامج المراجعة, مراجعة 1ع تك1">
+
+<meta name="author" content="برنامج 1ع تك1">
 
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://djawadsiabdallah2-lang.github.io/1-3in-tk1/">
 
-<meta property="og:title" content="برنامج 1ع تك1">
-
-<meta property="og:description" content="برنامج الدراسة والمراجعة للسنة الأولى ثانوي">
-
-<meta property="og:url" content="https://djawadsiabdallah2-lang.github.io/1-3in-tk1/">
-
 <meta property="og:type" content="website">
-
+<meta property="og:title" content="برنامج 1ع تك1">
+<meta property="og:description" content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة للسنة الأولى ثانوي تقني.">
+<meta property="og:url" content="https://djawadsiabdallah2-lang.github.io/1-3in-tk1/">
+<meta property="og:site_name" content="برنامج 1ع تك1">
 <meta property="og:locale" content="ar_DZ">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="برنامج 1ع تك1">
+<meta name="twitter:description" content="برنامج الدراسة والمراجعة للسنة الأولى ثانوي تقني.">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "برنامج 1ع تك1",
-  "alternateName": "1ع تك1",
+  "alternateName": [
+    "1ع تك1",
+    "برنامج 1ع تك",
+    "برنامج 1ع تك1 للدراسة"
+  ],
   "url": "https://djawadsiabdallah2-lang.github.io/1-3in-tk1/",
-  "description": "برنامج الدراسة والمراجعة للسنة الأولى ثانوي",
-  "inLanguage": "ar"
+  "description": "برنامج 1ع تك1 لتنظيم الدراسة والمراجعة للسنة الأولى ثانوي تقني.",
+  "inLanguage": "ar-DZ"
 }
 </script>
 
 <style>
-
 :root{
 --bg:#101820;
 --nav:rgba(27,38,59,.95);
@@ -54,9 +57,7 @@
 --border:rgba(255,255,255,.08)
 }
 
-*{
-box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
@@ -396,7 +397,8 @@ background:#555
 }
 
 .reset-all{
-background:var(--red)
+background:var(--red);
+margin-top:10px
 }
 
 .school-schedule{
@@ -598,9 +600,7 @@ font-size:38px
 }
 
 }
-
 </style>
-
 </head>
 
 <body>
@@ -608,7 +608,7 @@ font-size:38px
 <nav>
 
 <div class="logo">
-📚برنامج 1ع تك1
+📚 برنامج 1ع تك1
 </div>
 
 <div class="nav-links">
@@ -625,50 +625,36 @@ font-size:38px
 
 </nav>
 
-<button
-id="theme-button"
-onclick="toggleTheme()">
-🌙
-</button>
+<button id="theme-button" onclick="toggleTheme()">🌙</button>
 
-<div
-class="container"
-id="home">
+<div class="container" id="home">
 
 <header>
 
-<h1>
-📚برنامج 1ع تك1
-</h1>
+<h1>📚 برنامج 1ع تك1</h1>
 
 <p>
-نظّم وقتك وراجع دروسك بذكاء 🚀
+برنامج الدراسة والمراجعة للسنة الأولى ثانوي تقني
 </p>
 
 </header>
 
-<div
-class="clock"
-id="clock">
+<div class="clock" id="clock">
 🕐 جاري تحميل الوقت...
 </div>
 
 <div class="card">
 
-<h2>
-📖 الحصة الحالية
-</h2>
+<h2>📖 الحصة الحالية</h2>
 
-<div
-class="current-lesson"
-id="currentLesson">
+<div class="current-lesson" id="currentLesson">
 جاري التحقق من الحصة...
 </div>
 
 <button
 id="bellButton"
 class="bell-button"
-onclick="enableBell()">
+onclick="enableBell">
 
 🔔 تفعيل الجرس
 
@@ -678,46 +664,23 @@ onclick="enableBell()">
 
 <div class="card">
 
-<h2>
-📊 إحصائياتي
-</h2>
+<h2>📊 إحصائياتي</h2>
 
 <div class="stats">
 
 <div class="stat">
-
-<span
-class="stat-number"
-id="todayLessons">
-0
-</span>
-
+<span class="stat-number" id="todayLessons">0</span>
 حصص اليوم
-
 </div>
 
 <div class="stat">
-
-<span
-class="stat-number"
-id="completedLessons">
-0
-</span>
-
+<span class="stat-number" id="completedLessons">0</span>
 حصص مكتملة
-
 </div>
 
 <div class="stat">
-
-<span
-class="stat-number"
-id="studyHours">
-0
-</span>
-
+<span class="stat-number" id="studyHours">0</span>
 حصص منجزة
-
 </div>
 
 </div>
@@ -726,31 +689,17 @@ id="studyHours">
 
 <div class="card timer">
 
-<h2>
-⏱️ مؤقت الدراسة
-</h2>
+<h2>⏱️ مؤقت الدراسة</h2>
 
-<select
-id="timerSelect"
-onchange="changeTimer()">
+<select id="timerSelect" onchange="changeTimer()">
 
-<option value="25">
-25 دقيقة
-</option>
-
-<option value="45">
-45 دقيقة
-</option>
-
-<option value="60">
-60 دقيقة
-</option>
+<option value="25">25 دقيقة</option>
+<option value="45">45 دقيقة</option>
+<option value="60">60 دقيقة</option>
 
 </select>
 
-<div
-class="timer-display"
-id="timerDisplay">
+<div class="timer-display" id="timerDisplay">
 25:00
 </div>
 
@@ -760,17 +709,9 @@ id="timerDisplay">
 
 <div class="timer-buttons">
 
-<button onclick="startTimer()">
-▶️ بدء
-</button>
-
-<button onclick="pauseTimer()">
-⏸️ إيقاف
-</button>
-
-<button onclick="resetTimer()">
-🔄 إعادة
-</button>
+<button onclick="startTimer()">▶️ بدء</button>
+<button onclick="pauseTimer()">⏸️ إيقاف</button>
+<button onclick="resetTimer()">🔄 إعادة</button>
 
 </div>
 
@@ -778,82 +719,36 @@ id="timerDisplay">
 
 <div class="card">
 
-<h2>
-🏆 الإنجازات
-</h2>
+<h2>🏆 الإنجازات</h2>
 
 <div class="achievements">
 
-<div
-class="achievement"
-id="achievement1">
-
-<span class="icon">
-🥉
-</span>
-
-<strong>
-البداية
-</strong>
-
+<div class="achievement" id="achievement1">
+<span class="icon">🥉</span>
+<strong>البداية</strong>
 <br>
-
 أول حصة
-
 </div>
 
-<div
-class="achievement"
-id="achievement5">
-
-<span class="icon">
-🥈
-</span>
-
-<strong>
-المجتهد
-</strong>
-
+<div class="achievement" id="achievement5">
+<span class="icon">🥈</span>
+<strong>المجتهد</strong>
 <br>
-
 5 حصص
-
 </div>
 
-<div
-class="achievement"
-id="achievement10">
-
-<span class="icon">
-🥇
-</span>
-
-<strong>
-المتميز
-</strong>
-
+<div class="achievement" id="achievement10">
+<span class="icon">🥇</span>
+<strong>المتميز</strong>
 <br>
-
 10 حصص
-
 </div>
 
-<div
-class="achievement"
-id="achievement25">
-
-<span class="icon">
-🏆
-</span>
-
-<strong>
-الأسطورة
-</strong>
-
+<div class="achievement" id="achievement25">
+<span class="icon">🏆</span>
+<strong>الأسطورة</strong>
 <br>
-
 25 حصة
-
 </div>
 
 </div>
@@ -862,14 +757,9 @@ id="achievement25">
 
 <div class="card">
 
-<h2>
-📅 برنامج المراجعة الأسبوعي
-</h2>
+<h2>📅 برنامج المراجعة الأسبوعي</h2>
 
-<div
-class="schedule"
-id="schedule">
-</div>
+<div class="schedule" id="schedule"></div>
 
 <button
 class="main-button reset-all"
@@ -883,47 +773,29 @@ onclick="resetAllSchedule()">
 
 <div class="card school-schedule">
 
-<h2>
-🏫 البرنامج المدرسي
-</h2>
+<h2>🏫 البرنامج المدرسي</h2>
 
 <table>
 
 <thead>
 
 <tr>
-
-<th>
-اليوم
-</th>
-
-<th>
-الوقت
-</th>
-
-<th>
-المادة
-</th>
-
+<th>اليوم</th>
+<th>الوقت</th>
+<th>المادة</th>
 </tr>
 
 </thead>
 
-<tbody
-id="schoolScheduleBody">
-</tbody>
+<tbody id="schoolScheduleBody"></tbody>
 
 </table>
 
 </div>
 
-<div
-class="card contact-card"
-id="contact">
+<div class="card contact-card" id="contact">
 
-<h2>
-📩 تواصل معي
-</h2>
+<h2>📩 تواصل معي</h2>
 
 <div class="contact-description">
 
@@ -938,9 +810,7 @@ id="contactForm"
 action="https://formsubmit.co/ajax/a42d66ac3a3d45512c5b907c8ebcef1f"
 method="POST">
 
-<label for="visitorName">
-👤 اسمك
-</label>
+<label for="visitorName">👤 اسمك</label>
 
 <input
 type="text"
@@ -950,9 +820,7 @@ placeholder="اكتب اسمك هنا"
 maxlength="80"
 required>
 
-<label for="visitorEmail">
-📧 بريدك الإلكتروني
-</label>
+<label for="visitorEmail">📧 بريدك الإلكتروني</label>
 
 <input
 type="email"
@@ -969,9 +837,7 @@ id="replyTo"
 name="_replyto"
 value="">
 
-<label for="visitorQuestion">
-💬 سؤالك أو اقتراحك
-</label>
+<label for="visitorQuestion">💬 سؤالك أو اقتراحك</label>
 
 <textarea
 id="visitorQuestion"
@@ -999,10 +865,7 @@ id="contactSubmit">
 
 </button>
 
-<div
-id="contactStatus"
-aria-live="polite">
-</div>
+<div id="contactStatus" aria-live="polite"></div>
 
 </form>
 
@@ -1010,52 +873,31 @@ aria-live="polite">
 
 </div>
 
-<div
-class="modal"
-id="editModal">
+<div class="modal" id="editModal">
 
 <div class="modal-content">
 
-<h2>
-✏️ تعديل الحصة
-</h2>
+<h2>✏️ تعديل الحصة</h2>
 
-<label>
-اليوم
-</label>
+<label>اليوم</label>
 
-<input
-type="text"
-id="editDay"
-readonly>
+<input type="text" id="editDay" readonly>
 
-<label>
-وقت البداية
-</label>
+<label>وقت البداية</label>
 
-<input
-type="time"
-id="editStart">
+<input type="time" id="editStart">
 
-<label>
-وقت النهاية
-</label>
+<label>وقت النهاية</label>
 
-<input
-type="time"
-id="editEnd">
+<input type="time" id="editEnd">
 
 <div class="modal-buttons">
 
-<button
-class="save-button"
-onclick="saveEdit()">
+<button class="save-button" onclick="saveEdit()">
 💾 حفظ
 </button>
 
-<button
-class="cancel-button"
-onclick="closeModal()">
+<button class="cancel-button" onclick="closeModal()">
 إلغاء
 </button>
 
@@ -1067,181 +909,61 @@ onclick="closeModal()">
 
 <script>
 
-const ALGERIA_TIMEZONE =
-"Africa/Algiers";
+const ALGERIA_TIMEZONE="Africa/Algiers";
 
-const originalSchedule = {
+const originalSchedule={
 
 "الأحد":[
-{
-id:"sun-english",
-subject:"🇬🇧 الإنجليزية",
-start:"19:00",
-end:"20:00"
-},
-{
-id:"sun-islamic",
-subject:"☪️ العلوم الإسلامية",
-start:"20:15",
-end:"21:15"
-},
-{
-id:"sun-physics",
-subject:"⚡ الفيزياء",
-start:"21:30",
-end:"22:30"
-}
+{id:"sun-english",subject:"🇬🇧 الإنجليزية",start:"19:00",end:"20:00"},
+{id:"sun-islamic",subject:"☪️ العلوم الإسلامية",start:"20:15",end:"21:15"},
+{id:"sun-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
 ],
 
 "الإثنين":[
-{
-id:"mon-math",
-subject:"📐 الرياضيات",
-start:"19:00",
-end:"20:00"
-},
-{
-id:"mon-science",
-subject:"🔬 العلوم",
-start:"20:15",
-end:"21:15"
-},
-{
-id:"mon-physics",
-subject:"⚡ الفيزياء",
-start:"21:30",
-end:"22:30"
-}
+{id:"mon-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
+{id:"mon-science",subject:"🔬 العلوم",start:"20:15",end:"21:15"},
+{id:"mon-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
 ],
 
 "الثلاثاء":[
-{
-id:"tue-math",
-subject:"📐 الرياضيات",
-start:"19:00",
-end:"20:00"
-},
-{
-id:"tue-natural-science",
-subject:"🔬 العلوم الطبيعية",
-start:"20:15",
-end:"21:15"
-},
-{
-id:"tue-arabic",
-subject:"📚 اللغة العربية",
-start:"21:30",
-end:"22:30"
-}
+{id:"tue-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
+{id:"tue-natural-science",subject:"🔬 العلوم الطبيعية",start:"20:15",end:"21:15"},
+{id:"tue-arabic",subject:"📚 اللغة العربية",start:"21:30",end:"22:30"}
 ],
 
 "الأربعاء":[
-{
-id:"wed-math",
-subject:"📐 الرياضيات",
-start:"19:00",
-end:"20:00"
-},
-{
-id:"wed-french",
-subject:"🇫🇷 الفرنسية",
-start:"20:15",
-end:"21:15"
-},
-{
-id:"wed-history",
-subject:"📜 التاريخ",
-start:"21:30",
-end:"22:30"
-}
+{id:"wed-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
+{id:"wed-french",subject:"🇫🇷 الفرنسية",start:"20:15",end:"21:15"},
+{id:"wed-history",subject:"📜 التاريخ",start:"21:30",end:"22:30"}
 ],
 
 "الخميس":[
-{
-id:"thu-physics",
-subject:"⚡ الفيزياء",
-start:"19:00",
-end:"20:00"
-},
-{
-id:"thu-math",
-subject:"📐 الرياضيات",
-start:"20:15",
-end:"21:15"
-},
-{
-id:"thu-french",
-subject:"🇫🇷 الفرنسية",
-start:"21:30",
-end:"22:30"
-}
+{id:"thu-physics",subject:"⚡ الفيزياء",start:"19:00",end:"20:00"},
+{id:"thu-math",subject:"📐 الرياضيات",start:"20:15",end:"21:15"},
+{id:"thu-french",subject:"🇫🇷 الفرنسية",start:"21:30",end:"22:30"}
 ],
 
 "الجمعة":[
-{
-id:"fri-math",
-subject:"📐 مراجعة الرياضيات",
-start:"10:00",
-end:"11:00"
-},
-{
-id:"fri-natural-science",
-subject:"🔬 مراجعة العلوم الطبيعية",
-start:"11:15",
-end:"12:15"
-},
-{
-id:"fri-french",
-subject:"🇫🇷 مراجعة الفرنسية",
-start:"15:00",
-end:"16:00"
-},
-{
-id:"fri-arabic",
-subject:"📚 مراجعة العربية",
-start:"16:15",
-end:"17:15"
-}
+{id:"fri-math",subject:"📐 مراجعة الرياضيات",start:"10:00",end:"11:00"},
+{id:"fri-natural-science",subject:"🔬 مراجعة العلوم الطبيعية",start:"11:15",end:"12:15"},
+{id:"fri-french",subject:"🇫🇷 مراجعة الفرنسية",start:"15:00",end:"16:00"},
+{id:"fri-arabic",subject:"📚 مراجعة العربية",start:"16:15",end:"17:15"}
 ],
 
 "السبت":[
-{
-id:"sat-physics",
-subject:"⚡ مراجعة الفيزياء",
-start:"10:00",
-end:"11:00"
-},
-{
-id:"sat-english",
-subject:"🇬🇧 مراجعة الإنجليزية",
-start:"11:15",
-end:"12:15"
-},
-{
-id:"sat-history",
-subject:"📜 مراجعة التاريخ",
-start:"15:00",
-end:"16:00"
-},
-{
-id:"sat-comprehensive",
-subject:"📚 مراجعة شاملة",
-start:"16:15",
-end:"17:15"
-}
+{id:"sat-physics",subject:"⚡ مراجعة الفيزياء",start:"10:00",end:"11:00"},
+{id:"sat-english",subject:"🇬🇧 مراجعة الإنجليزية",start:"11:15",end:"12:15"},
+{id:"sat-history",subject:"📜 مراجعة التاريخ",start:"15:00",end:"16:00"},
+{id:"sat-comprehensive",subject:"📚 مراجعة شاملة",start:"16:15",end:"17:15"}
 ]
 
 };
 
-let schedule =
-JSON.parse(
-localStorage.getItem("myStudySchedule")
-) ||
-JSON.parse(
-JSON.stringify(originalSchedule)
-);
+let schedule=
+JSON.parse(localStorage.getItem("myStudySchedule"))||
+JSON.parse(JSON.stringify(originalSchedule));
 
-const arabicDays = {
+const arabicDays={
 Sunday:"الأحد",
 Monday:"الإثنين",
 Tuesday:"الثلاثاء",
@@ -1251,7 +973,7 @@ Friday:"الجمعة",
 Saturday:"السبت"
 };
 
-const schoolSchedule = {
+const schoolSchedule={
 
 "الأحد":[
 ["08:00 - 09:00","💻 إعلام آلي"],
@@ -1303,59 +1025,38 @@ const schoolSchedule = {
 
 function timeToMinutes(time){
 
-const parts =
-time.split(":");
+const parts=time.split(":");
 
-return (
-Number(parts[0])*60+
-Number(parts[1])
-);
+return Number(parts[0])*60+Number(parts[1]);
 
 }
 
 function formatRemaining(seconds){
 
-seconds =
-Math.max(
-0,
-Math.floor(seconds)
-);
+seconds=Math.max(0,Math.floor(seconds));
 
-const hours =
-Math.floor(seconds/3600);
+const hours=Math.floor(seconds/3600);
 
-const minutes =
-Math.floor(
-(seconds%3600)/60
-);
+const minutes=Math.floor((seconds%3600)/60);
 
-const secs =
-seconds%60;
+const secs=seconds%60;
 
 if(hours){
 
-return (
-String(hours).padStart(2,"0")+
-":"+
-String(minutes).padStart(2,"0")+
-":"+
-String(secs).padStart(2,"0")
-);
+return String(hours).padStart(2,"0")+":"+
+String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
 
 }
 
-return (
-String(minutes).padStart(2,"0")+
-":"+
-String(secs).padStart(2,"0")
-);
+return String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
 
 }
 
 function getAlgeriaTime(){
 
-const parts =
-new Intl.DateTimeFormat(
+const parts=new Intl.DateTimeFormat(
 "en-US",
 {
 timeZone:ALGERIA_TIMEZONE,
@@ -1367,41 +1068,30 @@ hour12:false
 }
 ).formatToParts(new Date());
 
-const result = {};
+const result={};
 
 parts.forEach(part=>{
-
 if(part.type!=="literal"){
-
-result[part.type] =
-part.value;
-
+result[part.type]=part.value;
 }
-
 });
 
-let hour =
-Number(result.hour);
+let hour=Number(result.hour);
 
-if(hour===24){
-hour=0;
-}
+if(hour===24)hour=0;
 
-return {
-
+return{
 weekday:result.weekday,
 hour:hour,
 minute:Number(result.minute),
 second:Number(result.second)
-
 };
 
 }
 
 function updateClock(){
 
-const formatter =
-new Intl.DateTimeFormat(
+const formatter=new Intl.DateTimeFormat(
 "ar-DZ",
 {
 timeZone:ALGERIA_TIMEZONE,
@@ -1415,56 +1105,36 @@ hour12:false
 }
 );
 
-document.getElementById(
-"clock"
-).textContent =
-"🕐 "+
-formatter.format(
-new Date()
-);
+document.getElementById("clock").textContent=
+"🕐 "+formatter.format(new Date());
 
 }
 
-let audioContext = null;
+let audioContext=null;
+let alarmOscillator=null;
+let alarmGain=null;
+let alarmLfo=null;
+let alarmLfoGain=null;
 
-let alarmOscillator = null;
-let alarmGain = null;
+let bellEnabled=
+localStorage.getItem("studyBellEnabled")==="true";
 
-let alarmLfo = null;
-let alarmLfoGain = null;
-
-let bellEnabled =
-localStorage.getItem(
-"studyBellEnabled"
-)==="true";
-
-let alarmRinging = false;
+let alarmRinging=false;
 
 function createAudioContext(){
 
-const AudioContextClass =
-window.AudioContext ||
+const AudioContextClass=
+window.AudioContext||
 window.webkitAudioContext;
 
-if(!AudioContextClass){
-return null;
-}
+if(!AudioContextClass)return null;
 
 if(!audioContext){
-
-audioContext =
-new AudioContextClass();
-
+audioContext=new AudioContextClass();
 }
 
-if(
-audioContext.state === "suspended"
-){
-
-audioContext.resume().catch(
-()=>{}
-);
-
+if(audioContext.state==="suspended"){
+audioContext.resume().catch(()=>{});
 }
 
 return audioContext;
@@ -1473,24 +1143,15 @@ return audioContext;
 
 function playBell(){
 
-const ctx =
-createAudioContext();
+const ctx=createAudioContext();
 
-if(!ctx){
-return;
-}
+if(!ctx)return;
 
 if(ctx.state==="suspended"){
 
-ctx.resume()
-.then(
-()=>{
+ctx.resume().then(()=>{
 playBellSound();
-}
-)
-.catch(
-()=>{}
-);
+}).catch(()=>{});
 
 return;
 
@@ -1502,188 +1163,109 @@ playBellSound();
 
 function playBellSound(){
 
-if(!audioContext){
-return;
-}
+if(!audioContext)return;
 
-const ctx =
-audioContext;
+const ctx=audioContext;
 
-const now =
-ctx.currentTime;
+const now=ctx.currentTime;
 
-const oscillator =
-ctx.createOscillator();
+const oscillator=ctx.createOscillator();
 
-const gain =
-ctx.createGain();
+const gain=ctx.createGain();
 
-oscillator.type =
-"sine";
+oscillator.type="sine";
 
-oscillator.frequency.setValueAtTime(
-880,
-now
-);
+oscillator.frequency.setValueAtTime(880,now);
 
-oscillator.frequency.exponentialRampToValueAtTime(
-660,
-now+0.25
-);
+oscillator.frequency.exponentialRampToValueAtTime(660,now+0.25);
 
-gain.gain.setValueAtTime(
-0.0001,
-now
-);
+gain.gain.setValueAtTime(.0001,now);
 
-gain.gain.exponentialRampToValueAtTime(
-0.45,
-now+0.03
-);
+gain.gain.exponentialRampToValueAtTime(.45,now+.03);
 
-gain.gain.exponentialRampToValueAtTime(
-0.0001,
-now+0.65
-);
+gain.gain.exponentialRampToValueAtTime(.0001,now+.65);
 
 oscillator.connect(gain);
+
 gain.connect(ctx.destination);
 
 oscillator.start(now);
 
-oscillator.stop(
-now+0.7
-);
+oscillator.stop(now+.7);
 
 }
 
 function startAlarm(){
 
-if(
-!bellEnabled ||
-alarmRinging
-){
-return;
-}
+if(!bellEnabled||alarmRinging)return;
 
-const ctx =
-createAudioContext();
+const ctx=createAudioContext();
 
 if(!ctx){
 
-alert(
-"متصفحك لا يدعم تشغيل الصوت."
-);
+alert("متصفحك لا يدعم تشغيل الصوت.");
 
 return;
 
 }
 
-const startSound = ()=>{
+const startSound=()=>{
 
-if(alarmRinging){
-return;
-}
+if(alarmRinging)return;
 
-alarmRinging =
-true;
+alarmRinging=true;
 
-const button =
-document.getElementById(
-"bellButton"
-);
+const button=document.getElementById("bellButton");
 
 if(button){
 
-button.classList.remove(
-"active"
-);
+button.classList.remove("active");
 
-button.classList.add(
-"ringing"
-);
+button.classList.add("ringing");
 
-button.textContent =
-"🛑 إيقاف المنبه";
+button.textContent="🛑 إيقاف المنبه";
 
 }
 
-alarmOscillator =
-ctx.createOscillator();
+alarmOscillator=ctx.createOscillator();
 
-alarmGain =
-ctx.createGain();
+alarmGain=ctx.createGain();
 
-alarmOscillator.type =
-"sine";
+alarmOscillator.type="sine";
 
-alarmOscillator.frequency.setValueAtTime(
-880,
-ctx.currentTime
-);
+alarmOscillator.frequency.setValueAtTime(880,ctx.currentTime);
 
-alarmGain.gain.setValueAtTime(
-0.0001,
-ctx.currentTime
-);
+alarmGain.gain.setValueAtTime(.0001,ctx.currentTime);
 
-alarmGain.gain.linearRampToValueAtTime(
-0.35,
-ctx.currentTime+0.05
-);
+alarmGain.gain.linearRampToValueAtTime(.35,ctx.currentTime+.05);
 
-alarmOscillator.connect(
-alarmGain
-);
+alarmOscillator.connect(alarmGain);
 
-alarmGain.connect(
-ctx.destination
-);
+alarmGain.connect(ctx.destination);
 
 alarmOscillator.start();
 
-alarmLfo =
-ctx.createOscillator();
+alarmLfo=ctx.createOscillator();
 
-alarmLfoGain =
-ctx.createGain();
+alarmLfoGain=ctx.createGain();
 
-alarmLfo.type =
-"sine";
+alarmLfo.type="sine";
 
-alarmLfo.frequency.setValueAtTime(
-4,
-ctx.currentTime
-);
+alarmLfo.frequency.setValueAtTime(4,ctx.currentTime);
 
-alarmLfoGain.gain.setValueAtTime(
-0.16,
-ctx.currentTime
-);
+alarmLfoGain.gain.setValueAtTime(.16,ctx.currentTime);
 
-alarmLfo.connect(
-alarmLfoGain
-);
+alarmLfo.connect(alarmLfoGain);
 
-alarmLfoGain.connect(
-alarmGain.gain
-);
+alarmLfoGain.connect(alarmGain.gain);
 
 alarmLfo.start();
 
 };
 
-if(
-ctx.state==="suspended"
-){
+if(ctx.state==="suspended"){
 
-ctx.resume()
-.then(
-startSound
-)
-.catch(
-()=>{}
-);
+ctx.resume().then(startSound).catch(()=>{});
 
 }else{
 
@@ -1695,91 +1277,61 @@ startSound();
 
 function stopAlarm(){
 
-alarmRinging =
-false;
+alarmRinging=false;
 
 if(alarmOscillator){
 
-try{
-alarmOscillator.stop();
-}catch(e){}
+try{alarmOscillator.stop();}catch(e){}
 
-try{
-alarmOscillator.disconnect();
-}catch(e){}
+try{alarmOscillator.disconnect();}catch(e){}
 
-alarmOscillator =
-null;
+alarmOscillator=null;
 
 }
 
 if(alarmLfo){
 
-try{
-alarmLfo.stop();
-}catch(e){}
+try{alarmLfo.stop();}catch(e){}
 
-try{
-alarmLfo.disconnect();
-}catch(e){}
+try{alarmLfo.disconnect();}catch(e){}
 
-alarmLfo =
-null;
+alarmLfo=null;
 
 }
 
 if(alarmGain){
 
-try{
-alarmGain.disconnect();
-}catch(e){}
+try{alarmGain.disconnect();}catch(e){}
 
-alarmGain =
-null;
+alarmGain=null;
 
 }
 
 if(alarmLfoGain){
 
-try{
-alarmLfoGain.disconnect();
-}catch(e){}
+try{alarmLfoGain.disconnect();}catch(e){}
 
-alarmLfoGain =
-null;
+alarmLfoGain=null;
 
 }
 
-const button =
-document.getElementById(
-"bellButton"
-);
+const button=document.getElementById("bellButton");
 
-if(!button){
-return;
-}
+if(!button)return;
 
-button.classList.remove(
-"ringing"
-);
+button.classList.remove("ringing");
 
 if(bellEnabled){
 
-button.classList.add(
-"active"
-);
+button.classList.add("active");
 
-button.textContent =
-"🔕 إيقاف الجرس";
+button.textContent="🔕 إيقاف الجرس";
 
 }else{
 
-button.classList.remove(
-"active"
-);
+button.classList.remove("active");
 
-button.textContent =
-"🔔 تفعيل الجرس";
+button.textContent="🔔 تفعيل الجرس";
 
 }
 
@@ -1795,40 +1347,30 @@ return;
 
 }
 
-const ctx =
-createAudioContext();
+const ctx=createAudioContext();
 
 if(!ctx){
 
-alert(
-"متصفحك لا يدعم تشغيل الجرس."
-);
+alert("متصفحك لا يدعم تشغيل الجرس.");
 
 return;
 
 }
 
-bellEnabled =
-!bellEnabled;
+bellEnabled=!bellEnabled;
 
 localStorage.setItem(
 "studyBellEnabled",
 String(bellEnabled)
 );
 
-const button =
-document.getElementById(
-"bellButton"
-);
+const button=document.getElementById("bellButton");
 
 if(bellEnabled){
 
-button.classList.add(
-"active"
-);
+button.classList.add("active");
 
-button.textContent =
-"🔕 إيقاف الجرس";
+button.textContent="🔕 إيقاف الجرس";
 
 playBell();
 
@@ -1842,133 +1384,82 @@ stopAlarm();
 
 function loadBellState(){
 
-const button =
-document.getElementById(
-"bellButton"
-);
+const button=document.getElementById("bellButton");
 
-if(!button){
-return;
-}
+if(!button)return;
 
 if(bellEnabled){
 
-button.classList.add(
-"active"
-);
+button.classList.add("active");
 
-button.textContent =
-"🔕 إيقاف الجرس";
+button.textContent="🔕 إيقاف الجرس";
 
 }else{
 
-button.classList.remove(
-"active"
-);
+button.classList.remove("active");
 
-button.textContent =
-"🔔 تفعيل الجرس";
+button.textContent="🔔 تفعيل الجرس";
 
 }
 
 }
 
-let lastStartBell = "";
-let lastEndBell = "";
+let lastStartBell="";
+let lastEndBell="";
 
 function updateCurrentLesson(){
 
-const now =
-getAlgeriaTime();
+const now=getAlgeriaTime();
 
-const day =
-arabicDays[
-now.weekday
-];
+const day=arabicDays[now.weekday];
 
-const currentSeconds =
+const currentSeconds=
 now.hour*3600+
 now.minute*60+
 now.second;
 
-const lessons =
-schedule[day]||[];
+const lessons=schedule[day]||[];
 
-const sortedLessons =
-[
-...lessons
-].sort(
-(a,b)=>
-timeToMinutes(a.start)-
-timeToMinutes(b.start)
+const sortedLessons=[...lessons].sort(
+(a,b)=>timeToMinutes(a.start)-timeToMinutes(b.start)
 );
 
-let currentLesson =
-null;
+let currentLesson=null;
+let nextLesson=null;
 
-let nextLesson =
-null;
+for(const lesson of sortedLessons){
 
-for(
-const lesson of sortedLessons
-){
+const startSeconds=timeToMinutes(lesson.start)*60;
 
-const startSeconds =
-timeToMinutes(
-lesson.start
-)*60;
-
-const endSeconds =
-timeToMinutes(
-lesson.end
-)*60;
+const endSeconds=timeToMinutes(lesson.end)*60;
 
 if(
-currentSeconds>=startSeconds &&
+currentSeconds>=startSeconds&&
 currentSeconds<endSeconds
 ){
 
-currentLesson =
-lesson;
-
+currentLesson=lesson;
 break;
 
 }
 
-if(
-startSeconds>currentSeconds &&
-!nextLesson
-){
-
-nextLesson =
-lesson;
-
+if(startSeconds>currentSeconds&&!nextLesson){
+nextLesson=lesson;
 }
 
 }
 
-const container =
-document.getElementById(
-"currentLesson"
-);
+const container=document.getElementById("currentLesson");
 
 if(currentLesson){
 
-const startSeconds =
-timeToMinutes(
-currentLesson.start
-)*60;
+const startSeconds=timeToMinutes(currentLesson.start)*60;
 
-const endSeconds =
-timeToMinutes(
-currentLesson.end
-)*60;
+const endSeconds=timeToMinutes(currentLesson.end)*60;
 
-const remaining =
-endSeconds-
-currentSeconds;
+const remaining=endSeconds-currentSeconds;
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="lesson-status">
 🔴 الحصة جارية الآن
@@ -1979,15 +1470,13 @@ ${currentLesson.subject}
 </div>
 
 <div class="current-time">
-${currentLesson.start}
-→
-${currentLesson.end}
+${currentLesson.start} → ${currentLesson.end}
 </div>
 
 <div class="school-timer">
 
 <div class="school-timer-label">
-⏳ الوقت المتبقي لاكمال الحصة
+⏳ الوقت المتبقي لإكمال الحصة
 </div>
 
 <div class="school-timer-display">
@@ -1998,47 +1487,30 @@ ${formatRemaining(remaining)}
 
 `;
 
-const lessonKey =
-day+
-"-"+
-(
-currentLesson.id||
-currentLesson.subject
-)+
-"-"+
-currentLesson.start;
+const lessonKey=
+day+"-"+(currentLesson.id||currentLesson.subject)+"-"+currentLesson.start;
 
 if(
-currentSeconds>=startSeconds &&
-currentSeconds<=startSeconds+3 &&
+currentSeconds>=startSeconds&&
+currentSeconds<=startSeconds+3&&
 lastStartBell!==lessonKey
 ){
 
-lastStartBell =
-lessonKey;
+lastStartBell=lessonKey;
 
-if(bellEnabled){
-
-startAlarm();
-
-}
+if(bellEnabled)startAlarm();
 
 }
 
 if(
-remaining<=3 &&
-remaining>=0 &&
+remaining<=3&&
+remaining>=0&&
 lastEndBell!==lessonKey
 ){
 
-lastEndBell =
-lessonKey;
+lastEndBell=lessonKey;
 
-if(bellEnabled){
-
-startAlarm();
-
-}
+if(bellEnabled)startAlarm();
 
 }
 
@@ -2048,16 +1520,11 @@ return;
 
 if(nextLesson){
 
-const startSeconds =
-timeToMinutes(
-nextLesson.start
-)*60;
+const startSeconds=timeToMinutes(nextLesson.start)*60;
 
-const secondsUntil =
-startSeconds-
-currentSeconds;
+const secondsUntil=startSeconds-currentSeconds;
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="lesson-status">
 ⏳ الحصة القادمة
@@ -2068,10 +1535,8 @@ ${nextLesson.subject}
 </div>
 
 <div class="current-time">
-تبدأ الساعة
-${nextLesson.start}
-وتنتهي الساعة
-${nextLesson.end}
+تبدأ الساعة ${nextLesson.start}
+وتنتهي الساعة ${nextLesson.end}
 </div>
 
 <div class="school-timer">
@@ -2094,7 +1559,7 @@ return;
 
 if(!lessons.length){
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="lesson-status">
 💤 لا توجد حصص مراجعة اليوم
@@ -2114,7 +1579,7 @@ return;
 
 }
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="lesson-status">
 ✅ انتهت حصص اليوم
@@ -2134,78 +1599,46 @@ container.innerHTML = `
 
 function renderSchedule(){
 
-const container =
-document.getElementById(
-"schedule"
-);
+const container=document.getElementById("schedule");
 
-container.innerHTML =
-"";
+container.innerHTML="";
 
-Object.keys(
-schedule
-).forEach(
-day=>{
+Object.keys(schedule).forEach(day=>{
 
-const dayCard =
-document.createElement(
-"div"
-);
+const dayCard=document.createElement("div");
 
-dayCard.className =
-"day-card";
+dayCard.className="day-card";
 
-dayCard.innerHTML =
-`
-<div class="day-title">
-${day}
-</div>
-`;
+dayCard.innerHTML=
+`<div class="day-title">${day}</div>`;
 
-schedule[day].forEach(
-lesson=>{
+schedule[day].forEach(lesson=>{
 
-const completed =
-localStorage.getItem(
-`completed-${lesson.id}`
-)==="true";
+const completed=
+localStorage.getItem(`completed-${lesson.id}`)==="true";
 
-const lessonDiv =
-document.createElement(
-"div"
-);
+const lessonDiv=document.createElement("div");
 
-lessonDiv.className =
-"lesson"+
-(
-completed
-?" completed"
-:""
-);
+lessonDiv.className=
+"lesson"+(completed?" completed":"");
 
-lessonDiv.innerHTML = `
+lessonDiv.innerHTML=`
 
 <div class="lesson-info">
 
-<div>
-${lesson.subject}
-</div>
+<div>${lesson.subject}</div>
 
 <div class="lesson-time">
-${lesson.start}
-→
-${lesson.end}
+${lesson.start} → ${lesson.end}
 </div>
 
 </div>
 
-<button
-onclick="toggleComplete('${lesson.id}')">
+<button onclick="toggleComplete('${lesson.id}')">
 ${completed?"↩️":"✅"}
 </button>
 
-<button
-onclick="openEdit('${day}','${lesson.id}')">
+<button onclick="openEdit('${day}','${lesson.id}')">
 ✏️
 </button>
 
@@ -2217,39 +1650,28 @@ onclick="restoreLesson('${day}','${lesson.id}')">
 
 `;
 
-dayCard.appendChild(
-lessonDiv
-);
+dayCard.appendChild(lessonDiv);
 
-}
-);
+});
 
-container.appendChild(
-dayCard
-);
+container.appendChild(dayCard);
 
-}
-);
+});
 
 updateStats();
+
 updateCurrentLesson();
 
 }
 
 function toggleComplete(id){
 
-const key =
-`completed-${id}`;
+const key=`completed-${id}`;
 
-const current =
-localStorage.getItem(
-key
-)==="true";
+const current=
+localStorage.getItem(key)==="true";
 
-localStorage.setItem(
-key,
-String(!current)
-);
+localStorage.setItem(key,String(!current));
 
 renderSchedule();
 
@@ -2257,199 +1679,116 @@ renderSchedule();
 
 function updateStats(){
 
-const allLessons =
-Object.values(
-schedule
-).flat();
+const allLessons=Object.values(schedule).flat();
 
-const completed =
-allLessons.filter(
+const completed=allLessons.filter(
 lesson=>
-localStorage.getItem(
-`completed-${lesson.id}`
-)==="true"
+localStorage.getItem(`completed-${lesson.id}`)==="true"
 ).length;
 
-document.getElementById(
-"completedLessons"
-).textContent =
-completed;
+document.getElementById("completedLessons").textContent=completed;
 
-const now =
-getAlgeriaTime();
+const now=getAlgeriaTime();
 
-const today =
-arabicDays[
-now.weekday
-];
+const today=arabicDays[now.weekday];
 
-const todayLessons =
-schedule[today]||
-[];
+const todayLessons=schedule[today]||[];
 
-document.getElementById(
-"todayLessons"
-).textContent =
+document.getElementById("todayLessons").textContent=
 todayLessons.length;
 
-document.getElementById(
-"studyHours"
-).textContent =
+document.getElementById("studyHours").textContent=
 completed;
 
-const achievements = [
-
+const achievements=[
 ["achievement1",1],
 ["achievement5",5],
 ["achievement10",10],
 ["achievement25",25]
-
 ];
 
-achievements.forEach(
-item=>{
+achievements.forEach(item=>{
 
-document.getElementById(
-item[0]
-).classList.toggle(
+document.getElementById(item[0]).classList.toggle(
 "unlocked",
 completed>=item[1]
 );
 
+});
+
 }
+
+let editingDay=null;
+let editingId=null;
+
+function openEdit(day,id){
+
+const lesson=schedule[day].find(
+item=>item.id===id
 );
 
-}
+if(!lesson)return;
 
-let editingDay =
-null;
+editingDay=day;
+editingId=id;
 
-let editingId =
-null;
+document.getElementById("editDay").value=day;
 
-function openEdit(
-day,
-id
-){
+document.getElementById("editStart").value=lesson.start;
 
-const lesson =
-schedule[day].find(
-item=>
-item.id===id
-);
+document.getElementById("editEnd").value=lesson.end;
 
-if(!lesson){
-return;
-}
-
-editingDay =
-day;
-
-editingId =
-id;
-
-document.getElementById(
-"editDay"
-).value =
-day;
-
-document.getElementById(
-"editStart"
-).value =
-lesson.start;
-
-document.getElementById(
-"editEnd"
-).value =
-lesson.end;
-
-document.getElementById(
-"editModal"
-).style.display =
-"flex";
+document.getElementById("editModal").style.display="flex";
 
 }
 
 function closeModal(){
 
-document.getElementById(
-"editModal"
-).style.display =
-"none";
+document.getElementById("editModal").style.display="none";
 
-editingDay =
-null;
-
-editingId =
-null;
+editingDay=null;
+editingId=null;
 
 }
 
 function saveEdit(){
 
-if(
-!editingDay ||
-!editingId
-){
-return;
-}
+if(!editingDay||!editingId)return;
 
-const start =
-document.getElementById(
-"editStart"
-).value;
+const start=document.getElementById("editStart").value;
 
-const end =
-document.getElementById(
-"editEnd"
-).value;
+const end=document.getElementById("editEnd").value;
 
 if(!start||!end){
 
-alert(
-"اختر وقت البداية والنهاية."
-);
+alert("اختر وقت البداية والنهاية.");
 
 return;
 
 }
 
-if(
-timeToMinutes(start)>=
-timeToMinutes(end)
-){
+if(timeToMinutes(start)>=timeToMinutes(end)){
 
-alert(
-"وقت النهاية يجب أن يكون بعد وقت البداية."
-);
+alert("وقت النهاية يجب أن يكون بعد وقت البداية.");
 
 return;
 
 }
 
-const lesson =
-schedule[
-editingDay
-].find(
-item=>
-item.id===editingId
+const lesson=schedule[editingDay].find(
+item=>item.id===editingId
 );
 
 if(lesson){
 
-lesson.start =
-start;
-
-lesson.end =
-end;
+lesson.start=start;
+lesson.end=end;
 
 }
 
 localStorage.setItem(
 "myStudySchedule",
-JSON.stringify(
-schedule
-)
+JSON.stringify(schedule)
 );
 
 closeModal();
@@ -2458,45 +1797,24 @@ renderSchedule();
 
 }
 
-function restoreLesson(
-day,
-id
-){
+function restoreLesson(day,id){
 
-const original =
-originalSchedule[
-day
-].find(
-item=>
-item.id===id
+const original=originalSchedule[day].find(
+item=>item.id===id
 );
 
-const current =
-schedule[
-day
-].find(
-item=>
-item.id===id
+const current=schedule[day].find(
+item=>item.id===id
 );
 
-if(
-!original||
-!current
-){
-return;
-}
+if(!original||!current)return;
 
-current.start =
-original.start;
-
-current.end =
-original.end;
+current.start=original.start;
+current.end=original.end;
 
 localStorage.setItem(
 "myStudySchedule",
-JSON.stringify(
-schedule
-)
+JSON.stringify(schedule)
 );
 
 renderSchedule();
@@ -2505,145 +1823,87 @@ renderSchedule();
 
 function resetAllSchedule(){
 
-if(
-!confirm(
+if(!confirm(
 "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
-)
-){
-return;
-}
+))return;
 
-schedule =
-JSON.parse(
-JSON.stringify(
-originalSchedule
-)
+schedule=JSON.parse(
+JSON.stringify(originalSchedule)
 );
 
 localStorage.setItem(
 "myStudySchedule",
-JSON.stringify(
-schedule
-)
+JSON.stringify(schedule)
 );
 
 renderSchedule();
 
-alert(
-"تمت إعادة البرنامج الأصلي ✅"
-);
+alert("تمت إعادة البرنامج الأصلي ✅");
 
 }
 
 function toggleTheme(){
 
-document.body.classList.toggle(
-"light"
-);
+document.body.classList.toggle("light");
 
-const light =
-document.body.classList.contains(
-"light"
-);
+const light=
+document.body.classList.contains("light");
 
 localStorage.setItem(
 "studyTheme",
-light
-?"light"
-:"dark"
+light?"light":"dark"
 );
 
-document.getElementById(
-"theme-button"
-).textContent =
-light
-?"☀️"
-:"🌙";
+document.getElementById("theme-button").textContent=
+light?"☀️":"🌙";
 
 }
 
 function loadTheme(){
 
-const light =
-localStorage.getItem(
-"studyTheme"
-)==="light";
+const light=
+localStorage.getItem("studyTheme")==="light";
 
-document.body.classList.toggle(
-"light",
-light
-);
+document.body.classList.toggle("light",light);
 
-document.getElementById(
-"theme-button"
-).textContent =
-light
-?"☀️"
-:"🌙";
+document.getElementById("theme-button").textContent=
+light?"☀️":"🌙";
 
 }
 
-let timerSeconds =
-25*60;
+let timerSeconds=25*60;
+let timerInterval=null;
+let timerRunning=false;
 
-let timerInterval =
-null;
+function formatTimer(seconds){
 
-let timerRunning =
-false;
+const minutes=Math.floor(seconds/60);
 
-function formatTimer(
-seconds
-){
+const secs=seconds%60;
 
-const minutes =
-Math.floor(
-seconds/60
-);
-
-const secs =
-seconds%60;
-
-return (
-String(minutes)
-.padStart(2,"0")+
-":"+
-String(secs)
-.padStart(2,"0")
-);
+return String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
 
 }
 
 function updateTimerDisplay(){
 
-document.getElementById(
-"timerDisplay"
-).textContent =
-formatTimer(
-timerSeconds
-);
+document.getElementById("timerDisplay").textContent=
+formatTimer(timerSeconds);
 
 }
 
 function changeTimer(){
 
-if(timerRunning){
-return;
-}
+if(timerRunning)return;
 
-const minutes =
-Number(
-document.getElementById(
-"timerSelect"
-).value
+const minutes=Number(
+document.getElementById("timerSelect").value
 );
 
-timerSeconds =
-minutes*60;
+timerSeconds=minutes*60;
 
-document.getElementById(
-"timerStatus"
-).textContent =
+document.getElementById("timerStatus").textContent=
 "جاهز للدراسة 💪";
 
 updateTimerDisplay();
@@ -2652,23 +1912,16 @@ updateTimerDisplay();
 
 function startTimer(){
 
-if(timerRunning){
-return;
-}
+if(timerRunning)return;
 
 createAudioContext();
 
-timerRunning =
-true;
+timerRunning=true;
 
-document.getElementById(
-"timerStatus"
-).textContent =
+document.getElementById("timerStatus").textContent=
 "📚 وقت الدراسة الآن...";
 
-timerInterval =
-setInterval(
-()=>{
+timerInterval=setInterval(()=>{
 
 if(timerSeconds>0){
 
@@ -2682,60 +1935,40 @@ finishTimer();
 
 }
 
-},
-1000
-);
+},1000);
 
 }
 
 function pauseTimer(){
 
-if(!timerRunning){
-return;
-}
+if(!timerRunning)return;
 
-clearInterval(
-timerInterval
-);
+clearInterval(timerInterval);
 
-timerInterval =
-null;
+timerInterval=null;
 
-timerRunning =
-false;
+timerRunning=false;
 
-document.getElementById(
-"timerStatus"
-).textContent =
+document.getElementById("timerStatus").textContent=
 "⏸️ تم إيقاف المؤقت مؤقتًا";
 
 }
 
 function resetTimer(){
 
-clearInterval(
-timerInterval
+clearInterval(timerInterval);
+
+timerInterval=null;
+
+timerRunning=false;
+
+const minutes=Number(
+document.getElementById("timerSelect").value
 );
 
-timerInterval =
-null;
+timerSeconds=minutes*60;
 
-timerRunning =
-false;
-
-const minutes =
-Number(
-document.getElementById(
-"timerSelect"
-).value
-);
-
-timerSeconds =
-minutes*60;
-
-document.getElementById(
-"timerStatus"
-).textContent =
+document.getElementById("timerStatus").textContent=
 "جاهز للدراسة 💪";
 
 updateTimerDisplay();
@@ -2744,24 +1977,17 @@ updateTimerDisplay();
 
 function finishTimer(){
 
-clearInterval(
-timerInterval
-);
+clearInterval(timerInterval);
 
-timerInterval =
-null;
+timerInterval=null;
 
-timerRunning =
-false;
+timerRunning=false;
 
-timerSeconds =
-0;
+timerSeconds=0;
 
 updateTimerDisplay();
 
-document.getElementById(
-"timerStatus"
-).textContent =
+document.getElementById("timerStatus").textContent=
 "🎉 انتهى وقت الدراسة!";
 
 if(bellEnabled){
@@ -2770,9 +1996,7 @@ startAlarm();
 
 }else{
 
-alert(
-"🎉 انتهى وقت الدراسة! أحسنت."
-);
+alert("🎉 انتهى وقت الدراسة! أحسنت.");
 
 }
 
@@ -2780,229 +2004,149 @@ alert(
 
 function renderSchoolSchedule(){
 
-const body =
-document.getElementById(
-"schoolScheduleBody"
-);
+const body=document.getElementById("schoolScheduleBody");
 
-body.innerHTML =
-"";
+body.innerHTML="";
 
-Object.entries(
-schoolSchedule
-).forEach(
-([day,items])=>{
+Object.entries(schoolSchedule).forEach(([day,items])=>{
 
-items.forEach(
-(item,index)=>{
+items.forEach((item,index)=>{
 
-const row =
-document.createElement(
-"tr"
-);
+const row=document.createElement("tr");
 
 if(index===0){
 
-const dayCell =
-document.createElement(
-"td"
-);
+const dayCell=document.createElement("td");
 
-dayCell.rowSpan =
-items.length;
+dayCell.rowSpan=items.length;
 
-dayCell.textContent =
-day;
+dayCell.textContent=day;
 
-row.appendChild(
-dayCell
-);
+row.appendChild(dayCell);
 
 }
 
-row.innerHTML +=
-`
-<td>
-${item[0]}
-</td>
+row.innerHTML+=`
 
-<td>
-${item[1]}
-</td>
+<td>${item[0]}</td>
+<td>${item[1]}</td>
+
 `;
 
-body.appendChild(
-row
-);
+body.appendChild(row);
 
-}
-);
+});
 
-}
-);
+});
 
 }
 
-const contactForm =
-document.getElementById(
-"contactForm"
-);
+const contactForm=
+document.getElementById("contactForm");
 
-const contactSubmit =
-document.getElementById(
-"contactSubmit"
-);
+const contactSubmit=
+document.getElementById("contactSubmit");
 
-const contactStatus =
-document.getElementById(
-"contactStatus"
-);
+const contactStatus=
+document.getElementById("contactStatus");
 
-contactForm.addEventListener(
-"submit",
-async event=>{
+contactForm.addEventListener("submit",async event=>{
 
 event.preventDefault();
 
-const name =
-document.getElementById(
-"visitorName"
-).value.trim();
+const name=
+document.getElementById("visitorName").value.trim();
 
-const email =
-document.getElementById(
-"visitorEmail"
-).value.trim();
+const email=
+document.getElementById("visitorEmail").value.trim();
 
-const message =
-document.getElementById(
-"visitorQuestion"
-).value.trim();
+const message=
+document.getElementById("visitorQuestion").value.trim();
 
-if(
-!name||
-!email||
-!message
-){
+if(!name||!email||!message){
 
-contactStatus.textContent =
+contactStatus.textContent=
 "⚠️ اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك أولاً.";
 
-contactStatus.className =
-"contact-error";
+contactStatus.className="contact-error";
 
 return;
 
 }
 
-const emailPattern =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if(!emailPattern.test(email)){
 
-contactStatus.textContent =
+contactStatus.textContent=
 "⚠️ أدخل بريدًا إلكترونيًا صحيحًا.";
 
-contactStatus.className =
-"contact-error";
+contactStatus.className="contact-error";
 
 return;
 
 }
 
-document.getElementById(
-"replyTo"
-).value =
-email;
+document.getElementById("replyTo").value=email;
 
-contactSubmit.disabled =
-true;
+contactSubmit.disabled=true;
 
-contactSubmit.textContent =
-"⏳ جارٍ إرسال السؤال...";
+contactSubmit.textContent="⏳ جارٍ إرسال السؤال...";
 
-contactStatus.textContent =
-"";
+contactStatus.textContent="";
 
 try{
 
-const response =
-await fetch(
+const response=await fetch(
 contactForm.action,
 {
 method:"POST",
 headers:{
-"Accept":
-"application/json"
+"Accept":"application/json"
 },
-body:
-new FormData(
-contactForm
-)
+body:new FormData(contactForm)
 }
 );
 
-const data =
-await response.json()
-.catch(
-()=>({})
-);
+const data=await response.json().catch(()=>({}));
 
-if(
-!response.ok||
-data.success===false
-){
+if(!response.ok||data.success===false){
 
-throw new Error(
-"Send failed"
-);
+throw new Error("Send failed");
 
 }
 
-contactStatus.textContent =
+contactStatus.textContent=
 "✅ تم إرسال سؤالك بنجاح! شكرًا لك.";
 
-contactStatus.className =
-"contact-success";
+contactStatus.className="contact-success";
 
 contactForm.reset();
 
 }catch(error){
 
-contactStatus.textContent =
+contactStatus.textContent=
 "❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلتك إلى Gmail.";
 
-contactStatus.className =
-"contact-error";
+contactStatus.className="contact-error";
 
 }
 
-contactSubmit.disabled =
-false;
+contactSubmit.disabled=false;
 
-contactSubmit.textContent =
-"📧 إرسال السؤال";
+contactSubmit.textContent="📧 إرسال السؤال";
 
-}
-);
+});
 
-document.getElementById(
-"editModal"
-).addEventListener(
+document.getElementById("editModal").addEventListener(
 "click",
 event=>{
 
-if(
-event.target===
-event.currentTarget
-){
-
+if(event.target===event.currentTarget){
 closeModal();
-
 }
 
-}
-);
+});
 
 loadTheme();
 
@@ -3018,8 +2162,7 @@ updateCurrentLesson();
 
 updateTimerDisplay();
 
-setInterval(
-()=>{
+setInterval(()=>{
 
 updateClock();
 
@@ -3027,28 +2170,9 @@ updateCurrentLesson();
 
 updateStats();
 
-},
-1000
-);
+},1000);
 
 </script>
 
 </body>
 </html>
-
-
-[/code]
-
-هذا يحافظ على موقعك ووظائفه، ويضيف له بيانات مهمة لمحركات البحث، ومنها:
-
-* **اسم الموقع:** برنامج 1ع تك1
-* **وصف الموقع**
-* **الكلمات المرتبطة بالبحث**
-* `robots` للسماح بالفهرسة
-* `canonical` للرابط الصحيح
-* بيانات `Schema.org` باسم الموقع
-* بيانات المشاركة عند إرسال الرابط
-
-لكن انتبه: **بعد رفع الملف إلى GitHub لن يظهر الموقع مباشرة في Google بمجرد كتابة الاسم**. الخطوة التالية هي تسجيل الموقع في **Google Search Console** ثم طلب فهرسة الرابط.
-
-إذا أردت أن نكمل، أستطيع أن أمشي معك **خطوة بخطوة الآن حتى يظهر "برنامج 1ع تك1" في Google**.
