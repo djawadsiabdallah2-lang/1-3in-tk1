@@ -82,8 +82,6 @@ body:before{
     z-index:-1;
 }
 
-/* NAVBAR */
-
 nav{
     position:sticky;
     top:0;
@@ -142,8 +140,6 @@ body.light .nav-links a.active{
     color:var(--blue2);
 }
 
-/* THEME */
-
 #theme-button{
     position:fixed;
     left:20px;
@@ -165,14 +161,10 @@ body.light .nav-links a.active{
     transform:rotate(15deg) scale(1.06);
 }
 
-/* CONTAINER */
-
 .container{
     width:min(1150px,92%);
     margin:auto;
 }
-
-/* HERO */
 
 .hero{
     padding:65px 0 35px;
@@ -225,8 +217,6 @@ body.light .nav-links a.active{
     color:var(--muted);
 }
 
-/* CARDS */
-
 .card{
     background:var(--card);
     border:1px solid var(--border);
@@ -263,8 +253,6 @@ body.light .nav-links a.active{
     font-size:13px;
     margin-top:3px;
 }
-
-/* CURRENT LESSON */
 
 .current-card{
     overflow:hidden;
@@ -314,11 +302,7 @@ body.light .nav-links a.active{
     margin:23px auto 0;
     padding:20px;
     border-radius:18px;
-    background:linear-gradient(
-        135deg,
-        rgba(25,169,255,.12),
-        rgba(0,110,255,.04)
-    );
+    background:linear-gradient(135deg,rgba(25,169,255,.12),rgba(0,110,255,.04));
     border:1px solid rgba(25,169,255,.14);
 }
 
@@ -334,8 +318,6 @@ body.light .nav-links a.active{
     letter-spacing:2px;
     color:var(--cyan);
 }
-
-/* BELL */
 
 .bell-area{
     display:flex;
@@ -374,8 +356,6 @@ body.light .nav-links a.active{
     50%{transform:scale(1.06)}
 }
 
-/* STATS */
-
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -402,8 +382,6 @@ body.light .nav-links a.active{
     color:var(--muted);
     font-size:14px;
 }
-
-/* TIMER */
 
 .timer{
     text-align:center;
@@ -463,8 +441,6 @@ body.light .nav-links a.active{
     background:var(--blue2);
 }
 
-/* ACHIEVEMENTS */
-
 .achievements{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -493,8 +469,6 @@ body.light .nav-links a.active{
     font-size:32px;
     margin-bottom:8px;
 }
-
-/* SCHEDULE */
 
 .schedule{
     display:grid;
@@ -579,8 +553,6 @@ body.light .nav-links a.active{
     background:#e63e55;
 }
 
-/* SCHOOL */
-
 .school-schedule{
     overflow:hidden;
 }
@@ -610,8 +582,6 @@ th{
 td{
     color:var(--muted);
 }
-
-/* CONTACT */
 
 .contact-card{
     text-align:center;
@@ -691,8 +661,6 @@ td{
     color:var(--red);
 }
 
-/* MODAL */
-
 .modal{
     display:none;
     position:fixed;
@@ -759,8 +727,6 @@ td{
     color:#fff;
 }
 
-/* FOOTER */
-
 footer{
     text-align:center;
     color:var(--muted);
@@ -771,8 +737,6 @@ footer{
 footer strong{
     color:var(--blue);
 }
-
-/* MOBILE */
 
 @media(max-width:800px){
 
@@ -1054,7 +1018,6 @@ footer strong{
                     <th>المادة</th>
                 </tr>
             </thead>
-
             <tbody id="schoolScheduleBody"></tbody>
         </table>
     </div>
@@ -1228,7 +1191,7 @@ const originalSchedule={
 {id:"fri-math",subject:"📐 مراجعة الرياضيات",start:"10:00",end:"11:00"},
 {id:"fri-natural-science",subject:"🔬 مراجعة العلوم الطبيعية",start:"11:15",end:"12:15"},
 {id:"fri-french",subject:"🇫🇷 مراجعة الفرنسية",start:"15:00",end:"16:00"},
-{id:"fri-arabic",subject:"📚 مراجعة العربية",start:"16:15",end:"17:15"}
+{id:"fri-arabic",subject:"📚 مراجعة العربية",start:"17:44",end:"17:45"}
 ],
 
 "السبت":[
@@ -1240,8 +1203,8 @@ const originalSchedule={
 
 };
 
-let schedule=
-JSON.parse(localStorage.getItem("myStudySchedule"))||
+let schedule =
+JSON.parse(localStorage.getItem("myStudySchedule")) ||
 JSON.parse(JSON.stringify(originalSchedule));
 
 const arabicDays={
@@ -1305,8 +1268,11 @@ const schoolSchedule={
 };
 
 function timeToMinutes(time){
+
     const parts=time.split(":");
-    return Number(parts[0])*60+Number(parts[1]);
+
+    return Number(parts[0])*60+
+           Number(parts[1]);
 }
 
 function formatRemaining(seconds){
@@ -1314,17 +1280,21 @@ function formatRemaining(seconds){
     seconds=Math.max(0,Math.floor(seconds));
 
     const hours=Math.floor(seconds/3600);
-    const minutes=Math.floor((seconds%3600)/60);
+
+    const minutes=
+        Math.floor((seconds%3600)/60);
+
     const secs=seconds%60;
 
     if(hours){
+
         return String(hours).padStart(2,"0")+":"+
-        String(minutes).padStart(2,"0")+":"+
-        String(secs).padStart(2,"0");
+               String(minutes).padStart(2,"0")+":"+
+               String(secs).padStart(2,"0");
     }
 
     return String(minutes).padStart(2,"0")+":"+
-    String(secs).padStart(2,"0");
+           String(secs).padStart(2,"0");
 }
 
 function getAlgeriaTime(){
@@ -1344,9 +1314,11 @@ function getAlgeriaTime(){
     const result={};
 
     parts.forEach(part=>{
+
         if(part.type!=="literal"){
             result[part.type]=part.value;
         }
+
     });
 
     let hour=Number(result.hour);
@@ -1378,33 +1350,46 @@ function updateClock(){
     );
 
     document.getElementById("clock").textContent=
-    "🕐 "+formatter.format(new Date());
+        "🕐 "+formatter.format(new Date());
 }
-/* =========================
-   BELL - جرس المدرسة
-========================= */
 
-let audioContext = null;
 
-let alarmRinging = false;
-let schoolBellInterval = null;
+/* =========================================================
+   🔔 نظام جرس المدرسة — الإصلاح
+========================================================= */
 
-let bellEnabled =
-    localStorage.getItem("studyBellEnabled") === "true";
+let audioContext=null;
+
+let alarmRinging=false;
+
+let schoolBellInterval=null;
+
+let bellEnabled=
+    localStorage.getItem("studyBellEnabled")==="true";
+
+
+/*
+ * إنشاء AudioContext
+ */
 
 function createAudioContext(){
 
-    const AudioContextClass =
-        window.AudioContext ||
+    const AudioContextClass=
+        window.AudioContext||
         window.webkitAudioContext;
 
-    if(!AudioContextClass) return null;
-
-    if(!audioContext){
-        audioContext = new AudioContextClass();
+    if(!AudioContextClass){
+        return null;
     }
 
-    if(audioContext.state === "suspended"){
+    if(!audioContext){
+
+        audioContext=
+            new AudioContextClass();
+    }
+
+    if(audioContext.state==="suspended"){
+
         audioContext.resume().catch(()=>{});
     }
 
@@ -1412,49 +1397,52 @@ function createAudioContext(){
 }
 
 
-/* 🔔 نغمة جرس المدرسة */
+/*
+ * 🔔 صوت جرس المدرسة
+ *
+ * نصنع الجرس من عدة ترددات معدنية
+ * بدل صوت صفارة بسيط.
+ */
 
 function playSchoolBell(){
 
-    const ctx = createAudioContext();
+    const ctx=createAudioContext();
 
-    if(!ctx) return;
+    if(!ctx){
+        return;
+    }
 
-    const ring = () => {
+    const ring=()=>{
 
-        const now = ctx.currentTime;
+        const now=ctx.currentTime;
 
         /*
-         * عدة ترددات معًا حتى يصبح الصوت
-         * أقرب إلى الجرس المدرسي المعدني.
+         * الترددات المعدنية للجرس
          */
 
-        const frequencies = [
-            {frequency:520, volume:.42},
-            {frequency:780, volume:.30},
-            {frequency:1040, volume:.22},
-            {frequency:1300, volume:.15},
-            {frequency:1560, volume:.10}
+        const tones=[
+            [520,.55],
+            [780,.40],
+            [1040,.30],
+            [1300,.22],
+            [1560,.15],
+            [2080,.08]
         ];
 
-        frequencies.forEach(item => {
+        tones.forEach(([frequency,volume])=>{
 
-            const oscillator =
+            const oscillator=
                 ctx.createOscillator();
 
-            const gain =
+            const gain=
                 ctx.createGain();
 
-            oscillator.type = "sine";
+            oscillator.type="sine";
 
             oscillator.frequency.setValueAtTime(
-                item.frequency,
+                frequency,
                 now
             );
-
-            /*
-             * بداية قوية ثم رنين تدريجي
-             */
 
             gain.gain.setValueAtTime(
                 0.0001,
@@ -1462,26 +1450,26 @@ function playSchoolBell(){
             );
 
             gain.gain.exponentialRampToValueAtTime(
-                item.volume,
-                now + 0.025
+                volume,
+                now+.025
             );
 
             gain.gain.exponentialRampToValueAtTime(
                 0.0001,
-                now + 0.9
+                now+1.0
             );
 
             oscillator.connect(gain);
+
             gain.connect(ctx.destination);
 
             oscillator.start(now);
 
-            oscillator.stop(now + 0.95);
+            oscillator.stop(now+1.05);
         });
-
     };
 
-    if(ctx.state === "suspended"){
+    if(ctx.state==="suspended"){
 
         ctx.resume()
             .then(ring)
@@ -1495,53 +1483,58 @@ function playSchoolBell(){
 
 
 /*
- * 🔔 جرس المدرسة المستمر
- *
- * يصدر رنينًا متكررًا حتى يضغط الطالب
- * على زر "إيقاف المنبه".
+ * 🔔 تشغيل المنبه باستمرار
  */
 
 function startAlarm(){
 
-    if(!bellEnabled || alarmRinging){
+    if(!bellEnabled){
         return;
     }
 
-    const ctx = createAudioContext();
+    if(alarmRinging){
+        return;
+    }
 
-    if(!ctx) return;
+    const ctx=createAudioContext();
 
-    const beginAlarm = () => {
+    if(!ctx){
+        return;
+    }
 
-        if(alarmRinging) return;
+    const begin=()=>{
 
-        alarmRinging = true;
+        if(alarmRinging){
+            return;
+        }
 
-        const button =
+        alarmRinging=true;
+
+        const button=
             document.getElementById("bellButton");
 
         if(button){
 
             button.classList.remove("active");
+
             button.classList.add("ringing");
 
-            button.textContent =
+            button.textContent=
                 "🛑 إيقاف المنبه";
         }
 
         /*
-         * أول رنة فورًا
+         * الرنة الأولى مباشرة
          */
 
         playSchoolBell();
 
         /*
-         * تكرار الجرس كل 1.2 ثانية
-         * مثل جرس المدرسة.
+         * رنة جديدة كل 1.15 ثانية
          */
 
-        schoolBellInterval =
-            setInterval(() => {
+        schoolBellInterval=
+            setInterval(()=>{
 
                 if(!alarmRinging){
                     return;
@@ -1549,29 +1542,29 @@ function startAlarm(){
 
                 playSchoolBell();
 
-            },1200);
+            },1150);
     };
 
-    if(ctx.state === "suspended"){
+    if(ctx.state==="suspended"){
 
         ctx.resume()
-            .then(beginAlarm)
+            .then(begin)
             .catch(()=>{});
 
     }else{
 
-        beginAlarm();
+        begin();
     }
 }
 
 
 /*
- * 🛑 إيقاف جرس المدرسة
+ * 🛑 إيقاف المنبه
  */
 
 function stopAlarm(){
 
-    alarmRinging = false;
+    alarmRinging=false;
 
     if(schoolBellInterval){
 
@@ -1579,13 +1572,15 @@ function stopAlarm(){
             schoolBellInterval
         );
 
-        schoolBellInterval = null;
+        schoolBellInterval=null;
     }
 
-    const button =
+    const button=
         document.getElementById("bellButton");
 
-    if(!button) return;
+    if(!button){
+        return;
+    }
 
     button.classList.remove("ringing");
 
@@ -1593,28 +1588,28 @@ function stopAlarm(){
 
         button.classList.add("active");
 
-        button.textContent =
+        button.textContent=
             "🔕 إيقاف الجرس";
 
     }else{
 
         button.classList.remove("active");
 
-        button.textContent =
+        button.textContent=
             "🔔 تفعيل الجرس";
     }
 }
 
 
 /*
- * 🔘 تفعيل / تعطيل الجرس
+ * 🔘 زر تفعيل الجرس
  */
 
 function enableBell(){
 
     /*
-     * إذا كان المنبه يرن،
-     * الزر يوقفه مباشرة.
+     * إذا كان الجرس يعمل،
+     * فالضغط على الزر يوقفه.
      */
 
     if(alarmRinging){
@@ -1624,7 +1619,7 @@ function enableBell(){
         return;
     }
 
-    const ctx = createAudioContext();
+    const ctx=createAudioContext();
 
     if(!ctx){
 
@@ -1635,76 +1630,13 @@ function enableBell(){
         return;
     }
 
-    bellEnabled = !bellEnabled;
+    /*
+     * تشغيل AudioContext بعد ضغط المستخدم
+     */
 
-    localStorage.setItem(
-        "studyBellEnabled",
-        String(bellEnabled)
-    );
+    if(ctx.state==="suspended"){
 
-    const button =
-        document.getElementById("bellButton");
-
-    if(bellEnabled){
-
-        button.classList.add("active");
-
-        button.textContent =
-            "🔕 إيقاف الجرس";
-
-        /*
-         * رنة تجريبية عند التفعيل
-         * للسماح للمتصفح بتشغيل الصوت.
-         */
-
-        playSchoolBell();
-
-    }else{
-
-        stopAlarm();
-    }
-}
-
-
-/*
- * تحميل حالة الجرس
- */
-
-function loadBellState(){
-
-    const button =
-        document.getElementById("bellButton");
-
-    if(!button) return;
-
-    if(bellEnabled){
-
-        button.classList.add("active");
-
-        button.textContent =
-            "🔕 إيقاف الجرس";
-
-    }else{
-
-        button.classList.remove("active");
-
-        button.textContent =
-            "🔔 تفعيل الجرس";
-    }
-}
-    
-function enableBell(){
-
-    if(alarmRinging){
-        stopAlarm();
-        return;
-    }
-
-    const ctx=createAudioContext();
-
-    if(!ctx){
-        alert("متصفحك لا يدعم تشغيل الجرس.");
-        return;
+        ctx.resume().catch(()=>{});
     }
 
     bellEnabled=!bellEnabled;
@@ -1714,15 +1646,26 @@ function enableBell(){
         String(bellEnabled)
     );
 
-    const button=document.getElementById("bellButton");
+    const button=
+        document.getElementById("bellButton");
 
     if(bellEnabled){
 
         button.classList.add("active");
-        button.textContent="🔕 إيقاف الجرس";
 
-        /* تشغيل صوت مباشر حتى يسمح المتصفح بالصوت */
-        playBell();
+        button.textContent=
+            "🔕 إيقاف الجرس";
+
+        /*
+         * رنة اختبار عند التفعيل.
+         * هذا مهم حتى يسمح المتصفح بالصوت.
+         */
+
+        setTimeout(()=>{
+
+            playSchoolBell();
+
+        },100);
 
     }else{
 
@@ -1730,20 +1673,40 @@ function enableBell(){
     }
 }
 
+
+/*
+ * تحميل حالة الجرس من المتصفح
+ */
+
 function loadBellState(){
 
-    const button=document.getElementById("bellButton");
+    const button=
+        document.getElementById("bellButton");
 
-    if(!button)return;
+    if(!button){
+        return;
+    }
 
     if(bellEnabled){
+
         button.classList.add("active");
-        button.textContent="🔕 إيقاف الجرس";
+
+        button.textContent=
+            "🔕 إيقاف الجرس";
+
     }else{
+
         button.classList.remove("active");
-        button.textContent="🔔 تفعيل الجرس";
+
+        button.textContent=
+            "🔔 تفعيل الجرس";
     }
 }
+
+
+/* =========================================================
+   الحصة الحالية
+========================================================= */
 
 let lastStartBell="";
 let lastEndBell="";
@@ -1762,7 +1725,9 @@ function updateCurrentLesson(){
     const lessons=schedule[day]||[];
 
     const sortedLessons=[...lessons].sort(
-        (a,b)=>timeToMinutes(a.start)-timeToMinutes(b.start)
+        (a,b)=>
+            timeToMinutes(a.start)-
+            timeToMinutes(b.start)
     );
 
     let currentLesson=null;
@@ -1770,14 +1735,19 @@ function updateCurrentLesson(){
 
     for(const lesson of sortedLessons){
 
-        const startSeconds=timeToMinutes(lesson.start)*60;
-        const endSeconds=timeToMinutes(lesson.end)*60;
+        const startSeconds=
+            timeToMinutes(lesson.start)*60;
+
+        const endSeconds=
+            timeToMinutes(lesson.end)*60;
 
         if(
             currentSeconds>=startSeconds&&
             currentSeconds<endSeconds
         ){
+
             currentLesson=lesson;
+
             break;
         }
 
@@ -1785,11 +1755,13 @@ function updateCurrentLesson(){
             startSeconds>currentSeconds&&
             !nextLesson
         ){
+
             nextLesson=lesson;
         }
     }
 
-    const container=document.getElementById("currentLesson");
+    const container=
+        document.getElementById("currentLesson");
 
     if(currentLesson){
 
@@ -1799,7 +1771,8 @@ function updateCurrentLesson(){
         const endSeconds=
             timeToMinutes(currentLesson.end)*60;
 
-        const remaining=endSeconds-currentSeconds;
+        const remaining=
+            endSeconds-currentSeconds;
 
         container.innerHTML=`
 
@@ -1829,7 +1802,14 @@ function updateCurrentLesson(){
         `;
 
         const lessonKey=
-            day+"-"+(currentLesson.id||currentLesson.subject)+"-"+currentLesson.start;
+            day+"-"+
+            (currentLesson.id||currentLesson.subject)+
+            "-"+
+            currentLesson.start;
+
+        /*
+         * 🔔 جرس بداية الحصة
+         */
 
         if(
             currentSeconds>=startSeconds&&
@@ -1840,9 +1820,14 @@ function updateCurrentLesson(){
             lastStartBell=lessonKey;
 
             if(bellEnabled){
+
                 startAlarm();
             }
         }
+
+        /*
+         * 🔔 جرس نهاية الحصة
+         */
 
         if(
             remaining<=3&&
@@ -1853,6 +1838,7 @@ function updateCurrentLesson(){
             lastEndBell=lessonKey;
 
             if(bellEnabled){
+
                 startAlarm();
             }
         }
@@ -1935,19 +1921,22 @@ function updateCurrentLesson(){
     `;
 }
 
-/* =========================
-   SCHEDULE
-========================= */
+
+/* =========================================================
+   برنامج المراجعة
+========================================================= */
 
 function renderSchedule(){
 
-    const container=document.getElementById("schedule");
+    const container=
+        document.getElementById("schedule");
 
     container.innerHTML="";
 
     Object.keys(schedule).forEach(day=>{
 
-        const dayCard=document.createElement("div");
+        const dayCard=
+            document.createElement("div");
 
         dayCard.className="day-card";
 
@@ -2036,9 +2025,9 @@ function updateStats(){
     const completed=
         allLessons.filter(
             lesson=>
-            localStorage.getItem(
-                `completed-${lesson.id}`
-            )==="true"
+                localStorage.getItem(
+                    `completed-${lesson.id}`
+                )==="true"
         ).length;
 
     document.getElementById(
@@ -2054,11 +2043,13 @@ function updateStats(){
 
     document.getElementById(
         "todayLessons"
-    ).textContent=todayLessons.length;
+    ).textContent=
+        todayLessons.length;
 
     document.getElementById(
         "studyHours"
-    ).textContent=completed;
+    ).textContent=
+        completed;
 
     const achievements=[
         ["achievement1",1],
@@ -2082,9 +2073,10 @@ function updateStats(){
     });
 }
 
-/* =========================
-   EDIT
-========================= */
+
+/* =========================================================
+   تعديل الحصص
+========================================================= */
 
 let editingDay=null;
 let editingId=null;
@@ -2101,28 +2093,22 @@ function openEdit(day,id){
     editingDay=day;
     editingId=id;
 
-    document.getElementById(
-        "editDay"
-    ).value=day;
+    document.getElementById("editDay").value=day;
 
-    document.getElementById(
-        "editStart"
-    ).value=lesson.start;
+    document.getElementById("editStart").value=
+        lesson.start;
 
-    document.getElementById(
-        "editEnd"
-    ).value=lesson.end;
+    document.getElementById("editEnd").value=
+        lesson.end;
 
-    document.getElementById(
-        "editModal"
-    ).style.display="flex";
+    document.getElementById("editModal").style.display=
+        "flex";
 }
 
 function closeModal(){
 
-    document.getElementById(
-        "editModal"
-    ).style.display="none";
+    document.getElementById("editModal").style.display=
+        "none";
 
     editingDay=null;
     editingId=null;
@@ -2133,17 +2119,15 @@ function saveEdit(){
     if(!editingDay||!editingId)return;
 
     const start=
-        document.getElementById(
-            "editStart"
-        ).value;
+        document.getElementById("editStart").value;
 
     const end=
-        document.getElementById(
-            "editEnd"
-        ).value;
+        document.getElementById("editEnd").value;
 
     if(!start||!end){
+
         alert("اختر وقت البداية والنهاية.");
+
         return;
     }
 
@@ -2151,9 +2135,11 @@ function saveEdit(){
         timeToMinutes(start)>=
         timeToMinutes(end)
     ){
+
         alert(
             "وقت النهاية يجب أن يكون بعد وقت البداية."
         );
+
         return;
     }
 
@@ -2163,6 +2149,7 @@ function saveEdit(){
         );
 
     if(lesson){
+
         lesson.start=start;
         lesson.end=end;
     }
@@ -2206,7 +2193,9 @@ function resetAllSchedule(){
 
     if(!confirm(
         "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
-    ))return;
+    )){
+        return;
+    }
 
     schedule=
         JSON.parse(
@@ -2223,9 +2212,10 @@ function resetAllSchedule(){
     alert("تمت إعادة البرنامج الأصلي ✅");
 }
 
-/* =========================
-   THEME
-========================= */
+
+/* =========================================================
+   الوضع الليلي / النهاري
+========================================================= */
 
 function toggleTheme(){
 
@@ -2248,9 +2238,7 @@ function toggleTheme(){
 function loadTheme(){
 
     const light=
-        localStorage.getItem(
-            "studyTheme"
-        )==="light";
+        localStorage.getItem("studyTheme")==="light";
 
     document.body.classList.toggle(
         "light",
@@ -2263,12 +2251,15 @@ function loadTheme(){
         light?"☀️":"🌙";
 }
 
-/* =========================
-   TIMER
-========================= */
+
+/* =========================================================
+   مؤقت الدراسة
+========================================================= */
 
 let timerSeconds=25*60;
+
 let timerInterval=null;
+
 let timerRunning=false;
 
 function formatTimer(seconds){
@@ -2317,6 +2308,10 @@ function startTimer(){
 
     if(timerRunning)return;
 
+    /*
+     * يسمح بتشغيل الصوت لاحقًا
+     */
+
     createAudioContext();
 
     timerRunning=true;
@@ -2326,20 +2321,21 @@ function startTimer(){
     ).textContent=
         "📚 وقت الدراسة الآن...";
 
-    timerInterval=setInterval(()=>{
+    timerInterval=
+        setInterval(()=>{
 
-        if(timerSeconds>0){
+            if(timerSeconds>0){
 
-            timerSeconds--;
+                timerSeconds--;
 
-            updateTimerDisplay();
+                updateTimerDisplay();
 
-        }else{
+            }else{
 
-            finishTimer();
-        }
+                finishTimer();
+            }
 
-    },1000);
+        },1000);
 }
 
 function pauseTimer(){
@@ -2412,9 +2408,10 @@ function finishTimer(){
     }
 }
 
-/* =========================
-   SCHOOL SCHEDULE
-========================= */
+
+/* =========================================================
+   برنامج المدرسة
+========================================================= */
 
 function renderSchoolSchedule(){
 
@@ -2457,24 +2454,19 @@ function renderSchoolSchedule(){
     });
 }
 
-/* =========================
-   CONTACT
-========================= */
+
+/* =========================================================
+   نموذج التواصل
+========================================================= */
 
 const contactForm=
-    document.getElementById(
-        "contactForm"
-    );
+    document.getElementById("contactForm");
 
 const contactSubmit=
-    document.getElementById(
-        "contactSubmit"
-    );
+    document.getElementById("contactSubmit");
 
 const contactStatus=
-    document.getElementById(
-        "contactStatus"
-    );
+    document.getElementById("contactStatus");
 
 contactForm.addEventListener(
     "submit",
@@ -2559,6 +2551,7 @@ contactForm.addEventListener(
                 !response.ok||
                 data.success===false
             ){
+
                 throw new Error(
                     "Send failed"
                 );
@@ -2588,9 +2581,10 @@ contactForm.addEventListener(
     }
 );
 
-/* =========================
-   MODAL
-========================= */
+
+/* =========================================================
+   النافذة
+========================================================= */
 
 document.getElementById(
     "editModal"
@@ -2602,27 +2596,38 @@ document.getElementById(
             event.target===
             event.currentTarget
         ){
+
             closeModal();
         }
     }
 );
 
-/* =========================
-   START
-========================= */
+
+/* =========================================================
+   تشغيل الموقع
+========================================================= */
 
 loadTheme();
+
 loadBellState();
+
 renderSchedule();
+
 renderSchoolSchedule();
+
 updateClock();
+
 updateCurrentLesson();
+
 updateTimerDisplay();
+
 
 setInterval(()=>{
 
     updateClock();
+
     updateCurrentLesson();
+
     updateStats();
 
 },1000);
