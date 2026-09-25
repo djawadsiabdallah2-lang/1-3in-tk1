@@ -14,52 +14,61 @@
 
 <meta
     name="description"
-    content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة لطلاب السنة الأولى ثانوي. تابع حصصك وبرنامجك المدرسي ومؤقت الدراسة والإنجازات."
+    content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة للتلاميذ. تابع حصصك، برنامجك المدرسي، وقت المراجعة، المؤقت والإنجازات في مكان واحد."
 >
 
 <meta
     name="keywords"
-    content="برنامج 1ع تك1, برنامج 1ع تك1 تك1, 1ع تك1, أولى ثانوي, السنة الأولى ثانوي, برنامج الدراسة, برنامج المراجعة, الجزائر"
+    content="برنامج 1ع تك1, برنامج 1ع, تك1, برنامج الدراسة, برنامج المراجعة, تنظيم الدراسة, الدراسة, مراجعة الدروس, ثانوي الجزائر"
 >
 
-<meta
-    name="author"
-    content="برنامج 1ع تك1"
->
+<meta name="author" content="برنامج 1ع تك1">
 
-<meta
-    name="robots"
-    content="index, follow"
->
+<meta name="robots" content="index, follow">
 
-<!-- مشاركة الموقع عند نشر الرابط -->
+<meta name="googlebot" content="index, follow">
+
+<meta name="language" content="Arabic">
+
+<meta name="theme-color" content="#101820">
+
+<!-- =========================
+     Open Graph
+========================= -->
+
+<meta property="og:type" content="website">
+
 <meta
     property="og:title"
-    content="برنامج 1ع تك1"
+    content="برنامج 1ع تك1 | برنامج الدراسة والمراجعة"
 >
 
 <meta
     property="og:description"
-    content="برنامج الدراسة والمراجعة لطلاب السنة الأولى ثانوي."
+    content="برنامج 1ع تك1 لتنظيم الدراسة والمراجعة ومتابعة الحصص والإنجازات."
 >
 
-<meta
-    property="og:type"
-    content="website"
->
+<meta property="og:locale" content="ar_DZ">
 
-<!-- ==================================================
-     ملاحظة:
-     ضع رابط موقعك الحقيقي بدل هذا الرابط
-     بعد نشر الموقع
-================================================== -->
+<meta property="og:site_name" content="برنامج 1ع تك1">
 
-<!--
-<link
-    rel="canonical"
-    href="https://ضع-رابط-موقعك-هنا/"
->
--->
+<!-- =========================
+     بيانات الموقع لمحركات البحث
+========================= -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "برنامج 1ع تك1",
+    "alternateName": [
+        "برنامج 1ع",
+        "برنامج الدراسة 1ع تك1"
+    ],
+    "description": "برنامج 1ع تك1 لتنظيم الدراسة والمراجعة ومتابعة الحصص والإنجازات.",
+    "inLanguage": "ar-DZ"
+}
+</script>
 
 <style>
 
@@ -438,10 +447,7 @@ background:#555
 }
 
 .reset-all{
-background:var(--red)
-}
-
-.reset-all{
+background:var(--red);
 margin-top:10px
 }
 
@@ -710,8 +716,6 @@ id="clock">
 🕐 جاري تحميل الوقت...
 </div>
 
-<!-- الحصة الحالية -->
-
 <div class="card">
 
 <h2>
@@ -734,8 +738,6 @@ onclick="enableBell()">
 </button>
 
 </div>
-
-<!-- الإحصائيات -->
 
 <div class="card">
 
@@ -784,8 +786,6 @@ id="studyHours">
 </div>
 
 </div>
-
-<!-- المؤقت -->
 
 <div class="card timer">
 
@@ -838,8 +838,6 @@ id="timerDisplay">
 </div>
 
 </div>
-
-<!-- الإنجازات -->
 
 <div class="card">
 
@@ -925,8 +923,6 @@ id="achievement25">
 
 </div>
 
-<!-- برنامج المراجعة -->
-
 <div class="card">
 
 <h2>
@@ -947,8 +943,6 @@ onclick="resetAllSchedule()">
 </button>
 
 </div>
-
-<!-- البرنامج المدرسي -->
 
 <div class="card school-schedule">
 
@@ -985,8 +979,6 @@ id="schoolScheduleBody">
 </table>
 
 </div>
-
-<!-- تواصل معي -->
 
 <div
 class="card contact-card"
@@ -1054,7 +1046,8 @@ required></textarea>
 <input
 type="hidden"
 name="_subject"
-value="رسالة جديدة من 📚برنامج 1ع تك1">
+value="رسالة جديدة من 📚 برنامج 1ع تك1"
+>
 
 <input
 type="hidden"
@@ -1080,8 +1073,6 @@ aria-live="polite">
 </div>
 
 </div>
-
-<!-- نافذة التعديل -->
 
 <div
 class="modal"
@@ -1142,10 +1133,6 @@ onclick="closeModal()">
 
 const ALGERIA_TIMEZONE =
 "Africa/Algiers";
-
-/* =========================
-   برنامج المراجعة
-========================= */
 
 const originalSchedule = {
 
@@ -1318,10 +1305,6 @@ JSON.parse(
 JSON.stringify(originalSchedule)
 );
 
-/* =========================
-   الأيام
-========================= */
-
 const arabicDays = {
 Sunday:"الأحد",
 Monday:"الإثنين",
@@ -1331,10 +1314,6 @@ Thursday:"الخميس",
 Friday:"الجمعة",
 Saturday:"السبت"
 };
-
-/* =========================
-   البرنامج المدرسي
-========================= */
 
 const schoolSchedule = {
 
@@ -1385,10 +1364,6 @@ const schoolSchedule = {
 ]
 
 };
-
-/* =========================
-   أدوات الوقت
-========================= */
 
 function timeToMinutes(time){
 
@@ -1441,10 +1416,6 @@ String(secs).padStart(2,"0")
 
 }
 
-/* =========================
-   وقت الجزائر
-========================= */
-
 function getAlgeriaTime(){
 
 const parts =
@@ -1491,10 +1462,6 @@ second:Number(result.second)
 
 }
 
-/* =========================
-   الساعة
-========================= */
-
 function updateClock(){
 
 const formatter =
@@ -1522,11 +1489,6 @@ new Date()
 
 }
 
-/* =====================================================
-   نظام المنبه الجديد
-   يبقى يعمل حتى يضغط الطالب على زر إيقاف المنبه
-===================================================== */
-
 let audioContext = null;
 
 let alarmOscillator = null;
@@ -1541,8 +1503,6 @@ localStorage.getItem(
 )==="true";
 
 let alarmRinging = false;
-
-/* إنشاء AudioContext */
 
 function createAudioContext(){
 
@@ -1575,8 +1535,6 @@ return audioContext;
 
 }
 
-/* صوت قصير لاختبار الجرس */
-
 function playBell(){
 
 const ctx =
@@ -1605,8 +1563,6 @@ return;
 playBellSound();
 
 }
-
-/* إنشاء صوت الجرس */
 
 function playBellSound(){
 
@@ -1665,10 +1621,6 @@ now+0.7
 
 }
 
-/* =====================================================
-   بدء المنبه المستمر
-===================================================== */
-
 function startAlarm(){
 
 if(
@@ -1720,8 +1672,6 @@ button.textContent =
 
 }
 
-/* صوت مستمر */
-
 alarmOscillator =
 ctx.createOscillator();
 
@@ -1756,8 +1706,6 @@ ctx.destination
 
 alarmOscillator.start();
 
-/* اهتزاز في نغمة الصوت */
-
 alarmLfo =
 ctx.createOscillator();
 
@@ -1789,8 +1737,6 @@ alarmLfo.start();
 
 };
 
-/* المتصفح قد يكون أوقف الصوت حتى يتفاعل المستخدم */
-
 if(
 ctx.state==="suspended"
 ){
@@ -1811,16 +1757,10 @@ startSound();
 
 }
 
-/* =====================================================
-   إيقاف المنبه
-===================================================== */
-
 function stopAlarm(){
 
 alarmRinging =
 false;
-
-/* إيقاف المذبذب */
 
 if(alarmOscillator){
 
@@ -1837,8 +1777,6 @@ null;
 
 }
 
-/* إيقاف LFO */
-
 if(alarmLfo){
 
 try{
@@ -1853,8 +1791,6 @@ alarmLfo =
 null;
 
 }
-
-/* فصل Gain */
 
 if(alarmGain){
 
@@ -1877,8 +1813,6 @@ alarmLfoGain =
 null;
 
 }
-
-/* تحديث الزر */
 
 const button =
 document.getElementById(
@@ -1915,13 +1849,7 @@ button.textContent =
 
 }
 
-/* =====================================================
-   زر الجرس
-===================================================== */
-
 function enableBell(){
-
-/* إذا كان المنبه يرن، أوقفه */
 
 if(alarmRinging){
 
@@ -1943,8 +1871,6 @@ alert(
 return;
 
 }
-
-/* تفعيل الجرس */
 
 bellEnabled =
 !bellEnabled;
@@ -1968,12 +1894,6 @@ button.classList.add(
 button.textContent =
 "🔕 إيقاف الجرس";
 
-/*
-هذا الصوت مهم جدًا:
-يجعل المتصفح يسمح بالصوت
-لأن المستخدم ضغط بنفسه على الزر.
-*/
-
 playBell();
 
 }else{
@@ -1983,8 +1903,6 @@ stopAlarm();
 }
 
 }
-
-/* تحميل حالة الجرس */
 
 function loadBellState(){
 
@@ -2018,10 +1936,6 @@ button.textContent =
 }
 
 }
-
-/* =========================
-   الحصة الحالية
-========================= */
 
 let lastStartBell = "";
 let lastEndBell = "";
@@ -2102,10 +2016,6 @@ document.getElementById(
 "currentLesson"
 );
 
-/* =========================
-   الحصة الحالية
-========================= */
-
 if(currentLesson){
 
 const startSeconds =
@@ -2162,10 +2072,6 @@ currentLesson.subject
 "-"+
 currentLesson.start;
 
-/* =========================
-   جرس بداية الحصة
-========================= */
-
 if(
 currentSeconds>=startSeconds &&
 currentSeconds<=startSeconds+3 &&
@@ -2182,10 +2088,6 @@ startAlarm();
 }
 
 }
-
-/* =========================
-   جرس نهاية الحصة
-========================= */
 
 if(
 remaining<=3 &&
@@ -2207,10 +2109,6 @@ startAlarm();
 return;
 
 }
-
-/* =========================
-   الحصة القادمة
-========================= */
 
 if(nextLesson){
 
@@ -2258,10 +2156,6 @@ return;
 
 }
 
-/* =========================
-   لا توجد حصص
-========================= */
-
 if(!lessons.length){
 
 container.innerHTML = `
@@ -2284,10 +2178,6 @@ return;
 
 }
 
-/* =========================
-   انتهت الحصص
-========================= */
-
 container.innerHTML = `
 
 <div class="lesson-status">
@@ -2305,10 +2195,6 @@ container.innerHTML = `
 `;
 
 }
-
-/* =========================
-   عرض برنامج المراجعة
-========================= */
 
 function renderSchedule(){
 
@@ -2414,10 +2300,6 @@ updateCurrentLesson();
 
 }
 
-/* =========================
-   إكمال الحصة
-========================= */
-
 function toggleComplete(id){
 
 const key =
@@ -2436,10 +2318,6 @@ String(!current)
 renderSchedule();
 
 }
-
-/* =========================
-   الإحصائيات
-========================= */
 
 function updateStats(){
 
@@ -2506,10 +2384,6 @@ completed>=item[1]
 );
 
 }
-
-/* =========================
-   تعديل الحصة
-========================= */
 
 let editingDay =
 null;
@@ -2578,7 +2452,7 @@ null;
 function saveEdit(){
 
 if(
-!editingDay||
+!editingDay ||
 !editingId
 ){
 return;
@@ -2648,10 +2522,6 @@ renderSchedule();
 
 }
 
-/* =========================
-   استعادة الحصة
-========================= */
-
 function restoreLesson(
 day,
 id
@@ -2697,10 +2567,6 @@ renderSchedule();
 
 }
 
-/* =========================
-   استعادة البرنامج كاملًا
-========================= */
-
 function resetAllSchedule(){
 
 if(
@@ -2732,10 +2598,6 @@ alert(
 );
 
 }
-
-/* =========================
-   الوضع الليلي
-========================= */
 
 function toggleTheme(){
 
@@ -2784,10 +2646,6 @@ light
 :"🌙";
 
 }
-
-/* =========================
-   مؤقت الدراسة
-========================= */
 
 let timerSeconds =
 25*60;
@@ -2984,10 +2842,6 @@ alert(
 
 }
 
-/* =========================
-   عرض البرنامج المدرسي
-========================= */
-
 function renderSchoolSchedule(){
 
 const body =
@@ -3052,10 +2906,6 @@ row
 );
 
 }
-
-/* =========================
-   نموذج تواصل معي
-========================= */
 
 const contactForm =
 document.getElementById(
@@ -3123,8 +2973,6 @@ contactStatus.className =
 return;
 
 }
-
-/* جعل Reply في Gmail يرد على بريد الطالب */
 
 document.getElementById(
 "replyTo"
@@ -3202,10 +3050,6 @@ contactSubmit.textContent =
 }
 );
 
-/* =========================
-   إغلاق نافذة التعديل
-========================= */
-
 document.getElementById(
 "editModal"
 ).addEventListener(
@@ -3223,10 +3067,6 @@ closeModal();
 
 }
 );
-
-/* =========================
-   تشغيل الموقع
-========================= */
 
 loadTheme();
 
