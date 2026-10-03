@@ -11,13 +11,6 @@
 <meta name="author" content="Learning is easy with us">
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://Learning is easy with us">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Learning is easy with us">
-<meta property="og:description" content="برنامج الدراسة والمراجعة للسنة الأولى ثانوي تقني.">
-<meta property="og:url" content="https://Learning is easy with us">
-
 <style>
 :root{
     --bg:#07111f;
@@ -118,6 +111,8 @@ body.light nav{
     display:flex;
     gap:8px;
     align-items:center;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .nav-links a{
@@ -242,6 +237,7 @@ body.light .nav-links a.active{
     background:rgba(25,169,255,.1);
     border-radius:13px;
     font-size:21px;
+    flex-shrink:0;
 }
 
 .card h2{
@@ -252,6 +248,107 @@ body.light .nav-links a.active{
     color:var(--muted);
     font-size:13px;
     margin-top:3px;
+}
+
+/* =========================
+   🎬 قسم الفيديوهات
+========================= */
+
+.videos-intro{
+    text-align:center;
+    color:var(--muted);
+    line-height:1.8;
+    margin:-5px auto 25px;
+    max-width:700px;
+}
+
+.video-subject{
+    margin-bottom:28px;
+}
+
+.video-subject-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:13px;
+    padding:12px 15px;
+    border-radius:14px;
+    background:rgba(25,169,255,.07);
+    border:1px solid var(--border);
+}
+
+.video-subject-title h3{
+    font-size:18px;
+}
+
+.video-count{
+    margin-right:auto;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.video-card{
+    overflow:hidden;
+    border-radius:18px;
+    background:rgba(0,0,0,.16);
+    border:1px solid var(--border);
+    transition:.25s;
+}
+
+.video-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(25,169,255,.35);
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.video-player{
+    width:100%;
+    display:block;
+    aspect-ratio:16/9;
+    background:#000;
+    object-fit:contain;
+}
+
+.video-info{
+    padding:15px;
+}
+
+.video-title{
+    font-size:16px;
+    font-weight:bold;
+    line-height:1.6;
+}
+
+.video-description{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin-top:5px;
+}
+
+.video-empty{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    border:1px dashed var(--border);
+    border-radius:15px;
+}
+
+.video-note{
+    margin-top:20px;
+    padding:14px;
+    border-radius:13px;
+    background:rgba(255,174,53,.07);
+    border:1px solid rgba(255,174,53,.18);
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
 }
 
 .current-card{
@@ -742,6 +839,7 @@ footer strong{
 
     nav{
         padding:12px 4%;
+        flex-direction:column;
     }
 
     .logo{
@@ -763,7 +861,8 @@ footer strong{
 
     .stats,
     .achievements,
-    .schedule{
+    .schedule,
+    .video-grid{
         grid-template-columns:1fr;
     }
 
@@ -812,6 +911,10 @@ footer strong{
     .lesson button{
         min-width:32px;
     }
+
+    .video-subject-title h3{
+        font-size:16px;
+    }
 }
 </style>
 </head>
@@ -819,6 +922,7 @@ footer strong{
 <body>
 
 <nav>
+
     <div class="logo">
         📚 <span>Learning is easy with us</span>
     </div>
@@ -826,9 +930,11 @@ footer strong{
     <div class="nav-links">
         <a href="#home" class="active">الرئيسية</a>
         <a href="#schedule-section">المراجعة</a>
+        <a href="#videos-section">🎬 الدروس</a>
         <a href="#school-section">المدرسة</a>
         <a href="#contact">تواصل معي</a>
     </div>
+
 </nav>
 
 <button id="theme-button" onclick="toggleTheme()">🌙</button>
@@ -842,12 +948,13 @@ footer strong{
     </div>
 
     <h1>
-         <span> Learning is easy with us </span>
+        <span>Learning is easy with us</span>
     </h1>
 
     <p>
         منصتك الشخصية لتنظيم المراجعة والدراسة،
-        متابعة الحصص، استخدام المؤقت، وتحقيق الإنجازات.
+        متابعة الحصص، مشاهدة الدروس، استخدام المؤقت،
+        وتحقيق الإنجازات.
     </p>
 
     <div class="clock" id="clock">
@@ -856,14 +963,24 @@ footer strong{
 
 </section>
 
+
+<!-- =========================
+     الحصة الحالية
+========================= -->
+
 <section class="card current-card">
 
     <div class="card-title">
+
         <div class="title-icon">📖</div>
+
         <div>
             <h2>ماذا أدرس الآن؟</h2>
-            <div class="card-subtitle">الحصة حسب توقيت الجزائر</div>
+            <div class="card-subtitle">
+                الحصة حسب توقيت الجزائر
+            </div>
         </div>
+
     </div>
 
     <div class="current-lesson" id="currentLesson">
@@ -871,21 +988,37 @@ footer strong{
     </div>
 
     <div class="bell-area">
-        <button id="bellButton" class="bell-button" onclick="enableBell()">
+
+        <button
+            id="bellButton"
+            class="bell-button"
+            onclick="enableBell()"
+        >
             🔔 تفعيل الجرس
         </button>
+
     </div>
 
 </section>
 
+
+<!-- =========================
+     الإحصائيات
+========================= -->
+
 <section class="card">
 
     <div class="card-title">
+
         <div class="title-icon">📊</div>
+
         <div>
             <h2>إحصائياتي</h2>
-            <div class="card-subtitle">تابع تقدمك في المراجعة</div>
+            <div class="card-subtitle">
+                تابع تقدمك في المراجعة
+            </div>
         </div>
+
     </div>
 
     <div class="stats">
@@ -909,42 +1042,81 @@ footer strong{
 
 </section>
 
+
+<!-- =========================
+     مؤقت الدراسة
+========================= -->
+
 <section class="card timer">
 
-    <div class="card-title" style="justify-content:center">
+    <div
+        class="card-title"
+        style="justify-content:center"
+    >
+
         <div class="title-icon">⏱️</div>
+
         <div>
             <h2>مؤقت الدراسة</h2>
-            <div class="card-subtitle">ركز في دراستك واترك الوقت علينا</div>
+
+            <div class="card-subtitle">
+                ركز في دراستك واترك الوقت علينا
+            </div>
         </div>
+
     </div>
 
     <select id="timerSelect" onchange="changeTimer()">
         <option value="30">30 دقيقة</option>
         <option value="60">60 دقيقة</option>
-        <option value="120">2ساعة</option>
+        <option value="120">2 ساعة</option>
     </select>
 
-    <div class="timer-display" id="timerDisplay">25:00</div>
+    <div class="timer-display" id="timerDisplay">
+        30:00
+    </div>
 
-    <div id="timerStatus">جاهز للدراسة 💪</div>
+    <div id="timerStatus">
+        جاهز للدراسة 💪
+    </div>
 
     <div class="timer-buttons">
-        <button onclick="startTimer()">▶️ بدء</button>
-        <button onclick="pauseTimer()">⏸️ إيقاف</button>
-        <button onclick="resetTimer()">🔄 إعادة</button>
+
+        <button onclick="startTimer()">
+            ▶️ بدء
+        </button>
+
+        <button onclick="pauseTimer()">
+            ⏸️ إيقاف
+        </button>
+
+        <button onclick="resetTimer()">
+            🔄 إعادة
+        </button>
+
     </div>
 
 </section>
 
+
+<!-- =========================
+     الإنجازات
+========================= -->
+
 <section class="card">
 
     <div class="card-title">
+
         <div class="title-icon">🏆</div>
+
         <div>
             <h2>الإنجازات</h2>
-            <div class="card-subtitle">استمر في المراجعة لفتح جميع الإنجازات</div>
+
+            <div class="card-subtitle">
+                استمر في المراجعة لفتح جميع الإنجازات
+            </div>
         </div>
+
     </div>
 
     <div class="achievements">
@@ -970,67 +1142,172 @@ footer strong{
             <small>10 حصص</small>
         </div>
 
+        <div class="achievement" id="achievement25">
+            <span class="icon">🏆</span>
+            <strong>الأسطورة</strong>
+            <br>
+            <small>25 حصة</small>
+        </div>
 
     </div>
 
 </section>
 
+
+<!-- ==================================================
+     🎬 قسم الدروس بالفيديو
+================================================== -->
+
+<section class="card" id="videos-section">
+
+    <div class="card-title">
+
+        <div class="title-icon">🎬</div>
+
+        <div>
+            <h2>دروس الفيديو</h2>
+
+            <div class="card-subtitle">
+                شاهد دروسك مباشرة من الموقع بصيغة MP4
+            </div>
+        </div>
+
+    </div>
+
+    <div class="videos-intro">
+
+        هنا ستجد الدروس المسجلة الخاصة بالمواد الدراسية.
+        اختر الدرس واضغط على زر التشغيل لمشاهدته مباشرة.
+
+    </div>
+
+    <div id="videoContainer"></div>
+
+    <div class="video-note">
+
+        💡 <strong>طريقة إضافة فيديو جديد:</strong><br>
+
+        1. أنشئ مجلدًا باسم
+        <strong>videos</strong>
+        بجانب ملف
+        <strong>index.html</strong>.<br>
+
+        2. ضع ملف الفيديو MP4 داخل المجلد.<br>
+
+        3. أضف معلومات الفيديو في قسم
+        <strong>videoLessons</strong>
+        الموجود في أسفل الصفحة داخل JavaScript.
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     برنامج المراجعة
+================================================== -->
+
 <section class="card" id="schedule-section">
 
     <div class="card-title">
+
         <div class="title-icon">📅</div>
+
         <div>
             <h2>برنامج المراجعة الأسبوعي</h2>
-            <div class="card-subtitle">يمكنك تعديل أوقات المراجعة وحفظها تلقائيًا</div>
+
+            <div class="card-subtitle">
+                يمكنك تعديل أوقات المراجعة وحفظها تلقائيًا
+            </div>
         </div>
+
     </div>
 
     <div class="schedule" id="schedule"></div>
 
-    <button class="main-button reset-all" onclick="resetAllSchedule()">
+    <button
+        class="main-button reset-all"
+        onclick="resetAllSchedule()"
+    >
         🔄 إعادة برنامج المراجعة الأصلي بالكامل
     </button>
 
 </section>
 
+
+<!-- ==================================================
+     البرنامج المدرسي
+================================================== -->
+
 <section class="card school-schedule" id="school-section">
 
     <div class="card-title">
+
         <div class="title-icon">🏫</div>
+
         <div>
             <h2>البرنامج المدرسي</h2>
-            <div class="card-subtitle">برنامج المدرسة الثابت</div>
+
+            <div class="card-subtitle">
+                برنامج المدرسة الثابت
+            </div>
         </div>
+
     </div>
 
     <div class="table-wrap">
+
         <table>
+
             <thead>
+
                 <tr>
                     <th>اليوم</th>
                     <th>الوقت</th>
                     <th>المادة</th>
                 </tr>
+
             </thead>
+
             <tbody id="schoolScheduleBody"></tbody>
+
         </table>
+
     </div>
 
 </section>
 
+
+<!-- ==================================================
+     التواصل
+================================================== -->
+
 <section class="card contact-card" id="contact">
 
-    <div class="card-title" style="justify-content:center">
+    <div
+        class="card-title"
+        style="justify-content:center"
+    >
+
         <div class="title-icon">📩</div>
+
         <div>
+
             <h2>تواصل معي</h2>
-            <div class="card-subtitle">للاقتراحات والأسئلة حول الموقع</div>
+
+            <div class="card-subtitle">
+                للاقتراحات والأسئلة حول الموقع
+            </div>
+
         </div>
+
     </div>
 
     <div class="contact-description">
+
         إذا كان لديك اقتراح أو سؤال أو فكرة لتطوير الموقع،
         يمكنك إرسالها من خلال النموذج التالي.
+
     </div>
 
     <form
@@ -1040,7 +1317,9 @@ footer strong{
         method="POST"
     >
 
-        <label for="visitorName">👤 اسمك</label>
+        <label for="visitorName">
+            👤 اسمك
+        </label>
 
         <input
             type="text"
@@ -1051,7 +1330,9 @@ footer strong{
             required
         >
 
-        <label for="visitorEmail">📧 بريدك الإلكتروني</label>
+        <label for="visitorEmail">
+            📧 بريدك الإلكتروني
+        </label>
 
         <input
             type="email"
@@ -1070,7 +1351,9 @@ footer strong{
             value=""
         >
 
-        <label for="visitorQuestion">💬 سؤالك أو اقتراحك</label>
+        <label for="visitorQuestion">
+            💬 سؤالك أو اقتراحك
+        </label>
 
         <textarea
             id="visitorQuestion"
@@ -1100,7 +1383,10 @@ footer strong{
             📧 إرسال السؤال
         </button>
 
-        <div id="contactStatus" aria-live="polite"></div>
+        <div
+            id="contactStatus"
+            aria-live="polite"
+        ></div>
 
     </form>
 
@@ -1108,11 +1394,23 @@ footer strong{
 
 </main>
 
+
 <footer>
-    <strong>📚 Learning is easy with us</strong>
+
+    <strong>
+        📚 Learning is easy with us
+    </strong>
+
     <br>
+
     نظم وقتك، راجع بذكاء، وحقق أهدافك 💙
+
 </footer>
+
+
+<!-- ==================================================
+     نافذة تعديل الحصة
+================================================== -->
 
 <div class="modal" id="editModal">
 
@@ -1121,21 +1419,40 @@ footer strong{
         <h2>✏️ تعديل الحصة</h2>
 
         <label>اليوم</label>
-        <input type="text" id="editDay" readonly>
+
+        <input
+            type="text"
+            id="editDay"
+            readonly
+        >
 
         <label>وقت البداية</label>
-        <input type="time" id="editStart">
+
+        <input
+            type="time"
+            id="editStart"
+        >
 
         <label>وقت النهاية</label>
-        <input type="time" id="editEnd">
+
+        <input
+            type="time"
+            id="editEnd"
+        >
 
         <div class="modal-buttons">
 
-            <button class="save-button" onclick="saveEdit()">
+            <button
+                class="save-button"
+                onclick="saveEdit()"
+            >
                 💾 حفظ
             </button>
 
-            <button class="cancel-button" onclick="closeModal()">
+            <button
+                class="cancel-button"
+                onclick="closeModal()"
+            >
                 إلغاء
             </button>
 
@@ -1145,121 +1462,545 @@ footer strong{
 
 </div>
 
+
 <script>
 
 const ALGERIA_TIMEZONE="Africa/Algiers";
 
+
+/* ==================================================
+   📚 برنامج المراجعة الأصلي
+================================================== */
+
 const originalSchedule={
 
 "الأحد":[
-{id:"sun-english",subject:"🇬🇧 الإنجليزية",start:"19:00",end:"20:00"},
-{id:"sun-islamic",subject:"☪️ العلوم الإسلامية",start:"20:15",end:"21:15"},
-{id:"sun-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
+    {
+        id:"sun-english",
+        subject:"🇬🇧 الإنجليزية",
+        start:"19:00",
+        end:"20:00"
+    },
+    {
+        id:"sun-islamic",
+        subject:"☪️ العلوم الإسلامية",
+        start:"20:15",
+        end:"21:15"
+    },
+    {
+        id:"sun-physics",
+        subject:"⚡ الفيزياء",
+        start:"21:30",
+        end:"22:30"
+    }
 ],
 
 "الإثنين":[
-{id:"mon-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
-{id:"mon-science",subject:"🔬 العلوم",start:"20:15",end:"21:15"},
-{id:"mon-physics",subject:"⚡ الفيزياء",start:"21:30",end:"22:30"}
+    {
+        id:"mon-math",
+        subject:"📐 الرياضيات",
+        start:"19:00",
+        end:"20:00"
+    },
+    {
+        id:"mon-science",
+        subject:"🔬 العلوم",
+        start:"20:15",
+        end:"21:15"
+    },
+    {
+        id:"mon-physics",
+        subject:"⚡ الفيزياء",
+        start:"21:30",
+        end:"22:30"
+    }
 ],
 
 "الثلاثاء":[
-{id:"tue-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
-{id:"tue-natural-science",subject:"🔬 العلوم الطبيعية",start:"20:15",end:"21:15"},
-{id:"tue-arabic",subject:"📚 اللغة العربية",start:"21:30",end:"22:30"}
+    {
+        id:"tue-math",
+        subject:"📐 الرياضيات",
+        start:"19:00",
+        end:"20:00"
+    },
+    {
+        id:"tue-natural-science",
+        subject:"🔬 العلوم الطبيعية",
+        start:"20:15",
+        end:"21:15"
+    },
+    {
+        id:"tue-arabic",
+        subject:"📚 اللغة العربية",
+        start:"21:30",
+        end:"22:30"
+    }
 ],
 
 "الأربعاء":[
-{id:"wed-math",subject:"📐 الرياضيات",start:"19:00",end:"20:00"},
-{id:"wed-french",subject:"🇫🇷 الفرنسية",start:"20:15",end:"21:15"},
-{id:"wed-history",subject:"📜 التاريخ",start:"21:30",end:"22:30"}
+    {
+        id:"wed-math",
+        subject:"📐 الرياضيات",
+        start:"19:00",
+        end:"20:00"
+    },
+    {
+        id:"wed-french",
+        subject:"🇫🇷 الفرنسية",
+        start:"20:15",
+        end:"21:15"
+    },
+    {
+        id:"wed-history",
+        subject:"📜 التاريخ",
+        start:"21:30",
+        end:"22:30"
+    }
 ],
 
 "الخميس":[
-{id:"thu-physics",subject:"⚡ الفيزياء",start:"19:00",end:"20:00"},
-{id:"thu-math",subject:"📐 الرياضيات",start:"20:15",end:"21:15"},
-{id:"thu-french",subject:"🇫🇷 الفرنسية",start:"21:30",end:"22:30"}
+    {
+        id:"thu-physics",
+        subject:"⚡ الفيزياء",
+        start:"19:00",
+        end:"20:00"
+    },
+    {
+        id:"thu-math",
+        subject:"📐 الرياضيات",
+        start:"20:15",
+        end:"21:15"
+    },
+    {
+        id:"thu-french",
+        subject:"🇫🇷 الفرنسية",
+        start:"21:30",
+        end:"22:30"
+    }
 ],
 
 "الجمعة":[
-{id:"fri-math",subject:"📐 مراجعة الرياضيات",start:"10:00",end:"11:00"},
-{id:"fri-natural-science",subject:"🔬 مراجعة العلوم الطبيعية",start:"11:15",end:"12:15"},
-{id:"fri-french",subject:"🇫🇷 مراجعة الفرنسية",start:"15:00",end:"16:00"},
-{id:"fri-arabic",subject:"📚 مراجعة العربية",start:"17:15",end:"18:15"},
+    {
+        id:"fri-math",
+        subject:"📐 مراجعة الرياضيات",
+        start:"10:00",
+        end:"11:00"
+    },
+    {
+        id:"fri-natural-science",
+        subject:"🔬 مراجعة العلوم الطبيعية",
+        start:"11:15",
+        end:"12:15"
+    },
+    {
+        id:"fri-french",
+        subject:"🇫🇷 مراجعة الفرنسية",
+        start:"15:00",
+        end:"16:00"
+    },
+    {
+        id:"fri-arabic",
+        subject:"📚 مراجعة العربية",
+        start:"17:15",
+        end:"18:15"
+    }
 ],
 
 "السبت":[
-{id:"sat-physics",subject:"⚡ مراجعة الفيزياء",start:"10:00",end:"11:00"},
-{id:"sat-english",subject:"🇬🇧 مراجعة الإنجليزية",start:"11:15",end:"12:15"},
-{id:"sat-history",subject:"📜 مراجعة التاريخ",start:"15:00",end:"16:00"},
-{id:"sat-comprehensive",subject:"📚 مراجعة شاملة",start:"19:00",end:"21:00"}
+    {
+        id:"sat-physics",
+        subject:"⚡ مراجعة الفيزياء",
+        start:"10:00",
+        end:"11:00"
+    },
+    {
+        id:"sat-english",
+        subject:"🇬🇧 مراجعة الإنجليزية",
+        start:"11:15",
+        end:"12:15"
+    },
+    {
+        id:"sat-history",
+        subject:"📜 مراجعة التاريخ",
+        start:"15:00",
+        end:"16:00"
+    },
+    {
+        id:"sat-comprehensive",
+        subject:"📚 مراجعة شاملة",
+        start:"19:00",
+        end:"21:00"
+    }
 ]
 
 };
 
-let schedule =
-JSON.parse(localStorage.getItem("myStudySchedule")) ||
-JSON.parse(JSON.stringify(originalSchedule));
+
+let schedule=
+    JSON.parse(
+        localStorage.getItem("myStudySchedule")
+    )||
+    JSON.parse(
+        JSON.stringify(originalSchedule)
+    );
+
+
+/* ==================================================
+   🎬🎬🎬 هنا تضيف فيديوهاتك 🎬🎬🎬
+
+   لا تحتاج إلى تعديل أي شيء آخر.
+
+   ضع ملفات MP4 داخل مجلد:
+
+   videos/
+
+   مثال:
+
+   videos/math-lesson-1.mp4
+   videos/physics-lesson-1.mp4
+
+================================================== */
+
+const videoLessons=[
+
+    /* ==============================
+       📐 الرياضيات
+    ============================== */
+
+    {
+        subject:"📐 الرياضيات",
+
+        title:"الدرس الأول في الرياضيات",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/math-lesson-1.mp4"
+    },
+
+    {
+        subject:"📐 الرياضيات",
+
+        title:"الدرس الثاني في الرياضيات",
+
+        description:"شرح الدرس الثاني",
+
+        video:"videos/math-lesson-2.mp4"
+    },
+
+
+    /* ==============================
+       ⚡ الفيزياء
+    ============================== */
+
+    {
+        subject:"⚡ الفيزياء",
+
+        title:"الدرس الأول في الفيزياء",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/physics-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       🔬 العلوم الطبيعية
+    ============================== */
+
+    {
+        subject:"🔬 العلوم الطبيعية",
+
+        title:"الدرس الأول في العلوم الطبيعية",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/science-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       🇫🇷 الفرنسية
+    ============================== */
+
+    {
+        subject:"🇫🇷 الفرنسية",
+
+        title:"الدرس الأول في الفرنسية",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/french-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       🇬🇧 الإنجليزية
+    ============================== */
+
+    {
+        subject:"🇬🇧 الإنجليزية",
+
+        title:"الدرس الأول في الإنجليزية",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/english-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       📚 اللغة العربية
+    ============================== */
+
+    {
+        subject:"📚 اللغة العربية",
+
+        title:"الدرس الأول في اللغة العربية",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/arabic-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       ☪️ العلوم الإسلامية
+    ============================== */
+
+    {
+        subject:"☪️ العلوم الإسلامية",
+
+        title:"الدرس الأول في العلوم الإسلامية",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/islamic-lesson-1.mp4"
+    },
+
+
+    /* ==============================
+       📜 التاريخ
+    ============================== */
+
+    {
+        subject:"📜 التاريخ",
+
+        title:"الدرس الأول في التاريخ",
+
+        description:"شرح الدرس الأول",
+
+        video:"videos/history-lesson-1.mp4"
+    }
+
+];
+
+
+/* ==================================================
+   عرض الفيديوهات
+================================================== */
+
+function renderVideos(){
+
+    const container=
+        document.getElementById(
+            "videoContainer"
+        );
+
+    container.innerHTML="";
+
+    if(!videoLessons.length){
+
+        container.innerHTML=`
+            <div class="video-empty">
+                🎬 لا توجد دروس فيديو حاليًا.
+            </div>
+        `;
+
+        return;
+    }
+
+    const subjects={};
+
+    videoLessons.forEach(video=>{
+
+        if(!subjects[video.subject]){
+            subjects[video.subject]=[];
+        }
+
+        subjects[video.subject].push(video);
+
+    });
+
+
+    Object.entries(subjects).forEach(
+        ([subject,videos])=>{
+
+            const subjectSection=
+                document.createElement("div");
+
+            subjectSection.className=
+                "video-subject";
+
+
+            subjectSection.innerHTML=`
+
+                <div class="video-subject-title">
+
+                    <h3>
+                        ${subject}
+                    </h3>
+
+                    <span class="video-count">
+                        ${videos.length} درس
+                    </span>
+
+                </div>
+
+                <div class="video-grid"></div>
+            `;
+
+
+            const grid=
+                subjectSection.querySelector(
+                    ".video-grid"
+                );
+
+
+            videos.forEach(video=>{
+
+                const card=
+                    document.createElement("div");
+
+                card.className="video-card";
+
+
+                card.innerHTML=`
+
+                    <video
+                        class="video-player"
+                        controls
+                        preload="metadata"
+                        playsinline
+                    >
+                        <source
+                            src="${video.video}"
+                            type="video/mp4"
+                        >
+
+                        متصفحك لا يدعم تشغيل فيديو MP4.
+                    </video>
+
+                    <div class="video-info">
+
+                        <div class="video-title">
+                            ${video.title}
+                        </div>
+
+                        <div class="video-description">
+                            ${video.description||""}
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            });
+
+
+            container.appendChild(
+                subjectSection
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   أيام الأسبوع
+================================================== */
 
 const arabicDays={
-Sunday:"الأحد",
-Monday:"الإثنين",
-Tuesday:"الثلاثاء",
-Wednesday:"الأربعاء",
-Thursday:"الخميس",
-Friday:"الجمعة",
-Saturday:"السبت"
+
+    Sunday:"الأحد",
+
+    Monday:"الإثنين",
+
+    Tuesday:"الثلاثاء",
+
+    Wednesday:"الأربعاء",
+
+    Thursday:"الخميس",
+
+    Friday:"الجمعة",
+
+    Saturday:"السبت"
+
 };
+
+
+/* ==================================================
+   البرنامج المدرسي
+================================================== */
 
 const schoolSchedule={
 
 "الأحد":[
-["08:00 - 09:00","💻 إعلام آلي"],
-["09:00 - 10:00","🏗️ هندسة مدنية"],
-["10:00 - 11:00","☪️ علوم إسلامية"],
-["11:00 - 12:00","🇬🇧 إنجليزية"],
-["13:30 - 14:30","🇫🇷 فرنسية"],
-["14:30 - 15:30","📚 عربية"],
-["15:30 - 16:30","⚡ فيزياء"]
+    ["08:00 - 09:00","💻 إعلام آلي"],
+    ["09:00 - 10:00","🏗️ هندسة مدنية"],
+    ["10:00 - 11:00","☪️ علوم إسلامية"],
+    ["11:00 - 12:00","🇬🇧 إنجليزية"],
+    ["13:30 - 14:30","🇫🇷 فرنسية"],
+    ["14:30 - 15:30","📚 عربية"],
+    ["15:30 - 16:30","⚡ فيزياء"]
 ],
 
 "الإثنين":[
-["08:00 - 09:00","📐 رياضيات"],
-["09:00 - 10:00","📜 تاريخ"],
-["10:00 - 11:00","📚 عربية"],
-["11:00 - 12:00","🇬🇧 إنجليزية"],
-["13:30 - 15:30","🔬 علوم"],
-["15:30 - 17:30","⚡ فيزياء"]
+    ["08:00 - 09:00","📐 رياضيات"],
+    ["09:00 - 10:00","📜 تاريخ"],
+    ["10:00 - 11:00","📚 عربية"],
+    ["11:00 - 12:00","🇬🇧 إنجليزية"],
+    ["13:30 - 15:30","🔬 علوم"],
+    ["15:30 - 17:30","⚡ فيزياء"]
 ],
 
 "الثلاثاء":[
-["08:00 - 09:00","🏗️ هندسة مدنية"],
-["09:00 - 10:00","📚 عربية"],
-["10:00 - 11:00","📐 رياضيات"],
-["11:00 - 12:00","🔬 علوم طبيعية"]
+    ["08:00 - 09:00","🏗️ هندسة مدنية"],
+    ["09:00 - 10:00","📚 عربية"],
+    ["10:00 - 11:00","📐 رياضيات"],
+    ["11:00 - 12:00","🔬 علوم طبيعية"]
 ],
 
 "الأربعاء":[
-["08:00 - 09:00","💻 إعلام آلي"],
-["09:00 - 10:00","📚 عربية"],
-["10:00 - 11:00","📐 رياضيات"],
-["11:00 - 12:00","📐 رياضيات"],
-["13:30 - 14:30","🇫🇷 فرنسية"],
-["14:30 - 15:30","📜 تاريخ"],
-["15:30 - 16:30","🇬🇧 إنجليزية"]
+    ["08:00 - 09:00","💻 إعلام آلي"],
+    ["09:00 - 10:00","📚 عربية"],
+    ["10:00 - 11:00","📐 رياضيات"],
+    ["11:00 - 12:00","📐 رياضيات"],
+    ["13:30 - 14:30","🇫🇷 فرنسية"],
+    ["14:30 - 15:30","📜 تاريخ"],
+    ["15:30 - 16:30","🇬🇧 إنجليزية"]
 ],
 
 "الخميس":[
-["08:00 - 09:00","🔬 علوم"],
-["09:00 - 10:00","⚡ فيزياء"],
-["10:00 - 11:00","🏃 تربية بدنية"],
-["11:00 - 12:00","🏃 تربية بدنية"],
-["13:30 - 14:30","📐 رياضيات"],
-["14:30 - 15:30","📐 رياضيات"],
-["15:30 - 16:30","🇫🇷 فرنسية"]
+    ["08:00 - 09:00","🔬 علوم"],
+    ["09:00 - 10:00","⚡ فيزياء"],
+    ["10:00 - 11:00","🏃 تربية بدنية"],
+    ["11:00 - 12:00","🏃 تربية بدنية"],
+    ["13:30 - 14:30","📐 رياضيات"],
+    ["14:30 - 15:30","📐 رياضيات"],
+    ["15:30 - 16:30","🇫🇷 فرنسية"]
 ]
 
 };
+
+
+/* ==================================================
+   الوقت
+================================================== */
 
 function timeToMinutes(time){
 
@@ -1269,41 +2010,56 @@ function timeToMinutes(time){
            Number(parts[1]);
 }
 
+
 function formatRemaining(seconds){
 
-    seconds=Math.max(0,Math.floor(seconds));
+    seconds=Math.max(
+        0,
+        Math.floor(seconds)
+    );
 
-    const hours=Math.floor(seconds/3600);
+    const hours=
+        Math.floor(seconds/3600);
 
     const minutes=
-        Math.floor((seconds%3600)/60);
+        Math.floor(
+            (seconds%3600)/60
+        );
 
-    const secs=seconds%60;
+    const secs=
+        seconds%60;
 
     if(hours){
 
-        return String(hours).padStart(2,"0")+":"+
-               String(minutes).padStart(2,"0")+":"+
+        return String(hours).padStart(2,"0")+
+               ":"+
+               String(minutes).padStart(2,"0")+
+               ":"+
                String(secs).padStart(2,"0");
     }
 
-    return String(minutes).padStart(2,"0")+":"+
+    return String(minutes).padStart(2,"0")+
+           ":"+
            String(secs).padStart(2,"0");
 }
 
+
 function getAlgeriaTime(){
 
-    const parts=new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone:ALGERIA_TIMEZONE,
-            weekday:"long",
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit",
-            hour12:false
-        }
-    ).formatToParts(new Date());
+    const parts=
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone:ALGERIA_TIMEZONE,
+                weekday:"long",
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
+            }
+        ).formatToParts(
+            new Date()
+        );
 
     const result={};
 
@@ -1317,40 +2073,54 @@ function getAlgeriaTime(){
 
     let hour=Number(result.hour);
 
-    if(hour===24) hour=0;
+    if(hour===24){
+        hour=0;
+    }
 
     return{
+
         weekday:result.weekday,
+
         hour,
+
         minute:Number(result.minute),
+
         second:Number(result.second)
+
     };
 }
 
+
 function updateClock(){
 
-    const formatter=new Intl.DateTimeFormat(
-        "ar-DZ",
-        {
-            timeZone:ALGERIA_TIMEZONE,
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit",
-            hour12:false
-        }
-    );
+    const formatter=
+        new Intl.DateTimeFormat(
+            "ar-DZ",
+            {
+                timeZone:ALGERIA_TIMEZONE,
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
+            }
+        );
 
-    document.getElementById("clock").textContent=
-        "🕐 "+formatter.format(new Date());
+    document.getElementById(
+        "clock"
+    ).textContent=
+        "🕐 "+
+        formatter.format(
+            new Date()
+        );
 }
 
 
-/* =========================================================
-   🔔 نظام جرس المدرسة — الإصلاح
-========================================================= */
+/* ==================================================
+   🔔 جرس المدرسة
+================================================== */
 
 let audioContext=null;
 
@@ -1359,12 +2129,10 @@ let alarmRinging=false;
 let schoolBellInterval=null;
 
 let bellEnabled=
-    localStorage.getItem("studyBellEnabled")==="true";
+    localStorage.getItem(
+        "studyBellEnabled"
+    )==="true";
 
-
-/*
- * إنشاء AudioContext
- */
 
 function createAudioContext(){
 
@@ -1377,30 +2145,27 @@ function createAudioContext(){
     }
 
     if(!audioContext){
-
         audioContext=
             new AudioContextClass();
     }
 
-    if(audioContext.state==="suspended"){
+    if(
+        audioContext.state==="suspended"
+    ){
 
-        audioContext.resume().catch(()=>{});
+        audioContext.resume()
+            .catch(()=>{});
+
     }
 
     return audioContext;
 }
 
 
-/*
- * 🔔 صوت جرس المدرسة
- *
- * نصنع الجرس من عدة ترددات معدنية
- * بدل صوت صفارة بسيط.
- */
-
 function playSchoolBell(){
 
-    const ctx=createAudioContext();
+    const ctx=
+        createAudioContext();
 
     if(!ctx){
         return;
@@ -1408,60 +2173,69 @@ function playSchoolBell(){
 
     const ring=()=>{
 
-        const now=ctx.currentTime;
-
-        /*
-         * الترددات المعدنية للجرس
-         */
+        const now=
+            ctx.currentTime;
 
         const tones=[
+
             [520,.55],
             [780,.40],
             [1040,.30],
             [1300,.22],
             [1560,.15],
             [2080,.08]
+
         ];
 
-        tones.forEach(([frequency,volume])=>{
 
-            const oscillator=
-                ctx.createOscillator();
+        tones.forEach(
+            ([frequency,volume])=>{
 
-            const gain=
-                ctx.createGain();
+                const oscillator=
+                    ctx.createOscillator();
 
-            oscillator.type="sine";
+                const gain=
+                    ctx.createGain();
 
-            oscillator.frequency.setValueAtTime(
-                frequency,
-                now
-            );
+                oscillator.type="sine";
 
-            gain.gain.setValueAtTime(
-                0.0001,
-                now
-            );
+                oscillator.frequency.setValueAtTime(
+                    frequency,
+                    now
+                );
 
-            gain.gain.exponentialRampToValueAtTime(
-                volume,
-                now+.025
-            );
+                gain.gain.setValueAtTime(
+                    0.0001,
+                    now
+                );
 
-            gain.gain.exponentialRampToValueAtTime(
-                0.0001,
-                now+1.0
-            );
+                gain.gain.exponentialRampToValueAtTime(
+                    volume,
+                    now+.025
+                );
 
-            oscillator.connect(gain);
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001,
+                    now+1.0
+                );
 
-            gain.connect(ctx.destination);
+                oscillator.connect(gain);
 
-            oscillator.start(now);
+                gain.connect(
+                    ctx.destination
+                );
 
-            oscillator.stop(now+1.05);
-        });
+                oscillator.start(now);
+
+                oscillator.stop(
+                    now+1.05
+                );
+
+            }
+        );
+
     };
+
 
     if(ctx.state==="suspended"){
 
@@ -1472,13 +2246,11 @@ function playSchoolBell(){
     }else{
 
         ring();
+
     }
+
 }
 
-
-/*
- * 🔔 تشغيل المنبه باستمرار
- */
 
 function startAlarm(){
 
@@ -1490,11 +2262,13 @@ function startAlarm(){
         return;
     }
 
-    const ctx=createAudioContext();
+    const ctx=
+        createAudioContext();
 
     if(!ctx){
         return;
     }
+
 
     const begin=()=>{
 
@@ -1505,27 +2279,28 @@ function startAlarm(){
         alarmRinging=true;
 
         const button=
-            document.getElementById("bellButton");
+            document.getElementById(
+                "bellButton"
+            );
+
 
         if(button){
 
-            button.classList.remove("active");
+            button.classList.remove(
+                "active"
+            );
 
-            button.classList.add("ringing");
+            button.classList.add(
+                "ringing"
+            );
 
             button.textContent=
                 "🛑 إيقاف المنبه";
         }
 
-        /*
-         * الرنة الأولى مباشرة
-         */
 
         playSchoolBell();
 
-        /*
-         * رنة جديدة كل 1.15 ثانية
-         */
 
         schoolBellInterval=
             setInterval(()=>{
@@ -1537,7 +2312,9 @@ function startAlarm(){
                 playSchoolBell();
 
             },1150);
+
     };
+
 
     if(ctx.state==="suspended"){
 
@@ -1548,13 +2325,11 @@ function startAlarm(){
     }else{
 
         begin();
+
     }
+
 }
 
-
-/*
- * 🛑 إيقاف المنبه
- */
 
 function stopAlarm(){
 
@@ -1567,53 +2342,61 @@ function stopAlarm(){
         );
 
         schoolBellInterval=null;
+
     }
 
+
     const button=
-        document.getElementById("bellButton");
+        document.getElementById(
+            "bellButton"
+        );
 
     if(!button){
         return;
     }
 
-    button.classList.remove("ringing");
+
+    button.classList.remove(
+        "ringing"
+    );
+
 
     if(bellEnabled){
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
         button.textContent=
             "🔕 إيقاف الجرس";
 
     }else{
 
-        button.classList.remove("active");
+        button.classList.remove(
+            "active"
+        );
 
         button.textContent=
             "🔔 تفعيل الجرس";
+
     }
+
 }
 
 
-/*
- * 🔘 زر تفعيل الجرس
- */
-
 function enableBell(){
-
-    /*
-     * إذا كان الجرس يعمل،
-     * فالضغط على الزر يوقفه.
-     */
 
     if(alarmRinging){
 
         stopAlarm();
 
         return;
+
     }
 
-    const ctx=createAudioContext();
+
+    const ctx=
+        createAudioContext();
 
     if(!ctx){
 
@@ -1624,36 +2407,39 @@ function enableBell(){
         return;
     }
 
-    /*
-     * تشغيل AudioContext بعد ضغط المستخدم
-     */
 
     if(ctx.state==="suspended"){
 
-        ctx.resume().catch(()=>{});
+        ctx.resume()
+            .catch(()=>{});
+
     }
 
+
     bellEnabled=!bellEnabled;
+
 
     localStorage.setItem(
         "studyBellEnabled",
         String(bellEnabled)
     );
 
+
     const button=
-        document.getElementById("bellButton");
+        document.getElementById(
+            "bellButton"
+        );
+
 
     if(bellEnabled){
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
         button.textContent=
             "🔕 إيقاف الجرس";
 
-        /*
-         * رنة اختبار عند التفعيل.
-         * هذا مهم حتى يسمح المتصفح بالصوت.
-         */
 
         setTimeout(()=>{
 
@@ -1664,76 +2450,102 @@ function enableBell(){
     }else{
 
         stopAlarm();
+
     }
+
 }
 
-
-/*
- * تحميل حالة الجرس من المتصفح
- */
 
 function loadBellState(){
 
     const button=
-        document.getElementById("bellButton");
+        document.getElementById(
+            "bellButton"
+        );
 
     if(!button){
         return;
     }
 
+
     if(bellEnabled){
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
         button.textContent=
             "🔕 إيقاف الجرس";
 
     }else{
 
-        button.classList.remove("active");
+        button.classList.remove(
+            "active"
+        );
 
         button.textContent=
             "🔔 تفعيل الجرس";
+
     }
+
 }
 
 
-/* =========================================================
+/* ==================================================
    الحصة الحالية
-========================================================= */
+================================================== */
 
 let lastStartBell="";
+
 let lastEndBell="";
+
 
 function updateCurrentLesson(){
 
-    const now=getAlgeriaTime();
+    const now=
+        getAlgeriaTime();
 
-    const day=arabicDays[now.weekday];
+    const day=
+        arabicDays[now.weekday];
+
 
     const currentSeconds=
         now.hour*3600+
         now.minute*60+
         now.second;
 
-    const lessons=schedule[day]||[];
 
-    const sortedLessons=[...lessons].sort(
-        (a,b)=>
-            timeToMinutes(a.start)-
-            timeToMinutes(b.start)
-    );
+    const lessons=
+        schedule[day]||[];
+
+
+    const sortedLessons=
+        [...lessons].sort(
+            (a,b)=>
+                timeToMinutes(a.start)-
+                timeToMinutes(b.start)
+        );
+
 
     let currentLesson=null;
+
     let nextLesson=null;
 
-    for(const lesson of sortedLessons){
+
+    for(
+        const lesson of sortedLessons
+    ){
 
         const startSeconds=
-            timeToMinutes(lesson.start)*60;
+            timeToMinutes(
+                lesson.start
+            )*60;
 
         const endSeconds=
-            timeToMinutes(lesson.end)*60;
+            timeToMinutes(
+                lesson.end
+            )*60;
+
 
         if(
             currentSeconds>=startSeconds&&
@@ -1743,7 +2555,9 @@ function updateCurrentLesson(){
             currentLesson=lesson;
 
             break;
+
         }
+
 
         if(
             startSeconds>currentSeconds&&
@@ -1751,22 +2565,34 @@ function updateCurrentLesson(){
         ){
 
             nextLesson=lesson;
+
         }
+
     }
 
+
     const container=
-        document.getElementById("currentLesson");
+        document.getElementById(
+            "currentLesson"
+        );
+
 
     if(currentLesson){
 
         const startSeconds=
-            timeToMinutes(currentLesson.start)*60;
+            timeToMinutes(
+                currentLesson.start
+            )*60;
 
         const endSeconds=
-            timeToMinutes(currentLesson.end)*60;
+            timeToMinutes(
+                currentLesson.end
+            )*60;
+
 
         const remaining=
             endSeconds-currentSeconds;
+
 
         container.innerHTML=`
 
@@ -1779,7 +2605,9 @@ function updateCurrentLesson(){
             </div>
 
             <div class="current-time">
-                ${currentLesson.start} → ${currentLesson.end}
+                ${currentLesson.start}
+                →
+                ${currentLesson.end}
             </div>
 
             <div class="school-timer">
@@ -1793,17 +2621,18 @@ function updateCurrentLesson(){
                 </div>
 
             </div>
+
         `;
 
+
         const lessonKey=
-            day+"-"+
-            (currentLesson.id||currentLesson.subject)+
-            "-"+
+            day+
+            "-" +
+            (currentLesson.id||
+             currentLesson.subject)+
+            "-" +
             currentLesson.start;
 
-        /*
-         * 🔔 جرس بداية الحصة
-         */
 
         if(
             currentSeconds>=startSeconds&&
@@ -1814,14 +2643,11 @@ function updateCurrentLesson(){
             lastStartBell=lessonKey;
 
             if(bellEnabled){
-
                 startAlarm();
             }
+
         }
 
-        /*
-         * 🔔 جرس نهاية الحصة
-         */
 
         if(
             remaining<=3&&
@@ -1832,21 +2658,28 @@ function updateCurrentLesson(){
             lastEndBell=lessonKey;
 
             if(bellEnabled){
-
                 startAlarm();
             }
+
         }
 
+
         return;
+
     }
+
 
     if(nextLesson){
 
         const startSeconds=
-            timeToMinutes(nextLesson.start)*60;
+            timeToMinutes(
+                nextLesson.start
+            )*60;
+
 
         const secondsUntil=
             startSeconds-currentSeconds;
+
 
         container.innerHTML=`
 
@@ -1859,8 +2692,10 @@ function updateCurrentLesson(){
             </div>
 
             <div class="current-time">
-                تبدأ الساعة ${nextLesson.start}
-                وتنتهي الساعة ${nextLesson.end}
+                تبدأ الساعة
+                ${nextLesson.start}
+                وتنتهي الساعة
+                ${nextLesson.end}
             </div>
 
             <div class="school-timer">
@@ -1874,10 +2709,13 @@ function updateCurrentLesson(){
                 </div>
 
             </div>
+
         `;
 
         return;
+
     }
+
 
     if(!lessons.length){
 
@@ -1894,10 +2732,13 @@ function updateCurrentLesson(){
             <div class="current-time">
                 لا توجد مادة مبرمجة لهذا اليوم.
             </div>
+
         `;
 
         return;
+
     }
+
 
     container.innerHTML=`
 
@@ -1912,109 +2753,159 @@ function updateCurrentLesson(){
         <div class="current-time">
             يمكنك الآن الراحة أو المراجعة.
         </div>
+
     `;
+
 }
 
 
-/* =========================================================
+/* ==================================================
    برنامج المراجعة
-========================================================= */
+================================================== */
 
 function renderSchedule(){
 
     const container=
-        document.getElementById("schedule");
+        document.getElementById(
+            "schedule"
+        );
 
     container.innerHTML="";
 
-    Object.keys(schedule).forEach(day=>{
 
-        const dayCard=
-            document.createElement("div");
+    Object.keys(schedule).forEach(
+        day=>{
 
-        dayCard.className="day-card";
+            const dayCard=
+                document.createElement(
+                    "div"
+                );
 
-        dayCard.innerHTML=
-            `<div class="day-title">
-                <span>${day}</span>
-                <span>📚</span>
-            </div>`;
+            dayCard.className=
+                "day-card";
 
-        schedule[day].forEach(lesson=>{
 
-            const completed=
-                localStorage.getItem(
-                    `completed-${lesson.id}`
-                )==="true";
+            dayCard.innerHTML=
+                `<div class="day-title">
+                    <span>${day}</span>
+                    <span>📚</span>
+                </div>`;
 
-            const lessonDiv=
-                document.createElement("div");
 
-            lessonDiv.className=
-                "lesson"+
-                (completed?" completed":"");
+            schedule[day].forEach(
+                lesson=>{
 
-            lessonDiv.innerHTML=`
+                    const completed=
+                        localStorage.getItem(
+                            `completed-${lesson.id}`
+                        )==="true";
 
-                <div class="lesson-info">
 
-                    <div>${lesson.subject}</div>
+                    const lessonDiv=
+                        document.createElement(
+                            "div"
+                        );
 
-                    <div class="lesson-time">
-                        ${lesson.start} → ${lesson.end}
-                    </div>
 
-                </div>
+                    lessonDiv.className=
+                        "lesson"+
+                        (
+                            completed
+                            ?" completed"
+                            :""
+                        );
 
-                <button
-                    title="إنجاز"
-                    onclick="toggleComplete('${lesson.id}')">
-                    ${completed?"↩️":"✅"}
-                </button>
 
-                <button
-                    title="تعديل"
-                    onclick="openEdit('${day}','${lesson.id}')">
-                    ✏️
-                </button>
+                    lessonDiv.innerHTML=`
 
-                <button
-                    class="restore"
-                    title="إرجاع الوقت الأصلي"
-                    onclick="restoreLesson('${day}','${lesson.id}')">
-                    ↩️
-                </button>
-            `;
+                        <div class="lesson-info">
 
-            dayCard.appendChild(lessonDiv);
-        });
+                            <div>
+                                ${lesson.subject}
+                            </div>
 
-        container.appendChild(dayCard);
-    });
+                            <div class="lesson-time">
+                                ${lesson.start}
+                                →
+                                ${lesson.end}
+                            </div>
+
+                        </div>
+
+                        <button
+                            title="إنجاز"
+                            onclick="toggleComplete('${lesson.id}')"
+                        >
+                            ${completed?"↩️":"✅"}
+                        </button>
+
+                        <button
+                            title="تعديل"
+                            onclick="openEdit('${day}','${lesson.id}')"
+                        >
+                            ✏️
+                        </button>
+
+                        <button
+                            class="restore"
+                            title="إرجاع الوقت الأصلي"
+                            onclick="restoreLesson('${day}','${lesson.id}')"
+                        >
+                            ↩️
+                        </button>
+
+                    `;
+
+
+                    dayCard.appendChild(
+                        lessonDiv
+                    );
+
+                }
+            );
+
+
+            container.appendChild(
+                dayCard
+            );
+
+        }
+    );
+
 
     updateStats();
+
     updateCurrentLesson();
+
 }
+
 
 function toggleComplete(id){
 
-    const key=`completed-${id}`;
+    const key=
+        `completed-${id}`;
+
 
     const current=
         localStorage.getItem(key)==="true";
+
 
     localStorage.setItem(
         key,
         String(!current)
     );
 
+
     renderSchedule();
+
 }
+
 
 function updateStats(){
 
     const allLessons=
         Object.values(schedule).flat();
+
 
     const completed=
         allLessons.filter(
@@ -2024,56 +2915,82 @@ function updateStats(){
                 )==="true"
         ).length;
 
+
     document.getElementById(
         "completedLessons"
-    ).textContent=completed;
+    ).textContent=
+        completed;
 
-    const now=getAlgeriaTime();
 
-    const today=arabicDays[now.weekday];
+    const now=
+        getAlgeriaTime();
+
+
+    const today=
+        arabicDays[now.weekday];
+
 
     const todayLessons=
         schedule[today]||[];
+
 
     document.getElementById(
         "todayLessons"
     ).textContent=
         todayLessons.length;
 
+
     document.getElementById(
         "studyHours"
     ).textContent=
         completed;
 
+
     const achievements=[
+
         ["achievement1",1],
+
         ["achievement5",5],
+
         ["achievement10",10],
+
         ["achievement25",25]
+
     ];
 
-    achievements.forEach(item=>{
 
-        const element=
-            document.getElementById(item[0]);
+    achievements.forEach(
+        item=>{
 
-        if(element){
+            const element=
+                document.getElementById(
+                    item[0]
+                );
 
-            element.classList.toggle(
-                "unlocked",
-                completed>=item[1]
-            );
+
+            if(element){
+
+                element.classList.toggle(
+                    "unlocked",
+                    completed>=item[1]
+                );
+
+            }
+
         }
-    });
+    );
+
 }
 
 
-/* =========================================================
+/* ==================================================
    تعديل الحصص
-========================================================= */
+================================================== */
 
 let editingDay=null;
+
 let editingId=null;
+
 
 function openEdit(day,id){
 
@@ -2082,48 +2999,83 @@ function openEdit(day,id){
             item=>item.id===id
         );
 
+
     if(!lesson)return;
 
+
     editingDay=day;
+
     editingId=id;
 
-    document.getElementById("editDay").value=day;
 
-    document.getElementById("editStart").value=
-        lesson.start;
+    document.getElementById(
+        "editDay"
+    ).value=day;
 
-    document.getElementById("editEnd").value=
-        lesson.end;
 
-    document.getElementById("editModal").style.display=
-        "flex";
+    document.getElementById(
+        "editStart"
+    ).value=lesson.start;
+
+
+    document.getElementById(
+        "editEnd"
+    ).value=lesson.end;
+
+
+    document.getElementById(
+        "editModal"
+    ).style.display="flex";
+
 }
+
 
 function closeModal(){
 
-    document.getElementById("editModal").style.display=
-        "none";
+    document.getElementById(
+        "editModal"
+    ).style.display="none";
+
 
     editingDay=null;
+
     editingId=null;
+
 }
+
 
 function saveEdit(){
 
-    if(!editingDay||!editingId)return;
+    if(
+        !editingDay||
+        !editingId
+    ){
+        return;
+    }
+
 
     const start=
-        document.getElementById("editStart").value;
+        document.getElementById(
+            "editStart"
+        ).value;
+
 
     const end=
-        document.getElementById("editEnd").value;
+        document.getElementById(
+            "editEnd"
+        ).value;
+
 
     if(!start||!end){
 
-        alert("اختر وقت البداية والنهاية.");
+        alert(
+            "اختر وقت البداية والنهاية."
+        );
 
         return;
+
     }
+
 
     if(
         timeToMinutes(start)>=
@@ -2135,28 +3087,37 @@ function saveEdit(){
         );
 
         return;
+
     }
+
 
     const lesson=
         schedule[editingDay].find(
             item=>item.id===editingId
         );
 
+
     if(lesson){
 
         lesson.start=start;
+
         lesson.end=end;
+
     }
+
 
     localStorage.setItem(
         "myStudySchedule",
         JSON.stringify(schedule)
     );
 
+
     closeModal();
 
     renderSchedule();
+
 }
+
 
 function restoreLesson(day,id){
 
@@ -2165,121 +3126,183 @@ function restoreLesson(day,id){
             item=>item.id===id
         );
 
+
     const current=
         schedule[day].find(
             item=>item.id===id
         );
 
-    if(!original||!current)return;
 
-    current.start=original.start;
-    current.end=original.end;
-
-    localStorage.setItem(
-        "myStudySchedule",
-        JSON.stringify(schedule)
-    );
-
-    renderSchedule();
-}
-
-function resetAllSchedule(){
-
-    if(!confirm(
-        "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
-    )){
+    if(
+        !original||
+        !current
+    ){
         return;
     }
 
-    schedule=
-        JSON.parse(
-            JSON.stringify(originalSchedule)
-        );
+
+    current.start=
+        original.start;
+
+    current.end=
+        original.end;
+
 
     localStorage.setItem(
         "myStudySchedule",
         JSON.stringify(schedule)
     );
 
+
     renderSchedule();
 
-    alert("تمت إعادة البرنامج الأصلي ✅");
 }
 
 
-/* =========================================================
+function resetAllSchedule(){
+
+    if(
+        !confirm(
+            "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
+        )
+    ){
+        return;
+    }
+
+
+    schedule=
+        JSON.parse(
+            JSON.stringify(
+                originalSchedule
+            )
+        );
+
+
+    localStorage.setItem(
+        "myStudySchedule",
+        JSON.stringify(schedule)
+    );
+
+
+    renderSchedule();
+
+
+    alert(
+        "تمت إعادة البرنامج الأصلي ✅"
+    );
+
+}
+
+
+/* ==================================================
    الوضع الليلي / النهاري
-========================================================= */
+================================================== */
 
 function toggleTheme(){
 
-    document.body.classList.toggle("light");
+    document.body.classList.toggle(
+        "light"
+    );
+
 
     const light=
-        document.body.classList.contains("light");
+        document.body.classList.contains(
+            "light"
+        );
+
 
     localStorage.setItem(
         "studyTheme",
-        light?"light":"dark"
+        light
+        ?"light"
+        :"dark"
     );
+
 
     document.getElementById(
         "theme-button"
     ).textContent=
-        light?"☀️":"🌙";
+        light
+        ?"☀️"
+        :"🌙";
+
 }
+
 
 function loadTheme(){
 
     const light=
-        localStorage.getItem("studyTheme")==="light";
+        localStorage.getItem(
+            "studyTheme"
+        )==="light";
+
 
     document.body.classList.toggle(
         "light",
         light
     );
 
+
     document.getElementById(
         "theme-button"
     ).textContent=
-        light?"☀️":"🌙";
+        light
+        ?"☀️"
+        :"🌙";
+
 }
 
 
-/* =========================================================
+/* ==================================================
    مؤقت الدراسة
-========================================================= */
+================================================== */
 
-let timerSeconds=25*60;
+let timerSeconds=30*60;
 
 let timerInterval=null;
 
 let timerRunning=false;
 
+
 function formatTimer(seconds){
 
     const minutes=
-        Math.floor(seconds/60);
+        Math.floor(
+            seconds/60
+        );
+
 
     const secs=
         seconds%60;
 
-    return String(minutes).padStart(2,"0")+
+
+    return String(minutes)
+        .padStart(2,"0")+
         ":"+
-        String(secs).padStart(2,"0");
+        String(secs)
+        .padStart(2,"0");
+
 }
+
 
 function updateTimerDisplay(){
 
     document.getElementById(
         "timerDisplay"
     ).textContent=
-        formatTimer(timerSeconds);
+        formatTimer(
+            timerSeconds
+        );
+
 }
+
 
 function changeTimer(){
 
-    if(timerRunning)return;
+    if(timerRunning){
+        return;
+    }
+
 
     const minutes=
         Number(
@@ -2288,32 +3311,40 @@ function changeTimer(){
             ).value
         );
 
-    timerSeconds=minutes*60;
+
+    timerSeconds=
+        minutes*60;
+
 
     document.getElementById(
         "timerStatus"
     ).textContent=
         "جاهز للدراسة 💪";
 
+
     updateTimerDisplay();
+
 }
+
 
 function startTimer(){
 
-    if(timerRunning)return;
+    if(timerRunning){
+        return;
+    }
 
-    /*
-     * يسمح بتشغيل الصوت لاحقًا
-     */
 
     createAudioContext();
 
+
     timerRunning=true;
+
 
     document.getElementById(
         "timerStatus"
     ).textContent=
         "📚 وقت الدراسة الآن...";
+
 
     timerInterval=
         setInterval(()=>{
@@ -2327,34 +3358,50 @@ function startTimer(){
             }else{
 
                 finishTimer();
+
             }
 
         },1000);
+
 }
+
 
 function pauseTimer(){
 
-    if(!timerRunning)return;
+    if(!timerRunning){
+        return;
+    }
 
-    clearInterval(timerInterval);
+
+    clearInterval(
+        timerInterval
+    );
+
 
     timerInterval=null;
 
     timerRunning=false;
+
 
     document.getElementById(
         "timerStatus"
     ).textContent=
         "⏸️ تم إيقاف المؤقت مؤقتًا";
+
 }
+
 
 function resetTimer(){
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
+
 
     timerInterval=null;
 
     timerRunning=false;
+
 
     const minutes=
         Number(
@@ -2363,19 +3410,28 @@ function resetTimer(){
             ).value
         );
 
-    timerSeconds=minutes*60;
+
+    timerSeconds=
+        minutes*60;
+
 
     document.getElementById(
         "timerStatus"
     ).textContent=
         "جاهز للدراسة 💪";
 
+
     updateTimerDisplay();
+
 }
+
 
 function finishTimer(){
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
+
 
     timerInterval=null;
 
@@ -2383,12 +3439,15 @@ function finishTimer(){
 
     timerSeconds=0;
 
+
     updateTimerDisplay();
+
 
     document.getElementById(
         "timerStatus"
     ).textContent=
         "🎉 انتهى وقت الدراسة!";
+
 
     if(bellEnabled){
 
@@ -2399,13 +3458,15 @@ function finishTimer(){
         alert(
             "🎉 انتهى وقت الدراسة! أحسنت."
         );
+
     }
+
 }
 
 
-/* =========================================================
-   برنامج المدرسة
-========================================================= */
+/* ==================================================
+   البرنامج المدرسي
+================================================== */
 
 function renderSchoolSchedule(){
 
@@ -2414,53 +3475,94 @@ function renderSchoolSchedule(){
             "schoolScheduleBody"
         );
 
+
     body.innerHTML="";
+
 
     Object.entries(
         schoolSchedule
-    ).forEach(([day,items])=>{
+    ).forEach(
+        ([day,items])=>{
 
-        items.forEach((item,index)=>{
+            items.forEach(
+                (item,index)=>{
 
-            const row=
-                document.createElement("tr");
+                    const row=
+                        document.createElement(
+                            "tr"
+                        );
 
-            if(index===0){
 
-                const dayCell=
-                    document.createElement("td");
+                    if(index===0){
 
-                dayCell.rowSpan=
-                    items.length;
+                        const dayCell=
+                            document.createElement(
+                                "td"
+                            );
 
-                dayCell.textContent=day;
 
-                row.appendChild(dayCell);
-            }
+                        dayCell.rowSpan=
+                            items.length;
 
-            row.innerHTML+=`
-                <td>${item[0]}</td>
-                <td>${item[1]}</td>
-            `;
 
-            body.appendChild(row);
-        });
-    });
+                        dayCell.textContent=
+                            day;
+
+
+                        row.appendChild(
+                            dayCell
+                        );
+
+                    }
+
+
+                    row.innerHTML+=`
+
+                        <td>
+                            ${item[0]}
+                        </td>
+
+                        <td>
+                            ${item[1]}
+                        </td>
+
+                    `;
+
+
+                    body.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+    );
+
 }
 
 
-/* =========================================================
+/* ==================================================
    نموذج التواصل
-========================================================= */
+================================================== */
 
 const contactForm=
-    document.getElementById("contactForm");
+    document.getElementById(
+        "contactForm"
+    );
+
 
 const contactSubmit=
-    document.getElementById("contactSubmit");
+    document.getElementById(
+        "contactSubmit"
+    );
+
 
 const contactStatus=
-    document.getElementById("contactStatus");
+    document.getElementById(
+        "contactStatus"
+    );
+
 
 contactForm.addEventListener(
     "submit",
@@ -2468,56 +3570,79 @@ contactForm.addEventListener(
 
         event.preventDefault();
 
+
         const name=
             document.getElementById(
                 "visitorName"
             ).value.trim();
+
 
         const email=
             document.getElementById(
                 "visitorEmail"
             ).value.trim();
 
+
         const message=
             document.getElementById(
                 "visitorQuestion"
             ).value.trim();
 
-        if(!name||!email||!message){
+
+        if(
+            !name||
+            !email||
+            !message
+        ){
 
             contactStatus.textContent=
                 "⚠️ اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك أولاً.";
 
+
             contactStatus.className=
                 "contact-error";
 
+
             return;
+
         }
+
 
         const emailPattern=
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if(!emailPattern.test(email)){
+
+        if(
+            !emailPattern.test(email)
+        ){
 
             contactStatus.textContent=
                 "⚠️ أدخل بريدًا إلكترونيًا صحيحًا.";
 
+
             contactStatus.className=
                 "contact-error";
 
+
             return;
+
         }
+
 
         document.getElementById(
             "replyTo"
         ).value=email;
 
+
         contactSubmit.disabled=true;
+
 
         contactSubmit.textContent=
             "⏳ جارٍ إرسال السؤال...";
 
+
         contactStatus.textContent="";
+
 
         try{
 
@@ -2526,10 +3651,12 @@ contactForm.addEventListener(
                     contactForm.action,
                     {
                         method:"POST",
+
                         headers:{
                             "Accept":
                                 "application/json"
                         },
+
                         body:
                             new FormData(
                                 contactForm
@@ -2537,9 +3664,14 @@ contactForm.addEventListener(
                     }
                 );
 
+
             const data=
-                await response.json()
-                .catch(()=>({}));
+                await response
+                    .json()
+                    .catch(
+                        ()=>({})
+                    );
+
 
             if(
                 !response.ok||
@@ -2549,36 +3681,46 @@ contactForm.addEventListener(
                 throw new Error(
                     "Send failed"
                 );
+
             }
+
 
             contactStatus.textContent=
                 "✅ تم إرسال سؤالك بنجاح! شكرًا لك.";
 
+
             contactStatus.className=
                 "contact-success";
 
+
             contactForm.reset();
+
 
         }catch(error){
 
             contactStatus.textContent=
-                "❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلتك إلى Gmail.";
+                "❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلت إلى Gmail.";
+
 
             contactStatus.className=
                 "contact-error";
+
         }
+
 
         contactSubmit.disabled=false;
 
+
         contactSubmit.textContent=
             "📧 إرسال السؤال";
+
     }
 );
 
 
-/* =========================================================
-   النافذة
-========================================================= */
+/* ==================================================
+   إغلاق نافذة التعديل
+================================================== */
 
 document.getElementById(
     "editModal"
@@ -2592,14 +3734,16 @@ document.getElementById(
         ){
 
             closeModal();
+
         }
+
     }
 );
 
 
-/* =========================================================
+/* ==================================================
    تشغيل الموقع
-========================================================= */
+================================================== */
 
 loadTheme();
 
@@ -2608,6 +3752,8 @@ loadBellState();
 renderSchedule();
 
 renderSchoolSchedule();
+
+renderVideos();
 
 updateClock();
 
